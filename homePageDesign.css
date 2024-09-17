@@ -29,9 +29,10 @@
     text-decoration: none;
 }
 
-.icons.larger-icon {
+.icons {
     display: flex;
     align-items: center;
+    margin-top: 60px;
 }
 
 .user-greeting {
@@ -39,20 +40,27 @@
     white-space: nowrap;
 }
 
+/* בתחילה נסתיר את הברכה */
+#user-greeting {
+    visibility: hidden;
+  }
+  
+
 .icons {
-    margin-top: 60px;
     width: 30px; /* Adjust the width as needed */
     height: 30px; /* Adjust the height as needed */
     margin-right: 15px; /* Adjust the margin to add space between icons */
     color: black;
 }
 
-.larger-icon {
-    width: 25px; /* Adjust the width for larger icons */
-    height: 25px; /* Adjust the height for larger icons */
-}
-.icons:hover{
+.icons:hover {
     color: #198AD7 !important; 
+}
+
+/* Profile and Logout */
+#profile-container {
+    display: flex;
+    align-items: center;
 }
 
 /* Logo */
@@ -74,9 +82,8 @@
     text-align: right !important; /* Align text to the right */
 }
 
-
 .dropdown-menu a:hover {
-   color: #198AD7 !important; 
+    color: #198AD7 !important; 
 }
 
 #imageCarousel {
@@ -93,52 +100,49 @@
     object-fit: contain;
 }
 
-
 h4 {
-  font-family: 'Varela Round', sans-serif;
-  margin-top: 50px;
-  right: 15 px;
-  text-align: right;
-  padding-right: 20px;
-  color: #198AD7
-} 
-
-p{
-  text-align: right;
-  padding-right: 20px;
+    font-family: 'Varela Round', sans-serif;
+    margin-top: 50px;
+    text-align: right;
+    padding-right: 20px;
+    color: #198AD7;
 }
 
+p {
+    text-align: right;
+    padding-right: 20px;
+}
 
 .gallery {
-  margin-top: 30px;
-  display: flex;
-  margin: 0 auto;
-  width: 90%; /* Adjust the width as needed */
-  gap: 15px; /* Adjust the gap between images */
+    margin-top: 30px;
+    display: flex;
+    margin: 0 auto;
+    width: 90%; /* Adjust the width as needed */
+    gap: 15px; /* Adjust the gap between images */
 }
 
 .image {
-  margin: 0;
-  padding: 5px;
-  width: 100%; /* Make each image take 100% of the width of the gallery */
-  height: auto;
-  max-width: 100%;
-  transition: transform 0.3s, z-index 0.3s, background-color 0.3s;
-  overflow: hidden; /* Ensure that the image is not cut off */
+    margin: 0;
+    padding: 5px;
+    width: 100%; /* Make each image take 100% of the width of the gallery */
+    height: auto;
+    max-width: 100%;
+    transition: transform 0.3s, z-index 0.3s, background-color 0.3s;
+    overflow: hidden; /* Ensure that the image is not cut off */
 }
 
 .image-link {
-  display: block; /* Make the link cover the entire image */
+    display: block; /* Make the link cover the entire image */
 }
 
 .image-link:hover {
-  text-decoration: none; /* Remove underline on hover */
+    text-decoration: none; /* Remove underline on hover */
 }
 
 .image:hover {
-  transform: scale(1.1);
-  z-index: 1;
-  background-color: #198AD7; /* Set the background color to blue on hover */
+    transform: scale(1.1);
+    z-index: 1;
+    background-color: #198AD7; /* Set the background color to blue on hover */
 }
 
 footer {
@@ -160,22 +164,23 @@ footer {
 .footer-section {
     flex: 1;
     margin: 10px;
-    text-align: left;
     text-align: right;
 }
 
 #section-text {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .footer-section a {
     color: white;
     text-decoration: none;
 }
+
 .footer-section img {
     margin-right: 15px; 
 }
-#contact{
+
+#contact {
     text-align: center;
     font-size: 13px;
 }
