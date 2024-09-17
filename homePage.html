@@ -24,13 +24,18 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container">
         <!-- Cart Icon -->
-        <a class="icons larger-icon no-underline" href="cart.html">
+        <a class="icons no-underline" href="cart.html">
              <i class="fas fa-shopping-cart"></i> 
         </a>
-        <!-- Profile Icon -->
-        <a class="icons larger-icon no-underline" href="loginPage.html" id="profile-link">
+        <!-- Profile Icon and Logout -->
+        <a class="icons no-underline">
+            <i class="fas fa-sign-out-alt" id="logout-icon"></i>
+        </a>        
+    <div id="profile-container">
+        <a class="icons no-underline" href="loginPage.html" id="profile-link">
              <i class="fas fa-user"></i><span id="user-greeting"> היי, אורח/ת</span>
         </a>
+    </div>
 
         <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
             <ul class="navbar-nav">
@@ -216,6 +221,17 @@
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
      <script src="homePagelogic.js"></script>
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const displayName = sessionStorage.getItem('displayName');
+          
+          if (displayName) {
+            // אם שם משתמש קיים ב-sessionStorage, עדכן את הטקסט לפני שהדף נטען
+            document.getElementById('user-greeting').textContent = `היי, ${displayName}`;
+          }
+        });
+      </script>
+      
 
 </body>
 </html>
