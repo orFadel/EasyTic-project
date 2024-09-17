@@ -1,43 +1,43 @@
-function handleLogin() {
-  const usernameInput = document.getElementById('uname');
-  const passwordInput = document.getElementById('password');
+async function handleLogin() {
+  const usernameInput = document.getElementById('uname').value.trim();
+  const passwordInput = document.getElementById('password').value.trim();
 
-  // Check if username and password fields are not empty
-  if (usernameInput.value.trim() !== '' && passwordInput.value.trim() !== '') {
-    // Validate username (6 letters only)
-    const usernameRegex = /^[A-Za-z]{6}$/;
-    if (usernameRegex.test(usernameInput.value.trim())) {
-      // Validate password (8 letters and numbers)
-      const passwordRegex = /^[A-Za-z0-9]{8}$/;
-      if (passwordRegex.test(passwordInput.value.trim())) {
-        const name = prompt('Please enter your name:');
+  if (usernameInput !== '' && passwordInput !== '') {
+    // שלח את הבקשה לשרת
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: usernameInput, password: passwordInput })
+    });
 
-        // Check if the name is not empty
-        if (name && name.trim() !== '') {
-          alert(`Welcome, ${name}! Redirecting to the home page.`);
-          
-          // Redirect to the home page
-          window.location.href = `homePage.html?username=${name}`;
-        } else {
-          alert('Name is required. Please try again.');
-        }
+    const message = await response.text();
+    if (response.ok) {
+      // הצג חלון prompt למשתמש כדי להכניס שם מותאם אישית
+      const displayName = prompt('הכנס שם תצוגה מותאם אישית:');
+      
+      if (displayName !== null && displayName.trim() !== '') {
+        // שמור את שם התצוגה ב-sessionStorage כדי להשתמש בו במהלך החיבור
+        sessionStorage.setItem('displayName', displayName.trim());
       } else {
-        alert('Password must be 8 characters long and contain only letters and numbers (0-9).');
+        // במקרה שהמשתמש לא הכניס שם מותאם, שמור את שם המשתמש הרגיל
+        sessionStorage.setItem('displayName', usernameInput);
       }
+      
+      // ניתוב לעמוד הבית עם שם התצוגה
+      window.location.href = 'homePage.html';
     } else {
-      alert('Username must be 6 characters long and contain only letters.');
+      alert(message); // הצג הודעת שגיאה
     }
   } else {
-    alert('Both username and password are required. Please fill them out.');
+    alert('יש להזין שם משתמש וסיסמה.');
   }
 }
 
-  // Get password input and eye icon elements
-  const passwordInput = document.getElementById('password');
-  const togglePasswordIcon = document.getElementById('togglePassword');
+// הוסף אירוע על לחצן להראות/להסתיר סיסמא
+const passwordInput = document.getElementById('password');
+const togglePasswordIcon = document.getElementById('togglePassword');
 
-  // Add click event listener to toggle password visibility
-  togglePasswordIcon.addEventListener('click', function () {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
-  });
+togglePasswordIcon.addEventListener('click', function () {
+  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordInput.setAttribute('type', type);
+});
