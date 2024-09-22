@@ -29,9 +29,12 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">
             <!-- Cart Icon -->
-            <a class="icons no-underline" href="cart.html">
-                 <i class="fas fa-shopping-cart"></i> 
-            </a>
+       <a class="icons larger-icon no-underline" href="cart.html"  style="position: relative;">
+        <!-- אייקון עגלה-->
+         <i class="fas fa-shopping-cart"></i> 
+         <!-- מספר המוצרים בעגלה -->
+         <span id="cart-count" class="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: rgb(0, 183, 255); color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; font-weight: bold; text-align: center; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;">0</span>
+    </a>
             <!-- Profile Icon and Logout -->
             <a class="icons no-underline" >
                 <i class="fas fa-sign-out-alt" id="logout-icon"></i>
