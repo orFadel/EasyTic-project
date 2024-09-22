@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+  updateCartCount();
+});
+
+
 // Prices for each category (can be dynamic based on selected canvas)
 const prices = {
   adult: 50,
@@ -68,8 +73,16 @@ function addCart(id) {
   });
 //   הסגירת הקאנבס אוטומטית
 $('.offcanvas.show').offcanvas('hide');
+// עדכון מספר המוצרים בעגלה
+updateCartCount();
 }
 
+// פונקציה שמעדכנת את כמות המוצרים בעגלה
+function updateCartCount() {
+  var cart = JSON.parse(localStorage.getItem("cart")) || [];
+  var totalItems = cart.reduce((total, item) => total + item.amount, 0); // סוכם את כל הכמויות
+  document.getElementById('cart-count').textContent = totalItems; // עדכון המספר שמופיע על האייקון
+}
 
 function updateTotalPrice(container) {
   const getPriceAndAmount = (type) => ({
