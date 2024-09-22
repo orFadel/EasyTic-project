@@ -66,6 +66,8 @@ function addCart(id) {
       }      
     } 
   });
+//   הסגירת הקאנבס אוטומטית
+$('.offcanvas.show').offcanvas('hide');
 }
 
 
