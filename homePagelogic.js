@@ -38,3 +38,21 @@ document.getElementById('logout-icon').addEventListener('click', function () {
 
 // Call the function to update the profile content on page load
 document.addEventListener('DOMContentLoaded', updateProfileContent);
+
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  // עדכון מספר סוגי הפריטים באייקון
+  document.getElementById('cart-count').textContent = cart.length;
+}
+
+// קריאה לפונקציה בעת טעינת הדף
+document.addEventListener('DOMContentLoaded', function() {
+  updateCartCount();  // טוען את מספר הפריטים בעגלה מ-localStorage
+});
+
+
+
+
+
+
