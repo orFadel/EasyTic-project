@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+  updateCartCount();
+});
+
 function toggleQuestions(category) {
   // Hide all question lists
   document.querySelectorAll('.question-list').forEach(function (list) {
@@ -24,4 +28,11 @@ function submitForm() {
   document.getElementById('submitButton').style.display = 'none';
   //success message appear
   document.getElementById('successMessage').style.display = 'block';
+}
+
+// פונקציה שמעדכנת את כמות המוצרים בעגלה
+function updateCartCount() {
+  var cart = JSON.parse(localStorage.getItem("cart")) || [];
+  var totalItems = cart.reduce((total, item) => total + item.amount, 0); // סוכם את כל הכמויות
+  document.getElementById('cart-count').textContent = totalItems; // עדכון המספר שמופיע על האייקון
 }
