@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+    updateCartCount();
+  });
+
 window.addEventListener('load', function() {
     console.log("start");
     let sum = 0;
@@ -81,3 +85,10 @@ document.getElementById('confirmationCheckbox').addEventListener('change', funct
 document.getElementById("orderButton").addEventListener("click", function() {
     window.location.href = "payment.html";
 });
+
+// פונקציה שמעדכנת את כמות המוצרים בעגלה
+function updateCartCount() {
+    var cart = JSON.parse(localStorage.getItem("cart")) || [];
+    var totalItems = cart.reduce((total, item) => total + item.amount, 0); // סוכם את כל הכמויות
+    document.getElementById('cart-count').textContent = totalItems; // עדכון המספר שמופיע על האייקון
+  }
