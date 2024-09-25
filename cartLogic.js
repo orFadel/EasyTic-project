@@ -49,6 +49,8 @@ function deleteRow(id) {
         removeFromLocalStorage(id);
         // Update the total price
         recalculateTotalPrice();
+        // Update the cart count on the cart icon
+        updateCartCount(); // הוספנו קריאה לפונקציה הזו כאן כדי לעדכן את מספר הפריטים בעגלה
     }
 }
 
