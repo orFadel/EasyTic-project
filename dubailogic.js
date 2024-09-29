@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   updateCartCount();
+  console.log(localStorage.getItem('UserName'));
 });
 
 function increaseAmount(category, amountElement) {
@@ -19,16 +20,18 @@ function decreaseAmount(category, amountElement) {
   
 }
 
-function addCart(id) {
+async function addCart(id) {
   var container = document.querySelector('[data-id="'+id+'"]');
   var name = container.getAttribute('data-name');
   var category = container.getAttribute('data-category');
   var contry = container.getAttribute('data-contry');
+  var cartItems = [];
+  
   container.querySelectorAll('.ticket-category').forEach(ticket => {
     if(ticket.getAttribute('data-type')){
       if(parseInt(ticket.querySelector('.amount').textContent) != 0){
-        item = {
-          id:id,
+        let item = {
+          id: id,
           name: name,
           category: category,
           contry: contry,
@@ -36,13 +39,14 @@ function addCart(id) {
           price: parseInt(ticket.querySelector('.price').textContent.replace('₪', '')),
           amount: parseInt(ticket.querySelector('.amount').textContent)
         };
+        
+        // Update local storage
         if(localStorage.getItem("cart") && localStorage.getItem("cart").length){
           var cart = JSON.parse(localStorage.getItem("cart"));
-          // check if item exist
           var exist = false;
           for (let i = 0; i < cart.length; i++) {
             if(cart[i].id == item.id && cart[i].type == item.type){
-              cart[i].amount = cart[i].amount + item.amount;
+              cart[i].amount += item.amount;
               exist = true;
             }
           }
@@ -50,28 +54,42 @@ function addCart(id) {
             cart.push(item);
           }
           localStorage.setItem("cart", JSON.stringify(cart));
-        }else{
+        } else {
           localStorage.setItem("cart", JSON.stringify([item]));
         }
+        
+        // Add item to cartItems array
+        cartItems.push(item);
       }      
     } 
   });
-//   הסגירת הקאנבס אוטומטית
-$('.offcanvas.show').offcanvas('hide');
-// עדכון מספר המוצרים בעגלה
-updateCartCount();
-}
+  
+  const username = localStorage.getItem('UserName');
+  if (username) {
+    fetch('http://localhost:2001/api/cart/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username: username, cart: cartItems })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => console.log('Cart updated:', data))
+    .catch(error => console.error('Error updating cart:', error));  
+  } else {
+    console.error('Username not found in localStorage');
+  }  
 
-// פונקציה שמעדכנת את כמות המוצרים בעגלה
-function loadCartCount() {
-  var cart = JSON.parse(localStorage.getItem("cart"));
-  var distinctItemsCount = cart ? cart.length : 0;  // סופרים את מספר הפריטים השונים בעגלה
-  document.getElementById('cart-count').textContent = distinctItemsCount;
+  // Auto close canvas and update cart count
+  $('.offcanvas.show').offcanvas('hide');
+  updateCartCount();
+  location.reload();  
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  loadCartCount();  // טוען את מספר הפריטים בעגלה
-});
 
 
 function updateTotalPrice(container) {
@@ -103,22 +121,8 @@ function updateTotalPrice(container) {
   container.querySelector('#total-price').textContent = `₪${total}`;
 }
 
-  // Update displayed prices
-  const adultPriceElement = document.querySelector('.ticket-category[data-type="adult"] .price');
-  const childPriceElement = document.querySelector('.ticket-category[data-type="child"] .price');
-  const infantPriceElement = document.querySelector('.ticket-category[data-type="infant"] .price');
 
-  if (adultPriceElement && childPriceElement && infantPriceElement) {
-    adultPriceElement.textContent = `₪${prices.adult}`;
-    childPriceElement.textContent = `₪${prices.child}`;
-    infantPriceElement.textContent = `₪${prices.infant}`;
-  }
 
-  // Call the callback function after updating prices
-  if (typeof callback === 'function') {
-    callback();
-  }
-}
 
 
 
