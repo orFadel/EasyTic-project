@@ -1,21 +1,44 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 
 // הגדרת הסכימה (Schema) עבור המשתמשים
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  purchaseHistory: { type: Array, default: [] } // אפשר לשמור היסטוריית רכישות כאן
+  displayName: { type: String, required: true },
+  cart: [
+    {
+      productId: { type: Number, required: true }, // Refers to Product model
+      productName: { type: String },
+      category: { type: String },
+      contry: { type: String },
+      type: { type: String },
+      price: { type: Number },
+      amount: { type: Number, default: 1 }
+    }
+  ],
+  purchaseHistory: [
+    {
+        orderId: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' }, // רפרנס להזמנה
+        orderNumber: { type: Number, required: true } // מספר ההזמנה
+    }
+]
 });
 
 // Hashing הסיסמה לפני שמירתה במסד הנתונים
 userSchema.pre('save', async function (next) {
   const user = this;
+  
+  // בודקים אם השדה 'password' שונה ורק אז מצפינים
   if (!user.isModified('password')) return next();
-
+  
   try {
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(user.password, salt);
+    console.log("Original password:", user.password); // הסיסמה שהוזנה לפני ההצפנה
+    
+    // מבצעים את ההצפנה רק אם הסיסמה לא מוצפנת
+    user.password = await argon2.hash(user.password);
+    
+    console.log("Hashed password:", user.password); // הסיסמה אחרי ההצפנה
     next();
   } catch (error) {
     return next(error);
@@ -24,7 +47,14 @@ userSchema.pre('save', async function (next) {
 
 // פונקציה להשוואת סיסמאות מוצפנות
 userSchema.methods.comparePassword = async function (password) {
-  return bcrypt.compare(password, this.password);
+  try {
+    console.log("Entered password:", password); // הצגת הסיסמה שהוזנה
+    console.log("Hashed password from DB:", this.password); // הצגת הסיסמה השמורה במסד
+    return await argon2.verify(this.password, password);
+  } catch (error) {
+    console.error('Error comparing password:', error);
+    return false;
+  }
 };
 
 // יצירת המודל (Model) עבור משתמשים
