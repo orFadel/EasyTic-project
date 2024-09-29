@@ -2,53 +2,45 @@ document.addEventListener('DOMContentLoaded', (event) => {
   updateCartCount();
 });
 
-// Function to get the username from the URL
-function getUsernameFromURL() {
-  const queryString = window.location.search; //שולף את היוזר מהURL ושומר במשתנה
-  const urlParams = new URLSearchParams(queryString);
-  //תביא לי את השם שנמצא בתוך הURL
-  return urlParams.get('username');
+// Function to get the display name from session storage
+function getDisplayNameFromSessionStorage() {
+  return sessionStorage.getItem('displayName');
 }
 
-// Function to get the username from local storage
-function getUsernameFromLocalStorage() {
-  return localStorage.getItem('username');
-}
-
-// Function to set the username in local storage
-function setUsernameInLocalStorage(username) {
-  localStorage.setItem('username', username);
-}
-
-// פונקציה שמעדכנת את כמות המוצרים בעגלה
-function updateCartCount() {
-  var cart = JSON.parse(localStorage.getItem("cart")) || [];
-  var totalItems = cart.reduce((total, item) => total + item.amount, 0); // סוכם את כל הכמויות
-  document.getElementById('cart-count').textContent = totalItems; // עדכון המספר שמופיע על האייקון
+// Function to remove the display name from session storage (for logout)
+function logoutUser() {
+  sessionStorage.removeItem('displayName');
+  // Redirect to login page after logout
+  window.location.href = 'loginPage.html'; 
 }
 
 // Update the content next to the profile icon
 function updateProfileContent() {
-  const userGreetingElement = document.getElementById('user-greeting');//  האיזור שבו מופיע ההי אורחת
-  const profileLinkElement = document.getElementById('profile-link');// זה ממש ההי אורחת
+  const userGreetingElement = document.getElementById('user-greeting');
+  const profileLinkElement = document.getElementById('profile-link');
 
-  const usernameFromURL = getUsernameFromURL();// יכנס לי לתוך המשתנה החדש השם שהוכנס בPROMPT 
-  const usernameFromLocalStorage = getUsernameFromLocalStorage();//אם השם שלי נמצא בלוקל סטוררג
+  // Get the display name from session storage
+  const displayName = getDisplayNameFromSessionStorage();
 
-  // Use the username from the URL if available, otherwise use the one from local storage
-//
-  const username = usernameFromURL || usernameFromLocalStorage;
-
-  if (username && userGreetingElement && profileLinkElement) {
-    userGreetingElement.textContent = `היי, ${username}`;
-    // Update the profile link href to include the username
-    profileLinkElement.href = `loginPage.html?username=${username}`;
-
-    // Set the username in local storage for future use
-    setUsernameInLocalStorage(username);
+  // If there's no display name, set the greeting to "Guest"
+  if (!displayName) {
+    userGreetingElement.textContent = 'היי, אורח/ת';
+    profileLinkElement.href = 'loginPage.html'; // Redirect to login page
+  } else {
+    userGreetingElement.textContent = `היי, ${displayName}`;
+    profileLinkElement.href = 'loginPage.html'; // Use login page for profile link if profilePage.html doesn't exist
   }
+
+  // After loading the information, show the element
+  userGreetingElement.style.visibility = 'visible';
 }
 
-// Call the function to update the profile content on page load
+// Add event listener for the logout icon
+document.getElementById('logout-icon').addEventListener('click', function () {
+  logoutUser();
+});
+
 //השורה הנל מתבצעת בכל רענון לדף
 updateProfileContent();
+
+document.addEventListener('DOMContentLoaded', updateProfileContent);
