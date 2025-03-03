@@ -1,0 +1,126 @@
+h1 {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 50px;
+    margin-top: 50px;
+    text-align: right;
+    padding-right: 20px;
+    color: #198AD7;
+    display: flex;
+    flex-direction: row-reverse; /* Reverse the order of elements in the row direction */
+    align-items: center; /* Center items vertically */
+}
+
+.icon-before {
+  margin-left: 10px;  /* Adjust the margin as needed */
+  font-size: 40px;
+}
+
+.btn.btn-primary {
+  background-color: white !important;
+  border: none !important;
+  outline: none !important;
+}
+
+h3{
+  font-family: 'Varela Round', sans-serif;
+  text-align: right;
+    font-size: 20px;
+}
+
+h2{
+  font-family: 'Varela Round', sans-serif;
+  color: #198AD7;
+  text-align: right;
+  font-size: 30px;
+}
+    .mini-carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .mini-carousel img {
+      width: 50px;
+      height: auto;
+      margin: 0 5px;
+      cursor: pointer;
+      border: none; /* Remove borders */
+    }
+
+    .carousel-container {
+      position: relative;
+    }
+p {
+  font-size: 14px;
+}
+h5{
+  font-family: 'Varela Round', sans-serif;
+  color: #198AD7;
+  text-align: right;
+  font-size: 14px;
+}
+.ticket-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.ticket-category {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.btn-custom {
+  background-color: white;
+  color: #198AD7; 
+  border-color: #198AD7;
+}
+
+.btn-custom:hover {
+  background-color: #198AD7;
+  color: white;
+}
+
+.favorite-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: black; /* Text color */
+}
+
+.favorite-icon {
+  font-size: 24px;
+  color: #198AD7; /* Blue color */
+  border: 1px solid #198AD7; /* Blue border */
+  border-radius: 50%; /* Rounded shape */
+  padding: 5px; /* Adjust padding as needed */
+}
+
+.favorite-button:hover .favorite-icon {
+  color: white;
+  background-color: #198AD7; /* Blue color on hover */
+}
+
+.button-text {
+  font-size: 12px;
+  color: black;
+}
+.sub-text{
+ font-size: 12px;
+}
+.btn-secondary{
+background-color: #198AD7;
+}
+
+.form-select {
+  text-align: right;
+  direction: rtl; /* This ensures the dropdown arrow is on the left */
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shop Homepage</title>
+
+    <!-- Bootstrap CSS CDN link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-4p+Qk1k5V+bz+MA8fpFy+H6pAqk4lY5qfG8UeeLsB62AF5Zj/H6p8FS56DW2C2m4FoLpLL3TX3DUn4J+cBd3A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link href="homePageDesign.css" rel="stylesheet">
+    <link href="cartDS.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap">
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+             <!-- Cart Icon -->
+        <a class="icons larger-icon no-underline" href="cart.html"  style="position: relative;">
+          <!-- אייקון עגלה-->
+           <i class="fas fa-shopping-cart"></i> 
+           <!-- מספר המוצרים בעגלה -->
+           <span id="cart-count" class="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: rgb(0, 183, 255); color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; font-weight: bold; text-align: center; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;">0</span>
+      </a>
+            <!-- Profile Icon and Logout -->
+            <a class="icons no-underline" >
+                <i class="fas fa-sign-out-alt" id="logout-icon"></i>
+            </a>
+        <div id="profile-container">
+            <a class="icons no-underline" href="loginPage.html" id="profile-link">
+                 <i class="fas fa-user"></i><span id="user-greeting"> היי, אורח/ת</span>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                     <a class="nav-link" href="#contact">
+                     <i class="fas fa-phone"></i> צור קשר
+                     </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="q&a.html">
+                      <i class="fas fa-question-circle"></i> שאלות ותשובות 
+                                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="צק ליסט.pdf">
+                       <i class="fas fa-check checklist-icon"></i>  צ'ק ליסט
+                    </a>
+                 </li>
+                <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle" href="#" >
+                      <i class="fas fa-ticket-alt"></i> איפה נופשים
+                   </a>
+                   <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="dubai.html">דובאי</a></li>
+                    <li><a class="dropdown-item" href="paris.html">פריז</a></li>
+                    <li><a class="dropdown-item" href="rome.html">רומא</a></li>
+                    <li><a class="dropdown-item" href="london.html">לונדון</a></li>
+                   </ul>
+                 </li>
+            </ul>
+        </div>
+
+        <a class="navbar-brand ml-auto" href="homePage.html">
+            <span class="logo-text"></span>
+            <img src="EasyTic.svg" alt="Logo" width="150px" class="logo location">
+        </a>
+    </div>
+</nav>
+
+</br> </br> </br> </br> </br> 
+ 
+<h1><i class="fas fa-shopping-cart"></i> עגלת קניות </h1> 
+
+</br>
+<table id="table_cart">
+</table>
+</br>
+<p id="price">סה"כ לתשלום <b id="total_price">0</b>ש"ח</p>
+<div class="center-container">
+    <div class="check-container">
+      <label for="confirmationCheckbox">ידוע שעליי לרכוש ביטוח נסיעות לחו"ל עם הרחבה מתאימה לפעילות הנרכשת טרם הנסיעה</label>
+      <input type="checkbox" id="confirmationCheckbox">
+    </div>
+    <br>
+    <button id="orderButton" disabled>שליחת הזמנה</button>
+  </div>
+
+</br>  
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 id="section-text">אנו מקבלים תשלומים באמצעות</h3>
+                <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" data-ll-status="loaded" class="entered lazyloaded">
+                <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+            </div>
+            <div class="footer-section">
+                <h3 id="section-text">חפשו אותנו ברשתות החברתיות</h3>
+                <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social1.svg" alt="" data-lazy- data-ll-status="loaded" class="entered lazyloaded">
+                               <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" data-ll-status="loaded" class="entered lazyloaded">
+                               <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                               <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" data-ll-status="loaded" class="entered lazyloaded">
+            </br> </br>
+                <h3 id="section-text">צרו איתנו קשר</h3>
+                03-0000000
+            </div>
+            <div class="footer-section">
+                <h3 id="section-text">?צריכים עזרה</h3>
+                             <a href="q&a.html">
+                   תשובות לשאלות נפוצות  
+                              </a>
+            </div>
+            <div class="footer-section">
+                <h3 id="section-text">איפה נופשים</h3>
+                <a href="dubai.html">  אטרקציות בדובאי  </a>
+                  </br>
+                <a href="paris.html"> אטרקציות בפריז  </a>
+                  </br>
+                <a href="rome.html"> אטרקציות ברומא  </a>
+                  </br>
+                <a href="london.html"> אטרקציות בלונדון  </a>
+            </div>
+        </div>
+    </div>
+    </br>
+   <div id= "contact">
+      כל הזכויות שמורות 2024- איזי טיק בע"מ &copy; 
+   </div>
+</footer>
+
+    <!-- Bootstrap JS CDN link -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+     <script src="homePagelogic.js"></script>
+     <script src="updateCartCount.js" defer></script>
+     <script src="cartLogic.js"></script>
+
+</body>
+</html>

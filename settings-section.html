@@ -1,0 +1,165 @@
+<section id="settings-section" class="content-section">
+    <div class="content-header">
+    </br> </br>
+        <h1><i class="fas fa-cog"></i> הגדרות מערכת</h1>
+        <p class="text-muted">הגדרות כלליות למערכת הניהול</p>
+    </div>
+    
+    <div class="row">
+        <!-- הגדרות כלליות -->
+        <div class="col-md-6">
+            <div class="form-container">
+                <h4>הגדרות כלליות</h4>
+                <form id="general-settings-form">
+                    <div class="form-group">
+                        <label for="site-name">שם האתר</label>
+                        <input type="text" class="form-control" id="site-name" value="EasyTic">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="site-logo">לוגו האתר (URL)</label>
+                        <input type="url" class="form-control" id="site-logo" value="EasyTic.svg">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email">דוא"ל ליצירת קשר</label>
+                        <input type="email" class="form-control" id="contact-email" value="info@easytic.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-phone">טלפון ליצירת קשר</label>
+                        <input type="tel" class="form-control" id="contact-phone" value="03-0000000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="site-language">שפת האתר</label>
+                        <select class="form-control" id="site-language">
+                            <option value="he" selected>עברית</option>
+                            <option value="en">אנגלית</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">שמור הגדרות</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- הגדרות אטרקציות -->
+        <div class="col-md-6">
+            <div class="form-container">
+                <h4>הגדרות אטרקציות</h4>
+                <form id="attractions-settings-form">
+                    <div class="form-group">
+                        <label for="default-currency">מטבע ברירת מחדל</label>
+                        <select class="form-control" id="default-currency">
+                            <option value="ILS" selected>₪ (שקל)</option>
+                            <option value="USD">$ (דולר אמריקאי)</option>
+                            <option value="EUR">€ (אירו)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="items-per-page">פריטים בעמוד</label>
+                        <input type="number" class="form-control" id="items-per-page" min="5" value="10">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="show-sales-count" checked>
+                            <label class="custom-control-label" for="show-sales-count">הצג מספר מכירות לכל אטרקציה</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="enable-ratings" checked>
+                            <label class="custom-control-label" for="enable-ratings">אפשר דירוג אטרקציות</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="enable-reviews" checked>
+                            <label class="custom-control-label" for="enable-reviews">אפשר ביקורות על אטרקציות</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">שמור הגדרות</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <!-- הגדרות תשלום -->
+        <div class="col-md-6">
+            <div class="form-container">
+                <h4>הגדרות תשלום</h4>
+                <form id="payment-settings-form">
+                    <div class="form-group">
+                        <label for="payment-gateway">שער תשלום</label>
+                        <select class="form-control" id="payment-gateway">
+                            <option value="paypal">PayPal</option>
+                            <option value="credit-card" selected>כרטיס אשראי</option>
+                            <option value="bit">Bit</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="api-key">מפתח API</label>
+                        <input type="text" class="form-control" id="api-key" value="sk_test_123456789">
+                        <small class="form-text text-muted">מפתח ה-API של שער התשלום</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="api-secret">סוד API</label>
+                        <input type="password" class="form-control" id="api-secret" value="********">
+                        <small class="form-text text-muted">סוד ה-API של שער התשלום</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="test-mode" checked>
+                            <label class="custom-control-label" for="test-mode">מצב בדיקה (סביבת פיתוח)</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">שמור הגדרות</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- גיבוי ושחזור -->
+        <div class="col-md-6">
+            <div class="form-container">
+                <h4>גיבוי ושחזור</h4>
+                <p>גיבוי נתוני המערכת ושחזור מגיבוי קודם</p>
+                
+                <button class="btn btn-primary mb-3" id="backup-data">
+                    <i class="fas fa-download"></i> גיבוי נתונים
+                </button>
+                
+                <div class="form-group">
+                    <label for="restore-file">שחזור מקובץ גיבוי</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="restore-file">
+                        <label class="custom-file-label" for="restore-file">בחר קובץ גיבוי</label>
+                    </div>
+                </div>
+                
+                <button class="btn btn-warning" id="restore-data" disabled>
+                    <i class="fas fa-upload"></i> שחזור נתונים
+                </button>
+                
+                <hr>
+                
+                <h5>מחיקת נתונים</h5>
+                <p class="text-danger">פעולה זו תמחק את כל הנתונים במערכת. לא ניתן לבטל פעולה זו!</p>
+                
+                <button class="btn btn-danger" id="delete-all-data">
+                    <i class="fas fa-trash"></i> מחק את כל הנתונים
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,155 @@
+<section id="attractions-section" class="content-section">
+    <div class="content-header">
+    </br> </br>
+        <h1><i class="fas fa-map-marker-alt"></i> ניהול אטרקציות</h1>
+        <p class="text-muted">הוספה, עדכון ומחיקה של אטרקציות</p>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="form-container">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <button class="btn btn-primary" id="add-attraction-btn" onclick="showAddAttractionForm()">
+                            <i class="fas fa-plus"></i> הוסף אטרקציה חדשה
+                        </button>
+                    </div>
+                    <div class="d-flex">
+                        <div class="form-group mr-2 mb-0">
+                            <select class="form-control" id="attraction-filter-country">
+                                <option value="">כל המדינות</option>
+                                <option value="dubai">דובאי</option>
+                                <option value="paris">פריז</option>
+                                <option value="rome">רומא</option>
+                                <option value="london">לונדון</option>
+                            </select>
+                        </div>
+                        <div class="form-group mr-2 mb-0">
+                            <select class="form-control" id="attraction-filter-category">
+                                <option value="">כל הקטגוריות</option>
+                                <option value="park">פארקים וגנים</option>
+                                <option value="tour">סיורים</option>
+                                <option value="museum">מוזיאונים</option>
+                                <option value="tower">מגדלים ותצפיות</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="חיפוש..." id="attraction-search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Attraction Form (initially hidden) -->
+    <div id="attraction-form-container" class="form-container" style="display: none;">
+        <h3 id="form-title">הוספת אטרקציה חדשה</h3>
+        <form id="attraction-form">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="attraction-name">שם האטרקציה</label>
+                    <input type="text" class="form-control" id="attraction-name" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="attraction-country">מדינה</label>
+                    <select class="form-control" id="attraction-country" required>
+                        <option value="">בחר מדינה</option>
+                        <option value="dubai">דובאי</option>
+                        <option value="paris">פריז</option>
+                        <option value="rome">רומא</option>
+                        <option value="london">לונדון</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="attraction-category">קטגוריה</label>
+                    <select class="form-control" id="attraction-category" required>
+                        <option value="">בחר קטגוריה</option>
+                        <option value="park">פארקים וגנים</option>
+                        <option value="tour">סיורים ושייט</option>
+                        <option value="museum">מוזיאונים</option>
+                        <option value="tower">מגדלים ותצפיות</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="attraction-price">מחיר (₪)</label>
+                    <input type="number" class="form-control" id="attraction-price" required min="0">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="attraction-description">תיאור</label>
+                <textarea class="form-control" id="attraction-description" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="attraction-image">תמונה (URL)</label>
+                <input type="url" class="form-control" id="attraction-image" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="attraction-opening-hours">שעות פעילות</label>
+                    <input type="text" class="form-control" id="attraction-opening-hours">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="attraction-duration">זמן ממוצע לביקור</label>
+                    <input type="text" class="form-control" id="attraction-duration">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="attraction-accessibility">
+                    <label class="custom-control-label" for="attraction-accessibility">נגיש לנכים</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-success">שמור</button>
+            <button type="button" class="btn btn-secondary" id="cancel-attraction" onclick="hideAttractionForm()">ביטול</button>
+        </form>
+    </div>
+    
+    <!-- Attractions Table -->
+    <div class="data-table">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>שם</th>
+                    <th>מדינה</th>
+                    <th>קטגוריה</th>
+                    <th>מחיר</th>
+                    <th>פעולות</th>
+                </tr>
+            </thead>
+            <tbody id="attractions-list">
+                <!-- Attractions will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Pagination -->
+    <nav aria-label="Attractions pagination">
+        <ul class="pagination" id="attractions-pagination">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">הקודם</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">הבא</a>
+            </li>
+        </ul>
+    </nav>
+</section>

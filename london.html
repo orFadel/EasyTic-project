@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shop Homepage</title>
+
+    <!-- Bootstrap CSS CDN link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-4p+Qk1k5V+bz+MA8fpFy+H6pAqk4lY5qfG8UeeLsB62AF5Zj/H6p8FS56DW2C2m4FoLpLL3TX3DUn4J+cBd3A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap">
+    <!-- Include Font Awesome 6 CSS -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0/css/all.css" integrity="YOUR-INTEGRITY-CODE" crossorigin="anonymous" />
+
+
+    <!-- Custom CSS -->
+    <link href="homePageDesign.css" rel="stylesheet">
+    <link href="dubaiDS.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <!-- Cart Icon -->
+       <a class="icons larger-icon no-underline" href="cart.html"  style="position: relative;">
+        <!-- אייקון עגלה-->
+         <i class="fas fa-shopping-cart"></i> 
+         <!-- מספר המוצרים בעגלה -->
+         <span id="cart-count" class="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: rgb(0, 183, 255); color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; font-weight: bold; text-align: center; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;">0</span>
+    </a>
+            <!-- Profile Icon and Logout -->
+            <a class="icons no-underline" >
+                <i class="fas fa-sign-out-alt" id="logout-icon"></i>
+            </a>
+        <div id="profile-container">
+            <a class="icons no-underline" href="loginPage.html" id="profile-link">
+                 <i class="fas fa-user"></i><span id="user-greeting"> היי, אורח/ת</span>
+            </a>
+        </div>
+    
+            <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                         <a class="nav-link" href="#contact">
+                         <i class="fas fa-phone"></i> צור קשר
+                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="q&a.html">
+                          <i class="fas fa-question-circle"></i> שאלות ותשובות 
+                                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="צק ליסט.pdf">
+                         <i class="fas fa-check checklist-icon"></i>  צ'ק ליסט
+                      </a>
+                   </li>
+                    <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" >
+                          <i class="fas fa-ticket-alt"></i> איפה נופשים
+                       </a>
+                       <ul class="dropdown-menu">
+                         <li><a class="dropdown-item" href="dubai.html">דובאי</a></li>
+                         <li><a class="dropdown-item" href="paris.html">פריז</a></li>
+                         <li><a class="dropdown-item" href="rome.html">רומא</a></li>
+                         <li><a class="dropdown-item" href="london.html">לונדון</a></li>
+                       </ul>
+                     </li>
+                </ul>
+            </div>
+    
+            <a class="navbar-brand ml-auto" href="homePage.html">
+                <span class="logo-text"></span>
+                <img src="EasyTic.svg" alt="Logo" width="150px" class="logo location">
+            </a>
+        </div>
+    </nav>
+
+    </br> </br> </br> </br> </br>
+
+    <h1><i class="fas fa-map-marker-alt icon-before"></i> לונדון </h1>
+
+    <p>
+        כרטיסי טיסה ללונדון כבר יש? עכשיו הגיע הזמן לארגן את טיול החלומות שלכם. מתלבטים באיזו אטרקציה לבחור? מחפשים כיצד <br />
+        לשריין למקומות הכי שווים בלונדון ומהיכן להזמין כרטיסים? תפסיקו להתאמץ! כשכל הכרטיסים לכל האטרקציות מרוכזים במקום <br />
+        !?אחד, לכם רק נותר לבחור ולהזמין בקליק. אז מי צריך טיול מאורגן כשאפשר לארגן הכל בלחיצת כפתור  <br />
+    </p>
+
+    <h4> קטגוריות מובילות </h4>
+
+    <!-- gallery -->
+    </br>
+    <div class="gallery">
+        <a href="#museum-title" class="image-link">
+            <img src="londonPictures\categories\londonMuseums.jpg" class="image" alt="מוזיאונים">
+        </a>
+        <a href="#boats-title" class="image-link">
+            <img src="londonPictures\categories\londonShows.jpg" class="image" alt="סיורים והופעות">
+        </a>
+        <a href="#parks-title" class="image-link">
+            <img src="londonPictures\categories\londonparks.jpg" class="image" alt="פארקים וגנים">
+        </a>
+        <a href="#towers-title" class="image-link">
+            <img src="londonPictures\categories\londontowrs.jpg" class="image" alt="מגדלים ותצפיות">
+        </a>
+    </div>
+
+    <!-- מגדלים ותצפיות -->
+    <section id="tickets">
+        <h4 id="towers-title">מגדלים ותצפיות</h4>
+        </br>
+
+        <!-- Offcanvas for Tower of london -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu1">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">מצודת לונדון</h2>
+                <h3 class="offcanvas-subtitle">Tower of London</h3>
+                <!-- Content for Tower of london -->
+                <div id="Toweroflondon-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\towers\TowerOfLondon\TowerOfLondon1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\towers\TowerOfLondon\TowerOfLondon2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\towers\TowerOfLondon\TowerOfLondon3.jpg" class="d-block w-100" alt="Image 3">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#Toweroflondon-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#Toweroflondon-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#Toweroflondon-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\towers\TowerOfLondon\TowerOfLondon1.jpg" data-bs-target="#Toweroflondon-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\towers\TowerOfLondon\TowerOfLondon2.jpg" data-bs-target="#Toweroflondon-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\towers\TowerOfLondon\TowerOfLondon3.jpg" data-bs-target="#Toweroflondon-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    גלו סיפורים מרתקים וראו מראות איקוניים בטירה המפורסמת של לונדון,
+                    מצודת לונדון, שם תוכלו לחקור כמעט 1,000 שנים מההסטוריה שלה, כמבצר אדיר
+                    וארמון מלכותי....
+                    </br>
+                    </br>
+                    התפעלו מ-100 החפצים ו-23,000 האבנים היקרות המרכיבות את תכשיטי הכתר </br>
+                    ותיהנו מתערוכת תכשיטי הכתר החדשה והמרהיבה שנפתחה בשנת 2023.
+                    למדו סיפורים מבעיתים במגדל הדמים,
+                    תכירו את שומרי יאומן,
+                    ועוד הרבה יותר באתר מורשת עולמית זה של אונסק"ו בלונדון.
+                    </br>
+
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p> פתוח בכל ימות השבוע בין השעות 10:30-21:00</p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> כשעתיים </p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> קיימת נגישות רק לתצפית</p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" 
+                         data-contry='לונדון'
+                         data-name='מצודת לונדון' 
+                         data-category='מגדלים ותצפיות' data-id="4003">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪80</span>
+                            <div>
+                                <span class="sub-text">מגיל 8</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪40</span>
+                            <div>
+                                <span class="sub-text">מגיל 4 עד 8</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 4</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4003)">הוסף לסל</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Offcanvas for London Eye -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu2">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">תצפית 360 בלונדון</h2>
+                <h3 class="offcanvas-subtitle">London Eye</h3>
+                <!-- Content for London Eye -->
+                <div id="LondonEye-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\towers\LondonEye\LondonEye1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\towers\LondonEye\LondonEye2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\towers\LondonEye\LondonEye3.jpg" class="d-block w-100" alt="Image 3">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#LondonEye-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#LondonEye-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#LondonEye-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\towers\LondonEye\LondonEye1.jpg" data-bs-target="#LondonEye-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\towers\LondonEye\LondonEye2.jpg" data-bs-target="#LondonEye-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\towers\LondonEye\LondonEye3.jpg" data-bs-target="#LondonEye-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    </br> </br>
+                    <b> תיהנו מנופים מדהימים של 360 מעלות מעל לונדון </b></br>
+                    ההישג ההנדסי המיוחד הפך לסמל של הבירה המודרנית ולאייקון מפורסם בעולם של אדריכלות.
+                    בזמן הנסיעה בלונדון איי, אתה יכול לראות עד 40 ק"מ (25 מייל)
+                    ביום בהיר ובגובה מרשים של 135 מטר (443 רגל),
+                    תוכל לזהות כמה מנקודות הציון והאטרקציות המובילות ביותר של הבירה,
+                    כולל ביג בן, בתי הפרלמנט וארמון בקינגהאם
+
+                    </br>
+                    </br>
+                    </br>
+
+
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    כל יום מ-06:00 (זריחת השמש) עד 23:00 </br>
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> כחצי שעה עד שעתיים</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים</p>
+
+<div class="container mt-3">
+    <div class="ticket-container" data-contry='לונדון' data-name='תצפית 360 בלונדון' data-category='מגדלים ותצפיות' data-id="4002">
+        <div class="ticket-category" data-type="adult">
+            <div>
+              <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+              <span class="amount" data-id="adult-amount">0</span>
+              <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+            </div>
+            <span class="price" data-id="adult-price">₪120</span>
+            <div>
+              <span class="sub-text">מגיל 12</span>
+            </div>
+            <span>מבוגר</span>
+          </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪60</span>
+                            <div>
+                                <span class="sub-text">מגיל 4 עד 12</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 4</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4002)">הוסף לסל</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for Big Ben in London -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu3">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">הביג בן בלונדון</h2>
+                <h3 class="offcanvas-subtitle">Big Ben in London</h3>
+                <!-- Content for SkyView -->
+                <div id="dubaiFrame-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\towers\BigBen\BigBen1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\towers\BigBen\BigBen2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\towers\BigBen\BigBen3.jpg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#dubaiFrame-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#dubaiFrame-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#dubaiFrame-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\towers\BigBen\BigBen1.jpg" data-bs-target="#dubaiFrame-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\towers\BigBen\BigBen2.jpg" data-bs-target="#dubaiFrame-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\towers\BigBen\BigBen3.jpeg" data-bs-target="#dubaiFrame-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    מבנה השעון המכונה "ביג בן" הוא כרטיס הביקור של לונדון וחלק
+                    בלתי נפרד מביקור ראשון בממלכה הבריטית.
+                    כל תייר שיגיע לעיר, לא יוותר על תמונה של מגדל השעון המפורסם.
+                    להלן מספר עובדות ופרטים מעניינים על ביג בן
+                    </br>
+                    המגדל נראה למראית עין כמגדל עתיק,
+                    אך הסגנון הארכיטקטוני מטעה משהו.
+                    מדובר בסגנון ניאו-גותי, דהיינו,
+                    ניסיון לחיקוי סגנון ימי הביניים. המגדל נבנה רק ב-1859,
+                    </br>
+                    הפעמון הענק, שבתוך השעון, מצלצל בכל שעה עגולה כמספר השעה.
+                    בי ארבעה פעמונים קטנים יותר מצלצים כל רבע שעה.
+                    הצלצול מושמע בכל יום בתחנת הרדיו של הבי-בי-סי ומאז הקמתו, מעולם לא פסק.
+                    בואו לחוות חוויה היסטורית ומרגשת במגדל הביג בן שבלונדון!
+
+
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    בכל ימות השבוע בין השעות </br>
+                    09:00-00:00
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> כשעתיים</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='הביג בן בלונדון' data-category='מגדלים ותצפיות' data-id="4001">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪79</span>
+                            <div>
+                                <span class="sub-text">מגיל 12</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪32</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 12</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4001)">הוסף לסל</button>
+                  
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for Tower Bridge -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu4">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">גשר המגדל</h2>
+                <h3 class="offcanvas-subtitle">Tower Bridge</h3>
+                <!-- Content for Tower Bridge -->
+                <div id="BurjKahlifa-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\towers\TowerBridge\TowerBridge1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\towers\TowerBridge\TowerBridge2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\towers\TowerBridge\TowerBridge3.jpg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#BurjKahlifa-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#BurjKahlifa-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#BurjKahlifa-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\towers\TowerBridge\TowerBridge1.jpg" data-bs-target="#BurjKahlifa-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\towers\TowerBridge\TowerBridge2.jpg" data-bs-target="#BurjKahlifa-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\towers\TowerBridge\TowerBridge3.jpg" data-bs-target="#BurjKahlifa-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    ברוכים הבאים לגשר המגדל!
+                    אחד מציוני הדרך האייקוניים ביותר של לונדון, לטאואר ברידג יש הסטוריה מרתקת
+                    המתפרשת על פני 135 שנים
+                    </br>
+                    ביקור במגדל הגשר לא יהיה שלם מבלי לחוות את השבילים המדהימים ורצפת הזכוכית
+                    בגופה של יותר מ 40 מטר מעל התמזה, תוכלו לראות את המראות של יצירת המופת
+                    של סר כריסטופר, גריניץ ההיסטורית, מצודת לונדון, ועוד... רצפת הזכוכית
+                    מאפשרת לך להתפעל מההמולה של הבירה מתחת לרגליך
+                    </br>
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    האטרקציה פתוחה בכל ימות השבוע בין השעות  </br>
+                    08:00-24:00
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> כשעתיים</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='גשר המגדל' data-category='מגדלים ותצפיות' data-id="4000">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪48</span>
+                            <div>
+                                <span class="sub-text">מגיל 8</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪24</span>
+                            <div>
+                                <span class="sub-text">מגיל 4 עד 8</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 4</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4000)">הוסף לסל</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery custom-gallery">
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu1">
+                    <img src="londonPictures\towers\TowerOfLondon\TowerOfLondon.jpg" class="image" alt="מצודת לונדון">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu2">
+                    <img src="londonPictures\towers\LondonEye\LondonEye.jpg" class="image" alt="תצפית 360 לונדון">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu3">
+                    <img src="londonPictures\towers\BigBen\BigBen.jpg" class="image" alt="הביג בן בלונדון">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu4">
+                    <img src="londonPictures\towers\TowerBridge\TowerBridge.jpg" class="image" alt="גשר המגדל">
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- פארקים וגנים -->
+    <section id="tickets">
+        <h4 id="parks-title">פארקים וגנים</h4>
+        </br>
+
+        <!-- Offcanvas for Hyde Park -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu5">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">הייד פארק</h2>
+                <h3 class="offcanvas-subtitle">Hyde Park</h3>
+                <!-- Content for Aquaventure Waterpark -->
+                <div id="AquaventureWaterpark-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\parks\HydePark\HydePark1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\parks\HydePark\HydePark2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\parks\HydePark\HydePark3.jpg" class="d-block w-100" alt="Image 3">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\parks\HydePark\HydePark1.jpg" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\parks\HydePark\HydePark2.jpg" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\parks\HydePark\HydePark3.jpg" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    הכירו את הייד פארק המפורסם בעולם של לונדון
+                    קטע של 350 דונם של אדמה ירוקה המתהדרת
+                    במתקני ספורט, בתי קפה, אגם גדול ופינת הרמקולים
+                    </br>
+                    ?מה ניתן לראות בהייד פארק
+                    </br>
+                    שטח ירוק כולל 400 עצים ואגם גדול,
+                    התחל את המסלול שלך אחר ציוני הדרך של הפארק עם מזרקת הזיכרון של דיאנה,
+                    אנדרטה שלווה שנבנתה לכבוד הנסיכה המנוחה מוויילס
+                    </br>
+                    אתר היסטורי של מחאה ציבורית, נאומים ודיונים ששימשו בעבר קרל מרקס,
+                    ג'ורג' אורוול ולדימיר לנין.
+                    חובבי ספורט יכולים לעשות שימוש במרכז הטניס והספורט הייד פארק,
+                    הכולל מגרשי כדורגל, משטח פוטינג ומרחב לקערות דשא
+                    ועוד אטרקציות במקום
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    הפארק פתוח כל ימות השבוע בין השעות 09:30-18:00    </br>
+                    .(תלוי בעונה)
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> בין 5-6 שעות</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='הייד פארק' data-category='פארקים וגנים' data-id="4004">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪70</span>
+                            <div>
+                                <span class="sub-text">מגיל 7</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪40</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 7</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4004)">הוסף לסל</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for St. James's Park-->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu6">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">סנט ג'יימס פארק'</h2>
+                <h3 class="offcanvas-subtitle">St. James's Park</h3>
+                <!-- Content for Aquarium Dubai Mall -->
+                <div id="AquariumDubai-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\parks\StJamesPark\StJamesPark1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\parks\StJamesPark\StJamesPark2.jpeg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\parks\StJamesPark\StJamesPark3.jpeg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#AquariumDubai-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#AquariumDubai-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#AquariumDubai-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\parks\StJamesPark\StJamesPark1.jpg" data-bs-target="#AquariumDubai-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\parks\StJamesPark\StJamesPark2.jpeg" data-bs-target="#AquariumDubai-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\parks\StJamesPark\StJamesPark3.jpeg" data-bs-target="#AquariumDubai-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    תיהנו מטיול נינוח בפארק סנט ג'יימס במרכז לונדון
+                    שבו נמצאים גם הקניון ומצעד משמרות הסוסים
+                    צפו בנופים המרהיבים על פני אגם סנט ג'יימס פארק מהגשר הכחול,
+                    מנקודה זו תוכלו לראות ציוני דרך מפורסמים של לונדון כמו ארמון בקינגהאם,
+                    הביג בן והלונדון איי
+                    האגם הוא ביתם של ברווזים,
+                    אווזים ואפילו שקנאים,
+                    אשר הוכנסו לראשונה לפארק בשנת 1664 כמתנה מהשגריר הרוסי.
+                    עשה את דרכך לאורך הקניון,
+                    מסלול תהלוכות מפואר שראה תהלוכות טקסיות היסטוריות רבות לאורך השנים.
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    הפארק פתוח בין השעות 10:00-22:00  </br>
+                    .ובסופ"ש עד חצות
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p>כ-3-4 שעות </p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='סנט גיימס פארק' data-category='פארקים וגנים' data-id="4005">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪80</span>
+                            <div>
+                                <span class="sub-text">מגיל 2</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪80</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 12</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 2</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4005)">הוסף לסל</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for Kensington Gardens -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu7">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title"> גני קנסינגטון</h2>
+                <h3 class="offcanvas-subtitle">Global Village</h3>
+                <!-- Content for Global Village -->
+                <div id="GlobalVillage-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\parks\KensingtonGardens\KensingtonGardens1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\parks\KensingtonGardens\KensingtonGardens2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\parks\KensingtonGardens\KensingtonGardens3.jpg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#GlobalVillage-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#GlobalVillage-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#GlobalVillage-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\parks\KensingtonGardens\KensingtonGardens1.jpg" data-bs-target="#GlobalVillage-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\parks\KensingtonGardens\KensingtonGardens2.jpg" data-bs-target="#GlobalVillage-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\parks\KensingtonGardens\KensingtonGardens3.jpg" data-bs-target="#GlobalVillage-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    גני קנסינגטון הוא אחד מהפארקים המלכותיים של לונדון השוכנים בצד המערבי של הייד פארק
+                    </br>
+                    בקר בארמון קנסינגטון, ארמון מלכותי שהיה ביתם של בני המלוכה מאז המאה ה-17
+                    אזורי הארמון, כולל חדרי תצוגה,
+                    פתוחים לקהל הרחב, אך עליך להזמין כרטיס אם תרצה לחקור בפנים.
+                    לחלופין, תוכלו להתפעל מהבריכה העגולה היפה ומגני הארמון הרשמיים.
+                    צאו לטייל בגנים האיטלקיים הציוריים ליד שער לנקסטר,
+                    גן מים היסטורי שלדעתו נוצר על ידי הנסיך אלברט עבור המלכה ויקטוריה.
+                    אתה יכול גם לאסוף קפה מהיר או חטיף בבית הקפה שבגן כדי לשמור על רמת האנרגיה של היום
+
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    המתחם פתוח בכל ימות השבוע מ- 16:00-24:00 </br>
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> 5-6 שעות</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='גני קנסינגטון' data-category='פארקים וגנים' data-id="4006">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪22</span>
+                            <div>
+                                <span class="sub-text">מגיל 3</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪22</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 12</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4006)">הוסף לסל</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for The Green Park-->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu8">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">הפארק הירוק</h2>
+                <h3 class="offcanvas-subtitle">The Green Park</h3>
+                <!-- Content forThe Green Park -->
+                <div id="MiracleGarden-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\parks\GreenPark\GreenPark1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\parks\GreenPark\GreenPark2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\parks\GreenPark\GreenPark3.jpeg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#MiracleGarden-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#MiracleGarden-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#MiracleGarden-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\parks\GreenPark\GreenPark1.jpg" data-bs-target="#MiracleGarden-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\parks\GreenPark\GreenPark2.jpg" data-bs-target="#MiracleGarden-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\parks\GreenPark\GreenPark3.jpeg" data-bs-target="#MiracleGarden-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    היכנסו לנווה מדבר של רוגע כשאתם מבקרים בפארק גרין,
+                    ליד ארמון בקינגהאם במרכז לונדון
+                    </br>
+                    הפארק הוא אחד משמונת הפארקים המלכותיים של לונדון ו-40
+                    הדונם שלו מלאים בעצים בוגרים ובשטחי דשא שופעים.
+                    במהלך השנים הוא ראה קרב דו-קרב,
+                    זיקוקים מסנוורים והצדעות אקדח מלכותיות נורו.
+                    לאחרונה היא סיפקה מקום מפלט כפרי לנוסעים ולמבקרים.
+                    </br>
+                    ?מה ניתן לראות בפארק
+                    </br>
+                    צאו לטיול נינוח ברחבי הפארק ותתקלו באנדרטאות, הפסלים והמזרקות
+
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    הגן פתוח בכל יום בשבוע בין השעות 09:00 בבוקר   </br>
+                    .ועד 21:00 בלילה ובסופי שבוע עד השעה 23:00
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> כשעתיים</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='הפארק הירוק' data-category='פארקים וגנים' data-id="4007">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪25</span>
+                            <div>
+                                <span class="sub-text">מגיל 12</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪15</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 12</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4007)">הוסף לסל</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery custom-gallery">
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu5">
+                    <img src="londonPictures\parks\HydePark\HydePark.jpg" class="image" alt="הייד פארק">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu6">
+                    <img src="londonPictures\parks\StJamesPark\StJamesPark.jpg" class="image" alt="גיימס פארק">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu7">
+                    <img src="londonPictures\parks\KensingtonGardens\KensingtonGardens.jpg" class="image" alt="גני קנסיטון">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu8">
+                    <img src="londonPictures\parks\GreenPark\GreenPark.jpg" class="image" alt="הפארק הירוק">
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- סיורים והופעות -->
+    <section id="tickets">
+        <h4 id="boats-title">סיורים והופעות</h4>
+        </br>
+
+        <!-- Offcanvas for Ain Dubai Tour -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu9">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">ארמון בקינגהאם</h2>
+                <h3 class="offcanvas-subtitle">Buckingham Palace</h3>
+                <!-- Content for Buckingham Palace -->
+                <div id="AinDubaitour-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\shows\BuckinghamPalace\BuckinghamPalace1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\shows\BuckinghamPalace\BuckinghamPalace2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\shows\BuckinghamPalace\BuckinghamPalace3.jpeg" class="d-block w-100" alt="Image 3">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#AinDubaitour-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#AinDubaitour-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#AinDubaitour-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\shows\BuckinghamPalace\BuckinghamPalace1.jpg" data-bs-target="#AinDubaitour-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\shows\BuckinghamPalace\BuckinghamPalace2.jpg" data-bs-target="#AinDubaitour-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\shows\BuckinghamPalace\BuckinghamPalace3.jpeg" data-bs-target="#AinDubaitour-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    ארמון בקינגהאם הוא אחד הארמונות המלכותיים הבודדים שנותרו בעולם כיום.
+                    כאחד המבנים האייקוניים והמרשימים בעולם,
+                    זהו ביקור חובה כדי לחוות את מיטב ההיסטוריה והתרבות הבריטית.
+                    מה יש לראות?
+                    חדרים מפוארים אלה מעוטרים בכמה מהאוצרות הגדולים ביותר מהאוסף המלכותי,
+                    כולל ציורים של רמברנדט, רובנס וקנאלטו.
+                    קרא על 10 הדברים המובילים לראות בסיור בארמון בקינגהאם.
+                    </br>
+
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    הארמון פתוח למבקרים בשעות 09:00 - 19:00 </br>
+                    .לבחירתכם
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> כשעה</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> יש נגישות לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='london' data-name='ארמון בקינגהאם' data-category='סיורים והופעות' data-id="4008">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪74</span>
+                            <div>
+                                <span class="sub-text">מגיל 12</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪64</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 12</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4008)">הוסף לסל</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for the making of Harry Potter -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu10">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">יצירת הארי פוטר</h2>
+                <h3 class="offcanvas-subtitle">The Making of Harry Potter</h3>
+                <!-- Content for The Making of Harry Potter -->
+                <div id="YellowBoats-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\shows\HarryPotter\HarryPotter1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\shows\HarryPotter\HarryPotter2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\shows\HarryPotter\HarryPotter3.jpg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#YellowBoats-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#YellowBoats-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#YellowBoats-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\shows\HarryPotter\HarryPotter1.jpg" data-bs-target="#YellowBoats-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\shows\HarryPotter\HarryPotter2.jpg" data-bs-target="#YellowBoats-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\shows\HarryPotter\HarryPotter3.jpg" data-bs-target="#YellowBoats-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    גלו את הקסם שמאחורי אפקטים מיוחדים מרתקים,
+                    חשפו סודות מאחורי
+                    הקלעים וצעדו על סטים אמיתיים מסדרת סרטי הארי פוטר בסטודיו של האחים וורנר בלונדון,
+                    צפו בקסם של הסרטים מתעורר לחיים עם תלבושות מקוריות,
+                    סטים אינטראקטיביים ואביזרים אמיתיים מסדרת סרטי הארי פוטר.
+                    הסתובב בחלוקי סמטת דיאגון ועלה על הוגוורטס אקספרס
+                    ברציף 9 ¾ כדי לצלם תמונה עם עגלת המזוודות האיקונית.
+                    סיור הסטודיו המהפנט הזה נותן לכם
+                    !הצצה אל עולם הקוסמים הקסום שכבש אנשים מרחבי העולם בכל הגילאים
+                    </br>
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p> הסטודיו פתוח לסיורי מבקרים בשעות 09:00 - 23:00  </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> כשעתיים</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> אטרקציה זו אינה נגישה לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='יצירת הארי פוטר' data-category='סיורים והופעות' data-id="4009">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪320</span>
+                            <div>
+                                <span class="sub-text">מגיל 12</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪320</span>
+                            <div>
+                                <span class="sub-text">מגיל 5 עד 12</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 10</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(1004)">הוסף לסל</button>
+                   
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Offcanvas for Jack the Ripper Tour -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu11">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">סיור גק המרטש</h2>
+                <h3 class="offcanvas-subtitle">Jack the Ripper Tour</h3>
+                <!-- Content for Jack the Ripper Tour -->
+                <div id="SharedTour-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\shows\JackTheRipper\JackTheRipper1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\shows\JackTheRipper\JackTheRipper2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\shows\JackTheRipper\JackTheRipper3.jpg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#SharedTour-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#SharedTour-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#SharedTour-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\shows\JackTheRipper\JackTheRipper1.jpg" data-bs-target="#SharedTour-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\shows\JackTheRipper\JackTheRipper2.jpg" data-bs-target="#SharedTour-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\shows\JackTheRipper\JackTheRipper3.jpg" data-bs-target="#SharedTour-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    אחת מהאטרקציות שאסור לפספס בלונדון היא סיור ברחובות בו מסופר
+                    הסיפור המפחיד והמצמרר של גק המרטש.
+                    מדובר במקום מושקע מאוד בן 6 קומות שכל כולו מוקדש לסיפור הידוע של ג'ק המרטש.
+                    עבור אלו שלא מכירים,
+                    ג'ק המרטש הוא רוצח סדרתי ידוע לשמצה שפעל במאה ה-19
+                    והפך לדמות ולאייקון בתרבות הבריטית.
+                    הסיור לוקח את המבקרים במסע אחורה בזמן אל שנת 1988 בה פעל ג'ק המרטש
+                    ויציג למבקרים את עולמו של הרוצח המפורסם ואת קורבנותיו
+
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p> המקום פתוח למבקרים בין השעות 00:00 - 23:59</p>
+                <h5><i class="fas fa-hourglass-half"></i>  זמן ממוצע לבילוי </h5>
+                <p> משך הסיור כשעה וחצי</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> נגישות לנכים קיימת</p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='סיור גק המרטש' data-category='סיורים והופעות' data-id="4010">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪54</span>
+                            <div>
+                                <span class="sub-text">מגיל 12</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪0</span>
+                            <div>
+                                <span class="sub-text">מגיל 5 עד 12</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 5</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+
+                        <p>
+                            שימו לב:
+                            אין להביא ילדים קטנים לסיור זה
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4010)">הוסף לסל</button>
+                   
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for The Lion King Musical-->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu12">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">מחזמר מלך האריות</h2>
+                <h3 class="offcanvas-subtitle">The Lion King Musical</h3>
+                <!-- Content for The Lion King Musical -->
+                <div id="LotusYacht-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\shows\LionsKing\LionsKing1.jpeg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\shows\LionsKing\LionsKing2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\shows\LionsKing\LionsKing3.jpeg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\shows\LionsKing\LionsKing1.jpeg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\shows\LionsKing\LionsKing2.jpg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\shows\LionsKing\LionsKing3.jpeg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    עקבו אחר הרפתקאותיו של סימבה במחזמר מלך האריות בתיאטרון 
+                    בווסט אנד של לונדון. למידע נוסף על המופע למטה וכיצד להזמין 
+                    כרטיסים למלך האריות.
+
+                    על מה עוסק המחזמר מלך האריות?
+                    מופע התיאטרון של מלך האריות בלונדון מספר את סיפורו של סימבה, 
+                    נסיך גור אריות צעיר ללא חת,
+                    כשהוא הופך מגור אריות צעיר ואמיץ למלך המפואר של ארצות הגאווה.
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    הזמנת כרטיסים מראש,
+                    מיד לאחר ההזמנה יישלח מייל עם קישור לבחירת יום ושעה מתאימה
+
+                </p>
+
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> משך המחזמר כ-3 שעות</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> אטרקציה זו נגישה לנכים </p>
+
+                <div class="container mt-3">
+
+                    <div class="ticket-container" data-contry='לונדון' data-name='מחזמר מלך האריות' data-category='סיורים והופעות' data-id="4011">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪100</span>
+                            <div>
+                                <span class="sub-text">מגיל 10</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪50</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 10</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                        <p>
+                            המחזמר מתאים במיוחד לילדים
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4011)">הוסף לסל</button>
+                   
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery custom-gallery">
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu9">
+                    <img src="londonPictures\shows\BuckinghamPalace\BuckinghamPalace.jpg" class="image" alt="ארמון בקינגהאם">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu10">
+                    <img src=londonPictures\shows\HarryPotter\HarryPotter.jpg class="image" alt="יצירת הארי פוטר">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu11">
+                    <img src="londonPictures\shows\JackTheRipper\JackTheRipper.jpg" class="image" alt="גק המרטש">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu12">
+                    <img src="londonPictures\shows\LionsKing\LionsKing.jpg" class="image" alt="מלך האריות">
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- מוזיאונים -->
+    <section id="tickets">
+        <h4 id="museum-title">מוזיאונים</h4>
+        </br>
+        <!-- Offcanvas for The Wallace Collection-->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu13">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">גלריית וואלאס</h2>
+                <h3 class="offcanvas-subtitle">The Wallace Collection</h3>
+                <!-- Content for The Wallace Collection -->
+                <div id="LotusYacht-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\museums\WallaceGallery\WallaceGallery1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\museums\WallaceGallery\WallaceGallery2.jpeg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\museums\WallaceGallery\WallaceGallery3.jpg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\museums\WallaceGallery\WallaceGallery1.jpg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\museums\WallaceGallery\WallaceGallery2.jpeg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\museums\WallaceGallery\WallaceGallery3.jpg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+
+                    </br>
+                    ? מה ניתן לראות בגלריית וואלאס
+                    </br>
+                    28 החדרים של אוסף וואלאס מעוטרים בהזהבה משוכללת ומשי קיר,
+                    מלאים בציורים, פסלים, רהיטים, נשק ושריון ופורצלן.
+                    האוסף המהולל נרכש במאות ה-18 וה-19 על
+                    ידי המרקיזות מהרטפורד וסר ריצ'רד וואלאס, בנו של המרקיז ה-4.
+                    הבהרה כוללים את נוף הקשת של פיטר פול רובנס;
+                    הפרש הצוחק מאת פרנס האלס; וטיטוס, בנו של האמן מאת רמברנדט.
+                    תיהנו מציורי אולד מאסטר, אומנויות דקורטיביות מדהימות, נשק ברמה עולמית ומסעדה יפה בחצר.
+
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    הזמנת כרטיסים מראש,
+                    מיד לאחר ההזמנה יישלח מייל עם קישור לבחירת יום ושעה מתאימה
+
+                </p>
+
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> משך המחזמר כ-3 שעות</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> אטרקציה זו נגישה לנכים </p>
+
+                <div class="container mt-3">
+
+                    <div class="ticket-container" data-contry='לונדון' data-name='גלריית וואלאס' data-category='מוזיאונים' data-id="4012">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪20</span>
+                            <div>
+                                <span class="sub-text">מגיל 10</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪0</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 10</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4012)">הוסף לסל</button>
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for V&A - Victoria and Albert Museum -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu14">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">מוזיאון ויקטוריה ואלברט</h2>
+                <h3 class="offcanvas-subtitle">V&A - Victoria and Albert Museum</h3>
+                <!-- Content for V&A - Victoria and Albert Museum -->
+                <div id="Museum-Of-Illusions-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\museums\VictoriaAndAlbert\VictoriaAndAlbert1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\museums\VictoriaAndAlbert\VictoriaAndAlbert2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\museums\VictoriaAndAlbert\VictoriaAndAlbert3.jpg" class="d-block w-100" alt="Image 3">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\museums\VictoriaAndAlbert\VictoriaAndAlbert1.jpg" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\museums\VictoriaAndAlbert\VictoriaAndAlbert2.jpg" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\museums\VictoriaAndAlbert\VictoriaAndAlbert3.jpg" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    מוזיאון ויקטוריה ואלברט נחשב למוזיאון
+                    פופולרי בו מוצגות תערוכות ואוספים מהחשובים בהיסטוריה האנושית,
+                    אוספים נדירים בהיקף ובגיוון שלהם. יצירות תרבות ואמנות המשתרעות על פני 
+                    אלפי שנים הכוללות בין היתר מוצגי אופנה, טקסטיל, זכוכית,
+                    קרמיקה, תכשיטים, ציורים, עבודות פיסול ומלאכת יד.
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p> המוזיאון פתוח בימי שני-חמישי 10:00-22:00 וימים שישי-ראשון 10:00-23:00</p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p> כשעתיים עד שלוש</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> קיימת נגישות</p>
+
+                <div class="container mt-3">
+                    <div class="ticket-container" data-contry='לונדון' data-name='מוזיאון ויקטוריה ואלברט' data-category='מוזיאונים' data-id="4013">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪45</span>
+                            <div>
+                                <span class="sub-text">מגיל 16</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪35</span>
+                            <div>
+                                <span class="sub-text">מגיל 5 עד 15</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 4</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4013)">הוסף לסל</button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for National Gallery -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu15">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">הגלריה הלאומית</h2>
+                <h3 class="offcanvas-subtitle">National Gallery</h3>
+                <!-- Content for National Gallery -->
+                <div id="AYA-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\museums\NationalGallery\NationalGallery1.jpeg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\museums\NationalGallery\NationalGallery2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\museums\NationalGallery\NationalGallery3.jpg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#AYA-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#AYA-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#AYA-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\museums\NationalGallery\NationalGallery1.jpeg" data-bs-target="#AYA-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\museums\NationalGallery\NationalGallery2.jpg" data-bs-target="#AYA-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\museums\NationalGallery\NationalGallery3.jpg" data-bs-target="#AYA-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+               הגלריה הלאומית בלונדון, הוא מקום שופע של אומה הבריטית היסטורית
+                    . אמנות עם הטכנולוגיה העדכנית ביותר
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    ימים ראשון עד חמישי: 10:00-22:00  </br>
+                    שישי ושבת: 10:00-24:00</br>
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p>  כשעה וחצי</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="time-selector">
+                    </div>
+                    <div class="ticket-container" data-contry='לונדון' data-name='הגלריה הלאומית' data-category='מוזיאונים' data-id="4014">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪40</span>
+                            <div>
+                                <span class="sub-text">מגיל 10</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪40</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 10</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4014)">הוסף לסל</button>
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Offcanvas for The British Museum -->
+        <div class="offcanvas offcanvas-start" id="offCanvasMenu16">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2 class="offcanvas-title">המוזיאון הבריטי</h2>
+                <h3 class="offcanvas-subtitle">The British Museum</h3>
+                <!-- Content for The British Museum -->
+                <div id="MuseumOfTheFuture-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="londonPictures\museums\BritishMuseum\BritishMuseum1.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\museums\BritishMuseum\BritishMuseum2.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="londonPictures\museums\BritishMuseum\BritishMuseum3.jpeg" class="d-block w-100" alt="Image ">
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Mini Carousel Ruler -->
+                <div class="mini-carousel">
+                    <img src="londonPictures\museums\BritishMuseum\BritishMuseum1.jpg" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+                    <img src="londonPictures\museums\BritishMuseum\BritishMuseum2.jpg" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+                    <img src="londonPictures\museums\BritishMuseum\BritishMuseum3.jpeg" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+                </div>
+                <p>
+                    </br>
+                    ?מה ניתן לעשות במוזיאון הבריטי
+
+                    מצא אוצרות תרבות, עתיקים ומודרניים, הכל תחת קורת גג אחת. 
+                    נקודות השיא באוסף המוזיאון הבריטי 
+                    כוללות מומיות מצריות, אבן הרוזטה ופסלי פרתנון.
+                    סעו מיוון העתיקה וממצרים, לאפריקה וסין, 
+                    או מבריטניה הרומית לאירופה של ימי הביניים בלמעלה מ-60 
+                    גלריות חינמיות שבמרכזן בית המשפט הגדול המפואר.
+                </p>
+                <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+                <p>
+                    המוזיאון פתוח בכל ימות השבוע </br>
+                    בין השעות 10:00-21:30 (כניסה אחרונה עד 19:30)
+                </p>
+                <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+                <p>  כשעתיים</p>
+                <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+                <p> מקום נגיש לנכים </p>
+
+                <div class="container mt-3">
+                    <div class="time-selector">
+                    </div>
+                    <div class="ticket-container" data-contry='לונדון' data-name='המוזיאון הבריטי' data-category='מוזיאונים' data-id="4015">
+                        <div class="ticket-category" data-type="adult">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                                <span class="amount" data-id="adult-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                            </div>
+                            <span class="price" data-id="adult-price">₪55</span>
+                            <div>
+                                <span class="sub-text">מגיל 10</span>
+                            </div>
+                            <span>מבוגר</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="child">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                                <span class="amount" data-id="child-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                            </div>
+                            <span class="price" data-id="child-price">₪55</span>
+                            <div>
+                                <span class="sub-text">מגיל 3 עד 10</span>
+                            </div>
+                            <span>ילד</span>
+                        </div>
+
+                        <div class="ticket-category" data-type="infant">
+                            <div>
+                                <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                                <span class="amount" data-id="infant-amount">0</span>
+                                <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                            </div>
+                            <span class="price" data-id="infant-price">₪0</span>
+                            <div>
+                                <span class="sub-text">עד גיל 3</span>
+                            </div>
+                            <span>פעוט</span>
+                        </div>
+
+                        <div class="ticket-category">
+                            <span id="total-price">₪0</span>
+                            <span>סכום ההזמנה</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-custom" type="button" onclick="addCart(4015)">הוסף לסל</button>
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery custom-gallery">
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu13">
+                    <img src="londonPictures\museums\WallaceGallery\WallaceGallery.jpg" class="image" alt="וואלאס">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu14">
+                    <img src="londonPictures\museums\VictoriaAndAlbert\VictoriaAndAlbert.jpg" class="image" alt="ויקטוריה ואלברט">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu15">
+                    <img src="londonPictures\museums\NationalGallery\NationalGallery.jpg" class="image" alt="גלריה לאומית">
+                </button>
+            </a>
+            <a class="image-link">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu16">
+                    <img src="londonPictures\museums\BritishMuseum\BritishMuseum.jpg" class="image" alt="מוזיאון בריטי">
+                </button>
+            </a>
+        </div>
+
+
+
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="section-text">אנו מקבלים תשלומים באמצעות</h3>
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" data-ll-status="loaded" class="entered lazyloaded">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                </div>
+                <div class="footer-section">
+                    <h3 id="section-text">חפשו אותנו ברשתות החברתיות</h3>
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social1.svg" alt="" data-lazy- data-ll-status="loaded" class="entered lazyloaded">
+                                   <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" data-ll-status="loaded" class="entered lazyloaded">
+                                   <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                                   <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" data-ll-status="loaded" class="entered lazyloaded">
+                </br> </br>
+                    <h3 id="section-text">צרו איתנו קשר</h3>
+                    03-0000000
+                </div>
+                <div class="footer-section">
+                    <h3 id="section-text">?צריכים עזרה</h3>
+                                 <a href="q&a.html">
+                       תשובות לשאלות נפוצות  
+                                  </a>
+                </div>
+                <div class="footer-section">
+                  <h3 id="section-text">איפה נופשים</h3>
+                  <a href="dubai.html">  אטרקציות בדובאי  </a>
+                    </br>
+                  <a href="paris.html"> אטרקציות בפריז  </a>
+                    </br>
+                  <a href="rome.html"> אטרקציות ברומא  </a>
+                    </br>
+                  <a href="london.html"> אטרקציות בלונדון  </a>
+              </div>
+            </div>
+        </div>
+        </br>
+       <div id= "contact">
+          כל הזכויות שמורות 2024- איזי טיק בע"מ &copy; 
+       </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN link -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="updateCartCount.js" defer></script>
+    <script src="homePagelogic.js"></script>
+    <script src="dubailogic.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+
+</body>
+</html>

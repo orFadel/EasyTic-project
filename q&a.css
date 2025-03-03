@@ -1,0 +1,118 @@
+h1 {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 40px;
+    margin-top: 50px;
+    text-align: right;
+    padding-right: 20px;
+    color: #198AD7;
+    display: flex;
+    flex-direction: row-reverse; /* Reverse the order of elements in the row direction */
+    align-items: center; /* Center items vertically */
+}
+
+.icon-before {
+  margin-left: 10px;  /* Adjust the margin as needed */
+  font-size: 35px;
+}
+
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .vertical-button {
+      display: block;
+      margin-bottom: 10px;
+      margin: 0 10px;
+      padding: 10px;
+      width: 150px;
+      text-align: center;
+      font-size: 16px;
+      color: #198AD7;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .vertical-button:hover {
+      transform: scale(1.05);
+    }
+
+.question-list {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.question-list.active {
+  display: block;
+}
+
+.question-container::after {
+  font-size: 20px;
+  color: #198AD7;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.question {
+  content: "\25BC"; /* Unicode character for down arrow */
+  margin: 0;
+  padding: 10px;
+  background-color: white; /* Color for the questions */
+  color: #198AD7; /* Text color for the questions */
+  border-radius: 5px 5px 0 0;
+}
+
+.answer {
+  display: none;
+  padding: 10px;
+  border: 2px solid #198AD7;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+
+.answer.active {
+  display: block;
+}
+
+#contact-form {
+  text-align: center;
+}
+
+textarea {
+  width: 100%;
+ padding: 5px;
+  margin-bottom: 10px;
+}
+
+#successMessage {
+  color: green;
+  margin-top: 10px;
+}
+
+
+form {
+  display: inline-block;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

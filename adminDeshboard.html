@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyTic - פאנל ניהול</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap">
+    <link href="adminDashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <button class="toggle-sidebar-btn mr-2">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <a class="navbar-brand" href="homePage.html">
+                <img src="EasyTic.svg" alt="Logo" width="150px" class="logo">
+            </a>
+            
+            <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homePage.html">
+                            <i class="fas fa-home"></i> דף הבית
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="adminDashboard.html">
+                            <i class="fas fa-cog"></i> ניהול
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div id="profile-container">
+                <a class="icons no-underline" id="admin-profile">
+                    <i class="fas fa-user-shield"></i><span id="admin-greeting"> היי, מנהל</span>
+                </a>
+            </div>
+            <a class="icons no-underline" id="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+          </br> </br> 
+            <li>
+                <a href="#dashboard" class="active" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    לוח בקרה
+                </a>
+            </li>
+            <li>
+                <a href="#attractions" onclick="showSection('attractions')">
+                    <i class="fas fa-map-marker-alt"></i>
+                    ניהול אטרקציות
+                </a>
+            </li>
+            <li>
+                <a href="#questions" onclick="showSection('questions')">
+                    <i class="fas fa-question-circle"></i>
+                    שאלות ופניות
+                    <span class="badge badge-danger" id="sidebar-questions-badge">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="#sales" onclick="showSection('sales')">
+                    <i class="fas fa-chart-line"></i>
+                    ניתוח מכירות
+                </a>
+            </li>
+            <li>
+                <a href="#orders" onclick="showSection('orders')">
+                    <i class="fas fa-shopping-cart"></i>
+                    הזמנות
+                </a>
+            </li>
+            <li>
+                <a href="#settings" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    הגדרות מערכת
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section">
+            <div class="content-header">
+              </br> </br> 
+                <h1><i class="fas fa-tachometer-alt"></i> לוח בקרה</h1>
+                <p class="text-muted">ברוך הבא למערכת הניהול של EasyTic</p>
+            </div>
+            
+            <div class="row">
+                <!-- Quick Stats -->
+                <div class="col-md-3">
+                    <div class="dashboard-stat bg-primary">
+                        <h3 id="total-revenue">₪15,240</h3>
+                        <p>הכנסות החודש</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-stat bg-success">
+                        <h3 id="total-orders">42</h3>
+                        <p>הזמנות החודש</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-stat bg-warning">
+                        <h3 id="total-attractions">16</h3>
+                        <p>אטרקציות פעילות</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-stat bg-info">
+                        <h3 id="pending-questions">4</h3>
+                        <p>שאלות ממתינות</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <!-- Recent Orders -->
+                <div class="col-md-6">
+                    <div class="dashboard-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">הזמנות אחרונות</h5>
+                            <a href="#orders" onclick="showSection('orders')" class="btn btn-sm btn-outline-primary">לכל ההזמנות</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>מס' הזמנה</th>
+                                            <th>לקוח</th>
+                                            <th>סכום</th>
+                                            <th>תאריך</th>
+                                            <th>סטטוס</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recent-orders-table">
+                                        <!-- יטען דינמית -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Popular Attractions -->
+                <div class="col-md-6">
+                    <div class="dashboard-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">אטרקציות פופולריות</h5>
+                            <a href="#attractions" onclick="showSection('attractions')" class="btn btn-sm btn-outline-primary">לכל האטרקציות</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>שם האטרקציה</th>
+                                            <th>מדינה</th>
+                                            <th>מכירות</th>
+                                            <th>הכנסות</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="popular-attractions-table">
+                                        <!-- יטען דינמית -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <!-- Sales Chart -->
+                <div class="col-md-8">
+                    <div class="chart-container">
+                        <h5>מכירות לפי חודשים</h5>
+                        <canvas id="salesChart" height="250"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Recent Questions -->
+                <div class="col-md-4">
+                    <div class="dashboard-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">שאלות חדשות</h5>
+                            <a href="#questions" onclick="showSection('questions')" class="btn btn-sm btn-outline-primary">לכל השאלות</a>
+                        </div>
+                        <div class="card-body" id="recent-questions">
+                            <!-- יטען דינמית -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- חלק זה מיובא מהקובץ attractions-section.html -->
+        <div id="attractions-section-container"></div>
+        
+        <!-- חלק זה מיובא מהקובץ questions-section.html -->
+        <div id="questions-section-container"></div>
+        
+        <!-- חלק זה מיובא מהקובץ sales-section.html -->
+        <div id="sales-section-container"></div>
+        
+        <!-- חלק זה מיובא מהקובץ orders-section.html -->
+        <div id="orders-section-container"></div>
+        
+        <!-- חלק זה מיובא מהקובץ settings-section.html -->
+        <div id="settings-section-container"></div>
+    </div>
+
+    <!-- Modal for Question Reply -->
+    <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">מענה לשאלה</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="question-text" class="font-weight-bold"></p>
+                    <form id="reply-form">
+                        <div class="form-group">
+                            <label for="reply-text">תשובה:</label>
+                            <textarea class="form-control" id="reply-text" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="add-to-faq">
+                                <label class="form-check-label" for="add-to-faq">הוסף לשאלות נפוצות</label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="question-id">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+                    <button type="button" class="btn btn-primary" id="send-reply">שלח תשובה</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Order Details -->
+    <div class="modal fade" id="orderDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">פרטי הזמנה</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="order-details-content">
+                    <!-- Order details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">סגור</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Main Admin Dashboard JS -->
+    <script src="adminDashboard.js"></script>
+    
+    <!-- Section-specific JS files -->
+    <script src="adminAttractions.js"></script>
+    <script src="adminQuestions.js"></script>
+    <script src="adminSales.js"></script>
+    <script src="adminOrders.js"></script>
+</body>
+</html>

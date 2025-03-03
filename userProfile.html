@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>האזור האישי שלי - EasyTic</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link href="homePageDesign.css" rel="stylesheet">
+    <link href="userProfile.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar (same as other pages) -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <!-- Cart Icon -->
+            <a class="icons larger-icon no-underline" href="cart.html" style="position: relative;">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count" class="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: rgb(0, 183, 255); color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; font-weight: bold; text-align: center; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;">0</span>
+            </a>
+            
+            <!-- Logout Icon -->
+            <a class="icons no-underline">
+                <i class="fas fa-sign-out-alt" id="logout-icon"></i>
+            </a>
+            
+            <!-- User Profile -->
+            <div id="profile-container">
+                <a class="icons no-underline" href="userProfile.html" id="profile-link">
+                    <i class="fas fa-user"></i><span id="user-greeting"> היי, </span>
+                </a>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            <i class="fas fa-phone"></i> צור קשר
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="q&a.html">
+                            <i class="fas fa-question-circle"></i> שאלות ותשובות
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="צק ליסט.pdf">
+                            <i class="fas fa-check checklist-icon"></i> צ'ק ליסט
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#">
+                            <i class="fas fa-ticket-alt"></i> איפה נופשים
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="dubai.html">דובאי</a></li>
+                            <li><a class="dropdown-item" href="paris.html">פריז</a></li>
+                            <li><a class="dropdown-item" href="rome.html">רומא</a></li>
+                            <li><a class="dropdown-item" href="london.html">לונדון</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Logo -->
+            <a class="navbar-brand ml-auto" href="homePage.html">
+                <span class="logo-text"></span>
+                <img src="EasyTic.svg" alt="Logo" width="150px" class="logo location">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="container my-5 pt-5">
+            <!-- User Profile Header -->
+            <div class="profile-header">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h1 id="username-display">שלום, </h1>
+                <p class="text-muted">ברוך הבא לאזור האישי שלך</p>
+            </div>
+
+            <!-- Profile Tabs -->
+            <ul class="nav nav-tabs profile-tabs" id="profileTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="orders-tab" data-toggle="tab" href="#orders" role="tab">
+                        <i class="fas fa-shopping-bag"></i> ההזמנות שלי
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab">
+                        <i class="fas fa-question-circle"></i> השאלות שלי
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab">
+                        <i class="fas fa-cog"></i> הגדרות חשבון
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content profile-tab-content" id="profileTabsContent">
+                <!-- Orders Tab -->
+                <div class="tab-pane fade show active" id="orders" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-shopping-bag"></i> ההזמנות שלי</h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="orders-container">
+                                <!-- Orders will be loaded here -->
+                                <p class="text-center">טוען הזמנות...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions Tab -->
+                <div class="tab-pane fade" id="questions" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-question-circle"></i> השאלות שלי</h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="user-questions-container" class="questions-container">
+                                <!-- Questions will be loaded here dynamically -->
+                                <div class="text-center">
+                                    <i class="fas fa-spinner fa-spin"></i> טוען שאלות...
+                                </div>
+                            </div>
+                            
+                            <div id="no-questions-message" style="display: none;" class="text-center my-4">
+                                <p>לא שאלת שום שאלה עדיין. <a href="q&a.html">לחץ כאן</a> כדי לשאול שאלה חדשה.</p>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <a href="q&a.html" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> שאל שאלה חדשה
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="tab-pane fade" id="settings" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-cog"></i> הגדרות חשבון</h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="user-settings-form">
+                                <div class="form-group">
+                                    <label for="display-name">שם תצוגה</label>
+                                    <input type="text" class="form-control" id="display-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">כתובת דוא"ל</label>
+                                    <input type="email" class="form-control" id="email" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="current-password">סיסמה נוכחית</label>
+                                    <input type="password" class="form-control" id="current-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">סיסמה חדשה</label>
+                                    <input type="password" class="form-control" id="new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">אימות סיסמה חדשה</label>
+                                    <input type="password" class="form-control" id="confirm-password">
+                                </div>
+                                <button type="submit" class="btn btn-primary">שמור שינויים</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="section-text">אנו מקבלים תשלומים באמצעות</h3>
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" alt="">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" alt="">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" alt="">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" alt="">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" alt="">
+                </div>
+                <div class="footer-section">
+                    <h3 id="section-text">חפשו אותנו ברשתות החברתיות</h3>
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social1.svg" alt="">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" alt="">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" alt="">
+                    <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" alt="">
+                    </br> </br>
+                    <h3 id="section-text">צרו איתנו קשר</h3>
+                    03-0000000
+                </div>
+                <div class="footer-section">
+                    <h3 id="section-text">?צריכים עזרה</h3>
+                    <a href="q&a.html">
+                        תשובות לשאלות נפוצות  
+                    </a>
+                </div>
+                <div class="footer-section">
+                    <h3 id="section-text">איפה נופשים</h3>
+                    <a href="dubai.html">אטרקציות בדובאי</a>
+                    </br>
+                    <a href="paris.html">אטרקציות בפריז</a>
+                    </br>
+                    <a href="rome.html">אטרקציות ברומא</a>
+                    </br>
+                    <a href="london.html">אטרקציות בלונדון</a>
+                </div>
+            </div>
+        </div>
+        </br>
+        <div id="contact">
+            כל הזכויות שמורות 2024- איזי טיק בע"מ &copy; 
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="updateCartCount.js"></script>
+    <script src="homePagelogic.js"></script>
+    <script src="userProfile.js"></script>

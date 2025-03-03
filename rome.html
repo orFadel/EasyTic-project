@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shop Homepage</title>
+
+    <!-- Bootstrap CSS CDN link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-4p+Qk1k5V+bz+MA8fpFy+H6pAqk4lY5qfG8UeeLsB62AF5Zj/H6p8FS56DW2C2m4FoLpLL3TX3DUn4J+cBd3A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap">
+    <!-- Include Font Awesome 6 CSS -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0/css/all.css" integrity="YOUR-INTEGRITY-CODE" crossorigin="anonymous" />
+
+
+    <!-- Custom CSS -->
+    <link href="homePageDesign.css" rel="stylesheet">
+       <link href="dubaiDS.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <!-- Cart Icon -->
+       <a class="icons larger-icon no-underline" href="cart.html"  style="position: relative;">
+        <!-- אייקון עגלה-->
+         <i class="fas fa-shopping-cart"></i> 
+         <!-- מספר המוצרים בעגלה -->
+         <span id="cart-count" class="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: rgb(0, 183, 255); color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; font-weight: bold; text-align: center; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;">0</span>
+    </a>
+        <!-- Profile Icon and Logout -->
+        <a class="icons no-underline" >
+            <i class="fas fa-sign-out-alt" id="logout-icon"></i>
+        </a>
+    <div id="profile-container">
+        <a class="icons no-underline" href="loginPage.html" id="profile-link">
+             <i class="fas fa-user"></i><span id="user-greeting"> היי, אורח/ת</span>
+        </a>
+    </div>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                     <a class="nav-link" href="#contact">
+                     <i class="fas fa-phone"></i> צור קשר
+                     </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="q&a.html">
+                      <i class="fas fa-question-circle"></i> שאלות ותשובות 
+                                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="צק ליסט.pdf">
+                     <i class="fas fa-check checklist-icon"></i>  צ'ק ליסט
+                  </a>
+               </li>
+                <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle" href="#" >
+                      <i class="fas fa-ticket-alt"></i> איפה נופשים
+                   </a>
+                   <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="dubai.html">דובאי</a></li>
+                     <li><a class="dropdown-item" href="paris.html">פריז</a></li>
+                     <li><a class="dropdown-item" href="rome.html">רומא</a></li>
+                     <li><a class="dropdown-item" href="london.html">לונדון</a></li>
+                   </ul>
+                 </li>
+            </ul>
+        </div>
+
+        <a class="navbar-brand ml-auto" href="homePage.html">
+            <span class="logo-text"></span>
+            <img src="EasyTic.svg" alt="Logo" width="150px" class="logo location">
+        </a>
+    </div>
+</nav>
+
+   
+</br> </br> </br> </br> </br> 
+ 
+<h1><i class="fas fa-map-marker-alt icon-before"></i>רומא </h1>
+
+<p>
+ברומא כבר יצא לכם לטייל? אם לא,הגיע הזמן לארגן את טיול החלומות שלכם באחת מהערים המתויירות ביותר באירופה. לא יודעים איזה אטרקציות אסור לכם לפספס? מחפשים כיצד <br/> 
+לשריין למקומות הכי שווים ברומא ומהיכן להזמין כרטיסים? תפסיקו להתאמץ! כשכל הכרטיסים לכל האטרקציות מרוכזים במקום <br/> 
+!?אחד, לכם רק נותר לבחור ולהזמין בקליק. אז מי צריך טיול מאורגן כשאפשר לארגן הכל בלחיצת כפתור  <br/> 
+</p>
+
+<h4> קטגוריות מובילות </h4>
+
+   <!-- gallery -->
+</br>
+   <div class="gallery">
+  <a href="#museum-title" class="image-link">
+    <img src="romePictures\categories\romemuseums.jpg" class="image" alt="מוזיאונים">
+  </a>
+  <a href="#unique-title" class="image-link">
+    <img src="romePictures\categories\romespecial.jpg" class="image" alt="אטרקציות יחודיות">
+  </a>
+  <a href="#parks-title" class="image-link">
+    <img src="romePictures\categories\romeparks.jpg" class="image" alt="פארקים_וגנים">
+  </a>
+  <a href="#towers-title" class="image-link">
+    <img src="romePictures\categories\rometowers.jpg" class="image" alt="מגדלים ותצפיות">
+  </a>
+</div>
+
+
+<!-- מגדלים ותצפיות -->
+    <section id="tickets">
+        <h4 id="towers-title">מגדלים ותצפיות</h4>
+        </br>
+<!-- Offcanvas for View from St. Peter's dome -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu1">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">תצפית מכנסיית פטרוס הקדוש</h2>
+    <h3 class="offcanvas-subtitle">View from St. Peter's dome</h3>
+    <!-- Content for View from St. Peter's dome-->
+    <div id="Peter-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\towers\SaintPeter\SaintPeter1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\towers\SaintPeter\SaintPeter2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\towers\SaintPeter\SaintPeter3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Peter-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Peter-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Peter-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src=romePictures\towers\SaintPeter\SaintPeter1.jpg data-bs-target="#Peter-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src=romePictures\towers\SaintPeter\SaintPeter2.jpg data-bs-target="#Peter-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src=romePictures\towers\SaintPeter\SaintPeter3.jpg data-bs-target="#Peter-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>מיכלאנג'לו הוא שתיכנן את הכיפה היפיפייה של כנסיית פטרוס הקדוש שבוותיקן. המרפסת שבמרום הכיפה מציעה לנו נקודת תצפית עוצרת נשימה על רומא ועל הוותיקן. העלייה אל הכיפה ואל המרפסת שלה קשה ומייגעת, אך בתום טיפוס ממושך של מדרגות רבות ותלולות, תמהרו להיווכח כי המאמץ היה שווה.
+</br>
+!בקיצור,מקום שבהחלט שווה ביקור
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> פתוח בכל ימות השבוע בין השעות 09:30-23:00</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כ – 45 דקות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> קיימת נגישות רק לתצפית</p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='רומא' data-name='פטרוס הקדוש' data-category='מגדלים ותצפיות' data-id="3003">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪120</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪79</span>
+      <div>
+        <span class="sub-text">מגיל 4 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 4</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+ <button class="btn btn-custom" type="button" onclick="addCart(3003)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+
+<!-- Offcanvas for Pisa tower -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu2">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">מגדל פיזה</h2>
+    <h3 class="offcanvas-subtitle">Pisa tower</h3>
+    <!-- Content for PalmJumeirah -->
+    <div id="Pisa-tower-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\towers\TowerOfPisa\TowerOfPisa1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\towers\TowerOfPisa\TowerOfPisa2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\towers\TowerOfPisa\TowerOfPisa3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Pisa-tower-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Pisa-tower-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Pisa-tower-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\towers\TowerOfPisa\TowerOfPisa1.jpg" data-bs-target="#Pisa-tower-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\towers\TowerOfPisa\TowerOfPisa2.jpg" data-bs-target="#Pisa-tower-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\towers\TowerOfPisa\TowerOfPisa3.jpg" data-bs-target="#Pisa-tower-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+המגדל הנטוי של פיזה או מגדל פיזה הוא מגדל הניצב בפיאצה דיי מיראקולי, בפיזה שבאיטליה. המגדל ידוע בעיקר בשל נטייתו בזווית של 3.97 מעלות נכון ל-2019.
+מדובר באתר פופלרי ביותר והשמועות אומרות שאסור לפספס אותו
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p>  כל יום מ-08:00 עד 23:00 </br> 
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעה עד שעתיים</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים</p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='רומא' data-name='מגדל פיזה' data-category='מגדלים ותצפיות' data-id="3002">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪120</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪79</span>
+      <div>
+        <span class="sub-text">מגיל 4 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 4</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+   <button class="btn btn-custom" type="button" onclick="addCart(3002)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Castel Sant'Angelo -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu3">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">טירת סנטאנג'לו</h2>
+    <h3 class="offcanvas-subtitle">Castel Sant'Angelo</h3>
+    <!-- Content for Castel Sant'Angelo -->
+    <div id="SantAngelo-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\towers\CastelSant'Angelo\CastelSant'Angelo1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\towers\CastelSant'Angelo\CastelSant'Angelo2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\towers\CastelSant'Angelo\CastelSant'Angelo3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#SantAngelo-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#SantAngelo-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#SantAngelo-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\towers\CastelSant'Angelo\CastelSant'Angelo1.jpg" data-bs-target="#SantAngelo-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\towers\CastelSant'Angelo\CastelSant'Angelo2.jpg" data-bs-target="#SantAngelo-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\towers\CastelSant'Angelo\CastelSant'Angelo3.jpg" data-bs-target="#SantAngelo-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+המבצר המרהיב משמש היום כמוזאון והוא אחד מהאטרקציות הפופולריות ברומא. הוא ממוקם מעל נהר הטיבר ומציג נוף על גשר סנטאנג'לו היפה, גגות העיר, הוותיקן, בזיליקת פטרוס הקדוש, פיאצה ונציה, קמפו די פיורי ועוד..
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> המסגרת פתוחה בכל ימות השבוע בין השעות </br>
+10:00-23:00 </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעה</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='רומא' data-name='סנטאנגלו' data-category='מגדלים ותצפיות' data-id="3001">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪80</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪59</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+   <button class="btn btn-custom" type="button" onclick="addCart(3001)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Gianicolo Hill -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu4">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">גבעת ג'אניקולו</h2>
+    <h3 class="offcanvas-subtitle">Gianicolo Hill</h3>
+    <!-- Content for Gianicolo Hill -->
+    <div id="Gianicolo-Hill-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\towers\GianicoloHill\GianicoloHill1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\towers\GianicoloHill\GianicoloHill2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\towers\GianicoloHill\GianicoloHill3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Gianicolo-Hill-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Gianicolo-Hill-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Gianicolo-Hill-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\towers\GianicoloHill\GianicoloHill1.jpg" data-bs-target="#Gianicolo-Hill-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\towers\GianicoloHill\GianicoloHill2.jpg" data-bs-target="#Gianicolo-Hill-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\towers\GianicoloHill\GianicoloHill3.jpg" data-bs-target="#Gianicolo-Hill-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+ג'אניקולו היא גבעה במערב העיר רומא בירת איטליה. בעבר נקראה הגבעה גם "הר הוותיקן". על אף היותה הגבעה השנייה בגובה בשטח העיר רומא של ימינו, הגבעה אינה אחת משבע גבעות רומא, בשל היותה בגדתו המערבית של נהר הטיבר ומחוץ לשטחי רומא העתיקה
+</br>
+</br>
+
+בקיצור, מקום שללא ספק שווה ביקור
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> האטרקציה פתוחה בכל ימות השבוע בין השעות  </br>
+ 08:00-24:00 </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעתיים</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='רומא' data-name='גבעת גאניקולו' data-category='מגדלים ותצפיות' data-id="3000">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪45</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪20</span>
+      <div>
+        <span class="sub-text">מגיל 4 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 4</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(3000)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<div class="gallery custom-gallery">
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu1">
+    <img src="romePictures\towers\SaintPeter\SaintPeter.jpg" class="image" alt="פטרוס הקדוש">
+       </button>
+  </a>
+  <a class="image-link">
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu2">
+    <img src="romePictures\towers\TowerOfPisa\TowerOfPisa.jpg" class="image" alt="מגדל פיזה">
+       </button>
+  </a>
+<a class="image-link" >
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu3">
+  <img src="romePictures\towers\CastelSant'Angelo\CastelSant'Angelo.jpg" class="image" alt="טירת סנטאנגלו">
+    </button>
+</a>
+<a class="image-link" >
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu4">
+  <img src="romePictures\towers\GianicoloHill\GianicoloHill.jpg" class="image" alt="גבעת גאניקולו">
+   </button>
+</a>
+</div>
+    </section>
+
+
+
+<!-- פארקים וגנים -->
+    <section id="tickets">
+        <h4 id="parks-title">פארקים וגנים</h4>
+        </br>
+
+<div class="offcanvas offcanvas-start" id="offCanvasMenu5">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">פארק וילה אדה</h2>
+    <h3 class="offcanvas-subtitle">Villa Ada Park</h3>
+  <!-- Content for Villa-Ada-Park-->
+    <div id="Villa-Ada-Park-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\parks\VillaAda\VillaAda1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\parks\VillaAda\VillaAda2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\parks\VillaAda\VillaAda3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Villa-Ada-Park-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Villa-Ada-Park-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Villa-Ada-Park-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\parks\VillaAda\VillaAda1.jpg" data-bs-target="#Villa-Ada-Park-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\parks\VillaAda\VillaAda2.jpg" data-bs-target="#Villa-Ada-Park-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\parks\VillaAda\VillaAda3.jpg" data-bs-target="#Villa-Ada-Park-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+זה אחד הפארקים הציבוריים הגדולים ברומא, המקום היה מכנה של משפחת המלוכה האיטלקית במשך שנים רבות.במקום ניתן להנות משבילי הריצה הליכה וגם אגם קטן ובקיץ נערכים בפארק שלל אירועים וביניהם פסטיבל המוסיקה המפורסם.</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> כל ימות השבוע בין השעות 08:30-19:15   </br>
+ .(תלוי בעונה) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 1-2 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='פארק וילה אדה' data-category='פארקים וגנים' data-id="3007">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪82</span>
+      <div>
+        <span class="sub-text">מגיל 18</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪25</span>
+      <div>
+        <span class="sub-text">מגיל 0 עד 17</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(3007)">הוסף לסל</button>
+  </button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Park Rainbow MagicLand-->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu6">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">פארק מגיקלאנד</h2>
+    <h3 class="offcanvas-subtitle">Park Rainbow MagicLand</h3>
+<!-- Content for Park Rainbow MagicLand-->
+    <div id="Park-Rainbow-MagicLand-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\parks\RainbowFromJickland\RainbowFromJickland1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\parks\RainbowFromJickland\RainbowFromJickland2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\parks\RainbowFromJickland\RainbowFromJickland3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Park-Rainbow-MagicLand-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Park-Rainbow-MagicLand-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Park-Rainbow-MagicLand-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\parks\RainbowFromJickland\RainbowFromJickland1.jpg" data-bs-target="#Park-Rainbow-MagicLand-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\parks\RainbowFromJickland\RainbowFromJickland2.jpg" data-bs-target="#Park-Rainbow-MagicLand-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\parks\RainbowFromJickland\RainbowFromJickland3.jpg" data-bs-target="#Park-Rainbow-MagicLand-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+ מדובר בפארק השעשועים הגדול ביותר באזור רומא והמרחק שלו הוא כ-45 דקות ממרכז רומא. מומלץ מאוד למשפחות עם ילדים.</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> בין השעות 10:30-18:00   </br>
+ .(תלוי בעונה) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 1-2 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='פארק מגיקלאנד' data-category='פארקים וגנים' data-id="3006">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪80</span>
+      <div>
+        <span class="sub-text">מגיל 18</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪79</span>
+      <div>
+        <span class="sub-text">מגיל 0 עד 17</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+    <button class="btn btn-custom" type="button" onclick="addCart(3006)">הוסף לסל</button>
+  </button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for The orange garden -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu7">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">גן התפוזים</h2>
+    <h3 class="offcanvas-subtitle">The orange garden</h3>
+  <!-- Content for The orange garden-->
+    <div id="The-orange-garden-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\parks\TheOrangeGarden\TheOrangeGarden1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\parks\TheOrangeGarden\TheOrangeGarden2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\parks\TheOrangeGarden\TheOrangeGarden3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#The-orange-garden-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#The-orange-garden-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#The-orange-garden-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\parks\TheOrangeGarden\TheOrangeGarden1.jpg" data-bs-target="#The-orange-garden-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\parks\TheOrangeGarden\TheOrangeGarden2.jpg" data-bs-target="#The-orange-garden-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\parks\TheOrangeGarden\TheOrangeGarden3.jpg" data-bs-target="#The-orange-garden-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+שמו של גן התפוזים ברומא הגיע באופן טבעי בשל עצי התפוז שמקיפים אותו ובמקום יש מבצר עתיק אשר נבנה על ידי משפחת סאוולי במה ה-13.
+אין ספק שבשעת ביקור ברומא ממומלץ מאוד לבקר בפארק התפוזים, המקום נחשב לתצפית הכי טובה בעיר ואפשר לראות אותה באופן פנורמי.
+</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> הגן פתוח כל ימות השבוע בין השעות 06:00-23:00   </br>
+ .(תלוי בעונה) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='גן התפוזים' data-category='פארקים וגנים' data-id="3005">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪20</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪15</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+    <button class="btn btn-custom" type="button" onclick="addCart(3005)">הוסף לסל</button>
+  </button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Villa-Borghese-gardens -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu8">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">גני וילה בורגזה</h2>
+    <h3 class="offcanvas-subtitle">Villa Borghese gardens</h3>
+<!-- Content for Villa-Borghese-gardens-->
+    <div id="Villa-Borghese-gardens-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\parks\VillaBorghese\VillaBorghese1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\parks\VillaBorghese\VillaBorghese2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\parks\VillaBorghese\VillaBorghese3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Villa-Borghese-gardens-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Villa-Borghese-gardens-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Villa-Borghese-gardens-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\parks\VillaBorghese\VillaBorghese1.jpg" data-bs-target="#Villa-Borghese-gardens-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\parks\VillaBorghese\VillaBorghese2.jpg" data-bs-target="#Villa-Borghese-gardens-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\parks\VillaBorghese\VillaBorghese3.jpg" data-bs-target="#Villa-Borghese-gardens-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+וילה בורגזה היא גן בסגנון אנגלי המצוי ברומא שבאיטליה. בגן מצויים מספר מבנים המשמשים כיום כמוזיאונים, והוא הגן הציבורי השני בגודלו ברומא.
+</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> פתוח כל ימות השבוע בין השעות 09:00-22:00   </br>
+ .(תלוי ביום בשבוע) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='גן וילה בורגזה' data-category='פארקים וגנים' data-id="3004">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪20</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪18</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+   <button class="btn btn-custom" type="button" onclick="addCart(3004)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+  <div class="gallery custom-gallery">
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu5">
+    <img src="romePictures\parks\VillaAda\VillaAda.jpg" class="image" alt="פארק וילה אדה">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu6">
+    <img src="romePictures\parks\RainbowFromJickland\RainbowFromJickland.jpg" class="image" alt="פארק ריינבו">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu7">
+    <img src="romePictures\parks\TheOrangeGarden\TheOrangeGarden.jpg" class="image" alt="גן התפוזים">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu8">
+    <img src="romePictures\parks\VillaBorghese\VillaBorghese.jpg" class="image" alt="גני ולה בורגזה">
+       </button>
+   </a>
+</div>
+    </section>
+
+
+<!-- אטרקציות יחודיות -->
+    <section id="tickets">
+        <h4 id="unique-title">אטרקציות יחודיות</h4>
+        </br>
+
+<!-- Offcanvas for Bio-Parco -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu9">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">ביופארקו</h2>
+    <h3 class="offcanvas-subtitle">Bio-Parco</h3>
+<!-- Content for Bio-Parco-->
+    <div id="Bio-Parco-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\special\bioparco\bioparco1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\special\bioparco\bioparco2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\special\bioparco\bioparco3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Bio-Parco-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Bio-Parco-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Bio-Parco-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\special\bioparco\bioparco1.jpg" data-bs-target="#Bio-Parco-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\special\bioparco\bioparco2.jpg" data-bs-target="#Bio-Parco-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\special\bioparco\bioparco3.jpg" data-bs-target="#Bio-Parco-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+הוא גן החיות של רומא, הוא גם חיות גדול ומושקע ונחשב לאחד הפופולריים ביותר באירופה. מיקומו באמצע פארק מקסים, הרחק מכל ההמולה של מרכז העיר ומציע גם קצת שקט ושלווה לטייל עם המשפחה<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+ 
+<p> פתוח כל יום בין השעות 09:30-19:00  </br>
+ .(תלוי ביום השבוע) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='ביופארקו' data-category='אטרקציות יחודיות' data-id="3011">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪70</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪68</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+   <button class="btn btn-custom" type="button" onclick="addCart(3011)">הוסף לסל</button>
+  </button>
+</div>
+
+  </div>
+</div>
+
+ <!-- Offcanvas for Trevi-Fountain -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu10">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">מזרקת טרווי</h2>
+    <h3 class="offcanvas-subtitle">Trevi-Fountain</h3>
+<!-- Content for Trevi-Fountain-->
+    <div id="Trevi-Fountain-and-the-underground-complex-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\special\TreviFountain\TreviFountain1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\special\TreviFountain\TreviFountain2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\special\TreviFountain\TreviFountain3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Trevi-Fountain-and-the-underground-complex-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Trevi-Fountain-and-the-underground-complex-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Trevi-Fountain-and-the-underground-complex-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\special\TreviFountain\TreviFountain1.jpg" data-bs-target="#Trevi-Fountain-and-the-underground-complex-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\special\TreviFountain\TreviFountain2.jpg" data-bs-target="#Trevi-Fountain-and-the-underground-complex-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\special\TreviFountain\TreviFountain3.jpg" data-bs-target="#Trevi-Fountain-and-the-underground-complex-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+מזרקת טרווי היא הגדולה מבין מזרקות הבארוק ברומא ואתרי התיירות הבולטים ברומא. במהלך היום והלילה תיירים רבים מצטופפים במדרגות היורדות לכיוון המזרקה.<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> פתוח כל יום מ 10:00-17:00  </br>
+ .(שיש 10:00-14:00) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='מזרקת טרווי והמתחם התת קרקעי' data-category='אטרקציות יחודיות' data-id="3010">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪70</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪48</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+     <button class="btn btn-custom" type="button" onclick="addCart(3010)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+ <!-- Offcanvas for  The-Great-Synagogue-in-Rome -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu11">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">בית הכנסת הגדול ברומא</h2>
+    <h3 class="offcanvas-subtitle">The Great Synagogue in Rome</h3>
+ <!-- Content for The-Great-Synagogue-in-Rome-->
+    <div id="The-Great-Synagogue-in-Rome" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\special\TheGreatSynagogue\TheGreatSynagogue1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\special\TheGreatSynagogue\TheGreatSynagogue2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\special\TheGreatSynagogue\TheGreatSynagogue3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#The-Great-Synagogue-in-Rome" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#The-Great-Synagogue-in-Rome" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#The-Great-Synagogue-in-Rome" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\special\TheGreatSynagogue\TheGreatSynagogue1.jpg" data-bs-target="#The-Great-Synagogue-in-Rome" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\special\TheGreatSynagogue\TheGreatSynagogue2.jpg" data-bs-target="#The-Great-Synagogue-in-Rome" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\special\TheGreatSynagogue\TheGreatSynagogue3.jpg" data-bs-target="#The-Great-Synagogue-in-Rome" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+בית הכנסת הגדול ברומא הנחשב לאטרקציה תיירותית חשובה מסוגה למטיילים ישראלים. זהו מבנה מרשים ומרתק שמסתיר מאחוריו היסטוריה ארוכה ומעניינת של הסיפור היהודי ברומא ולמעשה, מלבד היותו בית כנסת פעיל, הוא משמש גם כמוזיאון מצוין ומרתק.</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> פתוח כל יום מ 10:00-17:00  </br>
+ .(שיש 10:00-14:00) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='בית הכנסת הגדול ברומא' data-category='אטרקציות יחודיות' data-id="3009">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪55</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪44</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(3009)">הוסף לסל</button>
+  </button>
+</div>
+
+  </div>
+</div>
+
+
+ <!-- Offcanvas for The-Colosseum -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu12">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">הקולוסיאום</h2>
+    <h3 class="offcanvas-subtitle">The-Colosseum</h3>
+<!-- Content for The-Colosseum-->
+    <div id="The-Colosseum-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\special\Coliseum\Coliseum1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\special\Coliseum\Coliseum2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\special\Coliseum\Coliseum3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#The-Colosseum-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#The-Colosseum-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#The-Colosseum-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\special\Coliseum\Coliseum1.jpg" data-bs-target="#The-Colosseum-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\special\Coliseum\Coliseum2.jpg" data-bs-target="#The-Colosseum-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\special\Coliseum\Coliseum3.jpg" data-bs-target="#The-Colosseum-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+זהו אמפיתיאטרון עגול, הבנוי מבטון ואבן, הממוקם במרכז רומא, איטליה. הקולוסיאום הוא האמפיתיאטרון הגדול ביותר שנבנה אי פעם, והוא נחשב בימיו והיום כאחת היצירות הגדולות ביותר של ההנדסה והאדריכלות הרומית. גם סמל מובהק של האימפריה הרומית.</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> פתוח כל ימות השבוע בין השעות 09:00-22:00   </br>
+ .(תלוי ביום בשבוע) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='קולוסיאום' data-category='אטרקציות יחודיות' data-id="3008">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪85</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪81</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+   <button class="btn btn-custom" type="button" onclick="addCart(3008)">הוסף לסל</button>
+  </button>
+</div>
+
+  </div>
+</div>
+   <div class="gallery custom-gallery">
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu9">
+    <img src="romePictures\special\bioparco\bioparco.jpg" class="image" alt="ביופארקו">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu10">
+    <img src="romePictures\special\TreviFountain\TreviFountain.jpg" class="image" alt="מזרקת טרווי">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu11">
+    <img src="romePictures\special\TheGreatSynagogue\TheGreatSynagogue.jpg" class="image" alt="בית הכנסת הגדול ברומא">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu12">
+    <img src="romePictures\special\Coliseum\Coliseum.jpg" class="image" alt="הקולוסיאום">
+       </button>
+  </a>
+</div>
+    </section>
+
+
+
+<!-- מוזיאונים -->
+    <section id="tickets">
+        <h4 id="museum-title">מוזיאונים</h4>
+        </br>
+
+<!-- Offcanvas for The-National-Etruscan -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu13">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">המוזיאון הלאומי האטרוסקי</h2>
+    <h3 class="offcanvas-subtitle">The National Etruscan Museum</h3>
+ <!-- Content for The-National-Etruscan-Museum-->
+    <div id="The-National-Etruscan-Museum-of-Villa-Giulia" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\museums\Etruscan\Etruscan1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\museums\Etruscan\Etruscan2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\museums\Etruscan\Etruscan3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#The-National-Etruscan-Museum-of-Villa-Giulia" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#The-National-Etruscan-Museum-of-Villa-Giulia" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#The-National-Etruscan-Museum-of-Villa-Giulia" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\museums\Etruscan\Etruscan1.jpg" data-bs-target="#The-National-Etruscan-Museum-of-Villa-Giulia" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\museums\Etruscan\Etruscan2.jpg" data-bs-target="#The-National-Etruscan-Museum-of-Villa-Giulia" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\museums\Etruscan\Etruscan3.jpg" data-bs-target="#The-National-Etruscan-Museum-of-Villa-Giulia" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+ארמון מהמאה ה-16 עם מגוון עשיר של עתיקות אטרוסקיות, הכולל תכשיטים מעוטרים וסרקופגים.<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+ 
+<p> פתוח ביו השעות 10:00-21:30  </br>
+ .(תלוי ביום השבוע) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='המוזיאון הלאומי האטרוסקי של וילה גוליה' data-category='מוזיאונים' data-id="3015">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪52</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪48</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+ <button class="btn btn-custom" type="button" onclick="addCart(3016)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+
+<!-- Offcanvas for Ara-Pacis-Museum -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu14">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">מוזיאון ארה פאצ'יס</h2>
+    <h3 class="offcanvas-subtitle">Ara Pacis Museum</h3>
+<!-- Content for The Museum of Lights-->
+    <div id="Ara-Pacis-Museum" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\museums\AraPacis\AraPacis1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\museums\AraPacis\AraPacis2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\museums\AraPacis\AraPacis3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Ara-Pacis-Museum" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Ara-Pacis-Museum" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Ara-Pacis-Museum" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\museums\AraPacis\AraPacis1.jpg" data-bs-target="#Ara-Pacis-Museum" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\museums\AraPacis\AraPacis2.jpg" data-bs-target="#Ara-Pacis-Museum" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\museums\AraPacis\AraPacis3.jpg" data-bs-target="#Ara-Pacis-Museum" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+מוזיאון מואר ומרשים שעוצב על ידי ריצ'רד מאייר ובו מזבח רומי מפואר..<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+ 
+<p> פתוח בין השעות 09:00-21:00  </br>
+ .(תלוי ביום השבוע) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='מוזיאון ארה פציס' data-category='מוזיאונים' data-id="3014">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪52</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪48</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+   <button class="btn btn-custom" type="button" onclick="addCart(3014)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for  Borghese-Gallery -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu15">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">גלרייה בורגזה</h2>
+    <h3 class="offcanvas-subtitle">Borghese-Gallery</h3>
+<!-- Content for Borghese-Gallery-->
+    <div id="Borghese-Gallery" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\museums\Borghese\Borghese1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\museums\Borghese\Borghese2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\museums\Borghese\Borghese3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Borghese-Gallery" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Borghese-Gallery" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Borghese-Gallery" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\museums\Borghese\Borghese1.jpg" data-bs-target="#Borghese-Gallery" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\museums\Borghese\Borghese2.jpg" data-bs-target="#Borghese-Gallery" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\museums\Borghese\Borghese3.jpg" data-bs-target="#Borghese-Gallery" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+וילה שמוצגות בה יצירות אומנות מהמאה ה-15 עד המאה ה-18, כולל עבודות של ברניני ושל קאראווג'ו..<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+ 
+<p> פתוח בין השעות 08:00-20:00  </br>
+ .(תלוי ביום השבוע) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='גלריה בורגזה' data-category='מוזיאונים' data-id="3013">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪60</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪52</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+   <button class="btn btn-custom" type="button" onclick="addCart(3013)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Musei-Vaticani -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu16">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">מוזיאון הוותיקן</h2>
+    <h3 class="offcanvas-subtitle">Musei-Vaticani</h3>
+<!-- Content for Musei-Vaticani-->
+    <div id="Musei-Vaticani" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="romePictures\museums\TheVatican\TheVatican1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="romePictures\museums\TheVatican\TheVatican2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="romePictures\museums\TheVatican\TheVatican3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Musei-Vaticani" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Musei-Vaticani" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Musei-Vaticani" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="romePictures\museums\TheVatican\TheVatican1.jpg" data-bs-target="#Musei-Vaticani" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="romePictures\museums\TheVatican\TheVatican2.jpg" data-bs-target="#Musei-Vaticani" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="romePictures\museums\TheVatican\TheVatican3.jpg" data-bs-target="#Musei-Vaticani" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+מוזיאוני הוותיקן הם מתחם של מספר מוזיאוני אמנות וארכאולוגיה בוותיקן, המציגים את אוספי הכנסייה הקתולית. המוזיאון הוקם במאה ה-16 על ידי האפיפיור יוליוס השני. במוזיאון נמצאים גם הקפלה הסיסטינית וחדרי רפאל.<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+ 
+<p> פתוח בין השעות 08:00-20:00  </br>
+ .(תלוי ביום השבוע) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-7 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+   <div class="ticket-container" data-contry='רומא' data-name='מוזיאון הוותיקן' data-category='מוזיאונים' data-id="3012">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪81</span>
+      <div>
+        <span class="sub-text">מגיל 15</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪79</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(3012)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+   <div class="gallery custom-gallery">
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu13">
+    <img src="romePictures\museums\Etruscan\Etruscan.jpg" class="image" alt="המוזיאון הלאומי האטרוסקי">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu14">
+    <img src="romePictures\museums\AraPacis\AraPacis.jpg" class="image" alt="מוזיאון ארה פאציס">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu15">
+    <img src="romePictures\museums\Borghese\Borghese.jpg" class="image" alt="גלריה בורגזה">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu16">
+    <img src="romePictures\museums\TheVatican\TheVatican.jpg" class="image" alt="מוזיאון הוותיקן">
+       </button>
+  </a>
+</div>
+    </section>
+
+
+<footer>
+  <div class="container">
+      <div class="footer-content">
+          <div class="footer-section">
+              <h3 id="section-text">אנו מקבלים תשלומים באמצעות</h3>
+              <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+              <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" data-ll-status="loaded" class="entered lazyloaded">
+              <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+              <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+              <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+          </div>
+          <div class="footer-section">
+              <h3 id="section-text">חפשו אותנו ברשתות החברתיות</h3>
+              <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social1.svg" alt="" data-lazy- data-ll-status="loaded" class="entered lazyloaded">
+                             <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" data-ll-status="loaded" class="entered lazyloaded">
+                             <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                             <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" data-ll-status="loaded" class="entered lazyloaded">
+          </br> </br>
+              <h3 id="section-text">צרו איתנו קשר</h3>
+              03-0000000
+          </div>
+          <div class="footer-section">
+              <h3 id="section-text">?צריכים עזרה</h3>
+                           <a href="q&a.html">
+                 תשובות לשאלות נפוצות  
+                            </a>
+          </div>
+          <div class="footer-section">
+            <h3 id="section-text">איפה נופשים</h3>
+            <a href="dubai.html">  אטרקציות בדובאי  </a>
+              </br>
+            <a href="paris.html"> אטרקציות בפריז  </a>
+              </br>
+            <a href="rome.html"> אטרקציות ברומא  </a>
+              </br>
+            <a href="london.html"> אטרקציות בלונדון  </a>
+        </div>
+      </div>
+  </div>
+  </br>
+ <div id= "contact">
+    כל הזכויות שמורות 2024- איזי טיק בע"מ &copy; 
+ </div>
+</footer>
+
+    <!-- Bootstrap JS CDN link -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+     <script src="updateCartCount.js" defer></script>
+     <script src="homePagelogic.js"></script>
+     <script src="dubailogic.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+</body>
+</html>

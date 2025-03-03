@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shop Homepage</title>
+
+    <!-- Bootstrap CSS CDN link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-4p+Qk1k5V+bz+MA8fpFy+H6pAqk4lY5qfG8UeeLsB62AF5Zj/H6p8FS56DW2C2m4FoLpLL3TX3DUn4J+cBd3A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap">
+    <!-- Include Font Awesome 6 CSS -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0/css/all.css" integrity="YOUR-INTEGRITY-CODE" crossorigin="anonymous" />
+
+
+    <!-- Custom CSS -->
+    <link href="homePageDesign.css" rel="stylesheet">
+    <link href="dubaiDS.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container">
+         <!-- Cart Icon -->
+       <a class="icons larger-icon no-underline" href="cart.html"  style="position: relative;">
+        <!-- אייקון עגלה-->
+         <i class="fas fa-shopping-cart"></i> 
+         <!-- מספר המוצרים בעגלה -->
+         <span id="cart-count" class="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: rgb(0, 183, 255); color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; font-weight: bold; text-align: center; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;">0</span>
+    </a>
+        <!-- Profile Icon and Logout -->
+        <a class="icons no-underline" >
+            <i class="fas fa-sign-out-alt" id="logout-icon"></i>
+        </a>
+    <div id="profile-container">
+        <a class="icons no-underline" href="loginPage.html" id="profile-link">
+             <i class="fas fa-user"></i><span id="user-greeting"> היי, אורח/ת</span>
+        </a>
+    </div>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                     <a class="nav-link" href="#contact">
+                     <i class="fas fa-phone"></i> צור קשר
+                     </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="q&a.html">
+                      <i class="fas fa-question-circle"></i> שאלות ותשובות 
+                                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="צק ליסט.pdf">
+                     <i class="fas fa-check checklist-icon"></i>  צ'ק ליסט
+                  </a>
+               </li>
+                <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle" href="#" >
+                      <i class="fas fa-ticket-alt"></i> איפה נופשים
+                   </a>
+                   <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="dubai.html">דובאי</a></li>
+                     <li><a class="dropdown-item" href="paris.html">פריז</a></li>
+                     <li><a class="dropdown-item" href="rome.html">רומא</a></li>
+                     <li><a class="dropdown-item" href="london.html">לונדון</a></li>
+                   </ul>
+                 </li>
+            </ul>
+        </div>
+
+        <a class="navbar-brand ml-auto" href="homePage.html">
+            <span class="logo-text"></span>
+            <img src="EasyTic.svg" alt="Logo" width="150px" class="logo location">
+        </a>
+    </div>
+</nav>
+
+</br> </br> </br> </br> </br> 
+ 
+<h1><i class="fas fa-map-marker-alt icon-before"></i> דובאי </h1>
+
+<p>
+כרטיסי טיסה לדובאי כבר יש? עכשיו הגיע הזמן לארגן את טיול החלומות שלכם. מתלבטים באיזו אטרקציה לבחור? מחפשים כיצד <br/> 
+לשריין למקומות הכי שווים בדובאי ומהיכן להזמין כרטיסים? תפסיקו להתאמץ! כשכל הכרטיסים לכל האטרקציות מרוכזים במקום <br/> 
+!?אחד, לכם רק נותר לבחור ולהזמין בקליק. אז מי צריך טיול מאורגן כשאפשר לארגן הכל בלחיצת כפתור  <br/> 
+</p>
+
+<h4> קטגוריות מובילות </h4>
+
+   <!-- gallery -->
+</br>
+   <div class="gallery">
+  <a href="#museum-title" class="image-link">
+    <img src="dubaiPictures\categories\dubaiMuseum.jpg" class="image" alt="מוזיאונים">
+  </a>
+  <a href="#boats-title" class="image-link">
+    <img src="dubaiPictures\categories\dubaiToursAndSailing.jpg" class="image" alt="סיורים_ושייט">
+  </a>
+  <a href="#parks-title" class="image-link">
+    <img src="dubaiPictures\categories\dubaiParksAndGardens.jpg" class="image" alt="פארקים_וגנים">
+  </a>
+  <a href="#towers-title" class="image-link">
+    <img src="dubaiPictures\categories\dubaiTowersAndObservatories.jpg" class="image" alt="מגדלים ותצפיות">
+  </a>
+</div>
+
+<!-- מגדלים ותצפיות -->
+    <section id="tickets">
+        <h4 id="towers-title">מגדלים ותצפיות</h4>
+        </br>
+
+<!-- Offcanvas for SkyView -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu1">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">תצפית ומגלשת הסקיי ויו</h2>
+    <h3 class="offcanvas-subtitle">Sky Views Observator</h3>
+    <!-- Content for SkyView -->
+    <div id="skyview-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\towers\skyview\skyview1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\towers\skyview\skyview2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\towers\skyview\skyview3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#skyview-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#skyview-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#skyview-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\towers\skyview\skyview1.jpg" data-bs-target="#skyview-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\towers\skyview\skyview2.jpg" data-bs-target="#skyview-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\towers\skyview\skyview3.jpg" data-bs-target="#skyview-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+,החוויה שלכם מתחילה כבר במעלית הזכוכית השקופה 
+בה תטפסו לקומה ה-52 של מלון אדרס סקיי וויו </br>
+</br>
+משם תוכלו לתצפת על נופי מרכז העיר דובאי </br>
+וגם לרדת במגלשת זכוכית מהקומה ה-53 אל הגשר שבקומה 52 בתוך צינור שקוף </br>
+</br>
+לעוד יותר אמיצים וחסרי הפחד אתם מוזמנים </br>
+להיקשר ברתמות מיוחדות ולצאת להליכת קצה מרמפה פתוחה בלב השמיים </br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> פתוח בכל ימות השבוע בין השעות 10:30-21:00</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כ – 45 דקות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> קיימת נגישות רק לתצפית</p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='תצפית ומגלשת הסקיי ויו' data-category='מגדלים ותצפיות' data-id="1003">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪95</span>
+      <div>
+        <span class="sub-text">מגיל 8</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪79</span>
+      <div>
+        <span class="sub-text">מגיל 4 עד 8</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 4</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1003)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for PalmJumeirah -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu2">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">תצפית אי הדקלים בדובאי</h2>
+    <h3 class="offcanvas-subtitle">The View At The Palm Jumeirah</h3>
+    <!-- Content for PalmJumeirah -->
+    <div id="palmjumeirah-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\towers\palmjumeirah\palmJumeirah1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\towers\palmjumeirah\palmJumeirah2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\towers\palmjumeirah\palmJumeirah3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#palmjumeirah-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#palmjumeirah-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#palmjumeirah-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\towers\palmjumeirah\palmJumeirah1.jpg" data-bs-target="#palmjumeirah-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\towers\palmjumeirah\palmJumeirah2.jpg" data-bs-target="#palmjumeirah-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\towers\palmjumeirah\palmJumeirah3.jpg" data-bs-target="#palmjumeirah-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+: הביקור בתצפית אי הדקלים מחולק לשלושה חלקים 
+</br> </br>
+<b> -חלק ראשון – מוזיאון וגלריה אינטראקטיביים </b></br>
+ רגע לפני שאתם עולים למעלית, אתם מוזמנים לבקר </br>
+במוזיאון ובגלריה שמספקים מידע מרתק על העיצוב </br>
+.והפיתוח של פאלם ג’ומיירה </br>
+<b>-החלק השני – המעלית </b></br>
+חוויה דיגיטלית מהרצפה עד התקרה של 45 שניות </br>
+.שתוביל אתכם למרפסת התצפית </br>
+<b>-חלק שלישי- רחבת התצפית </b></br>
+מאפשרת מבט של 360 מעלות על הנופים הפנורמיים </br>
+.של פאלם ג’ומיירה וסביבתו </br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p>  כל יום מ-10:00 עד 20:00 </br> 
+כאשר הכניסה האחרונה היא עד השעה 19:00</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כחצי שעה עד שעתיים</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים</p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='תצפית אי הדקלים' data-category='מגדלים ותצפיות' data-id="1002">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪95</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪69</span>
+      <div>
+        <span class="sub-text">מגיל 4 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 4</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1002)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Dubai Frame -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu3">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">מסגרת דובאי</h2>
+    <h3 class="offcanvas-subtitle">Dubai Frame</h3>
+    <!-- Content for SkyView -->
+    <div id="dubaiFrame-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\towers\dubaiframe\dubaiframe1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\towers\dubaiframe\dubaiframe2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\towers\dubaiframe\dubaiframe3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#dubaiFrame-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#dubaiFrame-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#dubaiFrame-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\towers\dubaiframe\dubaiframe1.jpg" data-bs-target="#dubaiFrame-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\towers\dubaiframe\dubaiframe2.jpg" data-bs-target="#dubaiFrame-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\towers\dubaiframe\dubaiframe3.jpg" data-bs-target="#dubaiFrame-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+מסגרת דובאי היא יצירה ארכיטקטונית יוצאת דופן
+ הממוקמת בפארק זאביל, על הגבול שבין דובאי הישנה </br>
+.והחדשה</br>
+</br>
+המבנה ניראה כמסגרת תמונה ענקית וניתנת לזיהוי </br>
+.בזכות העיצוב המוזהב שלה </br>
+–המסגרת מגיעה לגובה של 150 מטר ורוחב 93 מטר  </br>
+.שניהם מחוברים על ידי גשר בגודל 100 מטר רבוע</br>
+</br>
+גולת הכותרת היא גשר הזכוכית השקוף המחבר בין  </br>
+ שני חלקי המסגרת ונותן לכם להשקיף גם למתרחש </br>
+.תחתיכם</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> המסגרת פתוחה בכל ימות השבוע בין השעות </br>
+ 09:00-21:00 </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעתיים</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='מסגרת דובאי' data-category='מגדלים ותצפיות' data-id="1001">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪49</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪29</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1001)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Burj Kahlifa -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu4">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">בורג' ח'ליפה</h2>
+    <h3 class="offcanvas-subtitle">Burj Khalifa</h3>
+    <!-- Content for Burj Kahlifa -->
+    <div id="BurjKahlifa-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\towers\burjkahlifa\burjkhalifa1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\towers\burjkahlifa\burjkhalifa2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\towers\burjkahlifa\burjkhalifa3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#BurjKahlifa-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#BurjKahlifa-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#BurjKahlifa-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\towers\burjkahlifa\burjkhalifa1.jpg" data-bs-target="#BurjKahlifa-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\towers\burjkahlifa\burjkhalifa2.jpg" data-bs-target="#BurjKahlifa-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\towers\burjkahlifa\burjkhalifa3.jpg" data-bs-target="#BurjKahlifa-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+ברוכים הבאים לבניין הגבוה בעולם! כרטיס כניסה </br>
+לגורד השחקים יקנה לכם גישה לקומות התצפית </br>
+.של הבורג’ ח’ליפה בגבוה של חצי קילומטר ומעלה </br>
+</br>
+ מכיוון שהתצפית מאוד גבוהה יעמדו לרשותכם </br>
+עזרי תצפית ממוחשבים, שיסייעו לכם להתמצא </br>
+.בנופים לכל העיר דובאי </br>
+</br>
+בנוסף בחזיתו של גורד השחקים תוכלו לצפות </br>
+במופע המרהיב של המזרקה המרקדת הגדולה </br>
+."בעולם “מזרקת דובאי  </br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> האטרקציה פתוחה בכל ימות השבוע בין השעות  </br>
+ 08:00-24:00 </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעתיים</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='בורג חליפה' data-category='מגדלים ותצפיות' data-id="1000">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪185</span>
+      <div>
+        <span class="sub-text">מגיל 8</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪149</span>
+      <div>
+        <span class="sub-text">מגיל 4 עד 8</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 4</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1000)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<div class="gallery custom-gallery">
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu1">
+    <img src="dubaiPictures\towers\skyview\SkyView.jpg" class="image" alt="סקיי ויו">
+       </button>
+  </a>
+  <a class="image-link">
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu2">
+    <img src="dubaiPictures\towers\palmjumeirah\PalmJumeirah.jpg" class="image" alt="אי הדקלים">
+       </button>
+  </a>
+<a class="image-link" >
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu3">
+  <img src="dubaiPictures\towers\dubaiframe\DubaiFrame.jpg" class="image" alt="מסגרת דובאי">
+    </button>
+</a>
+<a class="image-link" >
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu4">
+  <img src="dubaiPictures\towers\burjkahlifa\burjKhalifa.jpg" class="image" alt="בורג חליפה">
+   </button>
+</a>
+</div>
+    </section>
+
+<!-- פארקים וגנים -->
+    <section id="tickets">
+        <h4 id="parks-title">פארקים וגנים</h4>
+        </br>
+
+<!-- Offcanvas for Aquaventure Waterpark -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu5">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">פארק המים אטלנטיס</h2>
+    <h3 class="offcanvas-subtitle">Aquaventure Waterpark</h3>
+    <!-- Content for Aquaventure Waterpark -->
+    <div id="AquaventureWaterpark-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\parks\aquaventure\Atlantiswaterpark1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\parks\aquaventure\Atlantiswaterpark2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\parks\aquaventure\Atlantiswaterpark3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\parks\aquaventure\Atlantiswaterpark1.jpg" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\parks\aquaventure\Atlantiswaterpark2.jpg" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\parks\aquaventure\Atlantiswaterpark3.jpg" data-bs-target="#AquaventureWaterpark-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+פארק המים אטלנטיס הוא חווית מים מטורפת </br>
+.למשפחות וגם למבוגרים חובבי אדרנלין </br>
+, בפארק תוכלו למצוא פעילויות ספורט ימי </br>
+חוף פרטי מגלשות מים מהחדישות ביותר ובריכות </br>
+.שימלאו לכם יום שלם בכיף ללא הפסקה </br>
+ברחבי הפארק למעלה מ-100 אטרקציות </br>
+.וחוויות שונות לכל גיל ולכל רמת אומץ</br>
+</br>
+,מגלשות מיוחדות, אבובים, מתקנים לבילוי קבוצתי </br>
+נהר עצל הארוך בעולם מתחם מיוחד לילדים </br>
+.ועוד שפע אטרקציות רטובות מכל המינים והסוגים</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> הפארק פתוח כל ימות השבוע בין השעות 09:30-18:00    </br>
+ .(תלוי בעונה) </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> בין 5-6 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='פארק המים אטלנטיס' data-category='פארקים וגנים' data-id="1007">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪309</span>
+      <div>
+        <span class="sub-text">מגיל 7</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪269</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 7</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1007)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Aquarium Dubai Mall -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu6">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">אקווריום קניון דובאי</h2>
+    <h3 class="offcanvas-subtitle">Aquarium Dubai Mall</h3>
+    <!-- Content for Aquarium Dubai Mall -->
+    <div id="AquariumDubai-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\parks\aquariumdubaimall\dubaiaquarium1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\parks\aquariumdubaimall\dubaiaquarium2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\parks\aquariumdubaimall\dubaiaquarium3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#AquariumDubai-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#AquariumDubai-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#AquariumDubai-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\parks\aquariumdubaimall\dubaiaquarium1.jpg" data-bs-target="#AquariumDubai-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\parks\aquariumdubaimall\dubaiaquarium2.jpg" data-bs-target="#AquariumDubai-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\parks\aquariumdubaimall\dubaiaquarium3.jpg" data-bs-target="#AquariumDubai-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+בין האטרקציות המרכזיות של “קניון דובאי” הענק </br>
+ממוקם בקומת הקרקע של הקניון ועולה עד לקומתו </br>
+השלישית. באקווריום דובאי חיים עשרות אלפי דגים </br>
+,ממאות מינים, כולל מאות כרישים, חתולי ים </br>
+סרטני ענק, דגי ליצן, תמנונים ודקר ענק במשקל של </br>
+.כמעט חצי טון </br>
+</br>
+ גן החיות התת-מימי מגדל גם מגוון של זוחלים, יונקים </br>
+ופינגווינים, ומציע מגוון פעילויות למבקרים בו, כולל </br>
+,מנהרת הליכה שקופה באורך 48 מטרים </br>
+צלילה עם כרישים, סימולטור של צוללת </br>
+.וצפיה בהאכלת החיות </br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> אקווריום דובאי פתוח בין השעות 10:00-22:00  </br>
+ .ובסופ"ש עד חצות</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעתיים</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='אקווריום דובאי' data-category='פארקים וגנים' data-id="1006">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪179</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪85</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1006)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Global Village -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu7">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">הכפר הגלובלי בדובאי</h2>
+    <h3 class="offcanvas-subtitle">Global Village</h3>
+    <!-- Content for Global Village -->
+    <div id="GlobalVillage-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\parks\globalvillage\globalvillage1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\parks\globalvillage\globalvillage2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\parks\globalvillage\globalvillage3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#GlobalVillage-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#GlobalVillage-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#GlobalVillage-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\parks\globalvillage\globalvillage1.jpg" data-bs-target="#GlobalVillage-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\parks\globalvillage\globalvillage2.jpg" data-bs-target="#GlobalVillage-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\parks\globalvillage\globalvillage3.jpg" data-bs-target="#GlobalVillage-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+חגיגת תרבויות ראשונה מסוגה במזרח התיכון ומאוד </br>
+ פופולרית בקרב המבקרים בדובאי. להנאתכם מאכלים </br>
+וחוויות מכל העדות המתקיימים ב-26 ביתנים המציגים </br>
+יותר מ-80 תרבויות מרחבי העולם, תערוכות </br>
+.מתחלפות ומופעים לכל המשפחה  </br>
+</br>
+ במתחמי המדינות ישנם מופעי פעלולים ביניהם </br>
+,מופע האופנועים המפורסם, תיאטרון לילדים </br>
+.מופעי מזרקות אש ועוד </br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> המתחם פתוח בכל ימות השבוע מ- 16:00-24:00 </br>
+ .ובסופי שבוע עד השעה 01:00</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> 5-6 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='הכפר הגלובלי' data-category='פארקים וגנים' data-id="1005">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪22</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪22</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1005)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Miracle Garden Dubai -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu8">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">גן הפרחים</h2>
+    <h3 class="offcanvas-subtitle">Miracle Garden Dubai</h3>
+    <!-- Content for Miracle Garden Dubai -->
+    <div id="MiracleGarden-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\parks\miraclegarden\miraclegarden1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\parks\miraclegarden\miraclegarden2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\parks\miraclegarden\miraclegarden3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#MiracleGarden-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#MiracleGarden-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#MiracleGarden-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\parks\miraclegarden\miraclegarden1.jpg" data-bs-target="#MiracleGarden-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\parks\miraclegarden\miraclegarden2.jpg" data-bs-target="#MiracleGarden-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\parks\miraclegarden\miraclegarden3.jpg" data-bs-target="#MiracleGarden-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+ (Dubai Miracle Garden) גן הפרחים של דובאי  </br>
+!הוא גן הפרחים הטבעי הגדול בעולם </br>
+</br>
+ בגן העצום, המשתרע על שטח של כ-72,000 מטרים </br>
+רבועים ישנם למעלה מ-45 מיליון פרחים המסודרים </br>
+.בצורות, עיצובים ונושאים יפים להפליא </br>
+</br>
+,ברחבי גן הפרחים בדובאי תוכלו ליהנות מפינות ישיבה
+ מוצלות, בריכות ומזרקות, חנויות מזכרות, מסעדות </br>
+ .ובתי קפה </br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> הגן פתוח בכל יום בשבוע בין השעות 09:00 בבוקר   </br>
+ .ועד 21:00 בלילה ובסופי שבוע עד השעה 23:00 </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעתיים</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='גן הפרחים' data-category='פארקים וגנים' data-id="1004">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪89</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪79</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1004)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+  <div class="gallery custom-gallery">
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu5">
+    <img src="dubaiPictures\parks\aquaventure\WaterPark.jpg" class="image" alt="פארק מים אטלנטיס">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu6">
+    <img src="dubaiPictures\parks\aquariumdubaimall\AquaMall.jpg" class="image" alt="אקווריום קניון">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu7">
+    <img src="dubaiPictures\parks\globalvillage\GlobalVillage.jpg" class="image" alt="הכפר הגלובלי">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu8">
+    <img src="dubaiPictures\parks\miraclegarden\FlowersGarden.jpg" class="image" alt="שייט מקוצר לגלגל ענק">
+       </button>
+   </a>
+</div>
+    </section>
+
+<!-- סיורים ושייט -->
+    <section id="tickets">
+        <h4 id="boats-title">סיורים ושייט</h4>
+        </br>
+
+        <!-- Offcanvas for Ain Dubai Tour -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu9">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">שייט מקוצר לגלגל ענק</h2>
+    <h3 class="offcanvas-subtitle">Ain Dubai Tour</h3>
+    <!-- Content for Ain Dubai Tour -->
+    <div id="AinDubaitour-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\boats\aindubai\aindubai1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\boats\aindubai\aindubai2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\boats\aindubai\aindubai3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#AinDubaitour-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#AinDubaitour-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#AinDubaitour-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\boats\aindubai\aindubai1.jpg" data-bs-target="#AinDubaitour-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\boats\aindubai\aindubai2.jpg" data-bs-target="#AinDubaitour-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\boats\aindubai\aindubai3.jpg" data-bs-target="#AinDubaitour-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+?מחפשים שייט קצר ולעניין מול נופי דובאי </br>
+</br>
+–מסלול זה מציע שייט ותצפית על הגלגל הענק  </br>
+,עין דובאי ועל המרינה של דובאי מכיוון הים </br>
+."בלי לבזבז הרבה זמן ובלי "לקרוע את הכיס</br>
+</br>
+צאו לחוויה נהדרת עם החברים והמשפחה </br>
+,במסלול סיור ממוקד באורך שעה </br>
+שייקח אתכם לתצפית נהדרת על נופי המרינה </br>
+.של דובאי</br>
+</br>
+  –ביאכטה תוכלו לבלות בשני אזורי ישיבה </br>
+ .דק תחתון ממוזג ודק עליון פתוח</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> השייט יוצא בכל ימות השבוע, בשעה 17:00 או 18:30 </br>
+.לבחירתכם   
+ </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעה</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> אטרקציה זו אינה נגישה לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='שייט מקוצר לגלגל ענק' data-category='סיורים ושייט' data-id="1011">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪85</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪85</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1011)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Yellow Boats Dubai -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu10">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">שייט בסירות הצהובות</h2>
+    <h3 class="offcanvas-subtitle">Yellow Boats Dubai</h3>
+    <!-- Content for Yellow Boats Dubai -->
+    <div id="YellowBoats-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\boats\yellowboats\yellowboats1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\boats\yellowboats\yellowboats2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\boats\yellowboats\yellowboats3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#YellowBoats-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#YellowBoats-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#YellowBoats-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\boats\yellowboats\yellowboats1.jpg" data-bs-target="#YellowBoats-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\boats\yellowboats\yellowboats2.jpg" data-bs-target="#YellowBoats-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\boats\yellowboats\yellowboats3.jpg" data-bs-target="#YellowBoats-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+הסירות הצהובות אייקוניות למימי דובאי כמעט כמו </br>
+.המוניות הצהובות לרחובות מנהטן </br>
+שירות סיורי השייט מציע טיולים ימיים </br>
+מחוף המרינה, מסביב לאי הדקלים </br>
+.ועד הבורג’ אל-ערב </br>
+</br>
+<b> :המסלול הוא </b> </br>
+מרינה ￩ אי הדקלים ￩ אטלנטיס ￩ מועדון הצניחה </br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> 09:00 | 13:30 | 17:30 </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כ-45 דקות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> אטרקציה זו אינה נגישה לנכים </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='סירות צהובות' data-category='סיורים ושייט' data-id="1010">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪145</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪145</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1010)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+
+<!-- Offcanvas for Shared Tour in Hebrew - Dubai -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu11">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">חצי יום סיור בעברית בדובאי</h2>
+    <h3 class="offcanvas-subtitle">Shared Tour in Hebrew - Dubai</h3>
+    <!-- Content for Shared Tour in Hebrew - Dubai -->
+    <div id="SharedTour-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\boats\sharedtourinhebrew\sharedtourinhebrew1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\boats\sharedtourinhebrew\sharedtourinhebrew2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\boats\sharedtourinhebrew\sharedtourinhebrew3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#SharedTour-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#SharedTour-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#SharedTour-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\boats\sharedtourinhebrew\sharedtourinhebrew1.jpg" data-bs-target="#SharedTour-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\boats\sharedtourinhebrew\sharedtourinhebrew2.jpg" data-bs-target="#SharedTour-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\boats\sharedtourinhebrew\sharedtourinhebrew3.jpg" data-bs-target="#SharedTour-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+טיול מרתק עם מדריך דובר עברית, רכב ממוזג </br>
+ונהג צמוד שיכירו לכם את אחת הערים הכי </br>
+מפותחות בעולם. החל מהקמתה ככפר לדייג </br>
+ולסחר ועד להפיכתה לאימפריה מודרנית ומספר </br>
+אחת כיעד תיירותי עם עשרות מיליוני תיירים בכל </br>
+.שנה מכל קצוות תבל </br>
+</br>
+,נתחיל את הסיור שלנו בדרום העיר</br>
+ נקודת מפגש: הילטון אל הבטור סיטי<i class="fas fa-map-pin" style="color: #198AD7;"></i> </br>
+(JBR) "נעצור בשכונת "חוף ג'ומירה <i class="fas fa-map-pin" style="color: #198AD7;"></i> </br>
+משם נמשיך ברכב לדה פוינט, אי הדקלים המפורסם <i class="fas fa-map-pin" style="color: #198AD7;"></i> </br>
+לאחר שנתרשם מעוצמת העושר של העיר נסע לצפון <i class="fas fa-map-pin" style="color: #198AD7;"></i> </br>
+העיר ונגיע לשכונת אל פאידי המיוחדת שם  </br>
+נתרשם מהמבנים העתיקים, ניכנס לבית עתיק  </br>
+.ונאזין לסיפורה של דובאי על כוס קפה ערבי</br>
+משם נשוט בנחל דובאי בסירת אברה מסורתית אל <i class="fas fa-map-pin" style="color: #198AD7;"></i></br>
+עבר השווקים הפופולריים עבור תושבים מקומיים </br>
+.וגם עבור תיירים</br>
+,הביקור יכלול את: שוק הזהב ושוק התבלינים <i class="fas fa-map-pin" style="color: #198AD7;"></i></br>
+שהיו מקור הפרנסה העיקרי בשנות ה-60 בעיר</br>
+עמוסי חוויות וזיכרונות נעימים וטעם של עוד </br>
+.נחזור לנקודת המוצא</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p>  .יציאה מנקודת המפגש בשעה 09:30 </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> משך הטיול כ-5 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> טיול זה אינו מונגש </p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='חצי יום סיור' data-category='סיורים ושייט' data-id="1009">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪75</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪75</span>
+      <div>
+        <span class="sub-text">מגיל 5 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 5</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+
+      <p> שימו לב: תשלום זה היינו מקדמה </br>
+בלבד, יש להשלים למדריך </br>
+/כ-200 דירהם לאדם מבוגר </br>
+  . וכ- 150 דירהם בעבור ילד</p>
+  </div>
+</div>
+
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1009)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Lotus Mega Yacht -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu12">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">שייט בספינת לוטוס</h2>
+    <h3 class="offcanvas-subtitle">Lotus Mega Yacht</h3>
+    <!-- Content for Lotus Mega Yacht -->
+    <div id="LotusYacht-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\boats\megayacht\lotusmegayacht1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\boats\megayacht\lotusmegayacht2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\boats\megayacht\lotusmegayacht3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#LotusYacht-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\boats\megayacht\lotusmegayacht1.jpg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\boats\megayacht\lotusmegayacht2.jpg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\boats\megayacht\lotusmegayacht3.jpg" data-bs-target="#LotusYacht-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+,"צאו לטיול שיט מרגש ביאכטת “לוטוס </br>
+,היאכטה המפוארת והמרווחת ביותר באמירויות </br>
+.היוצא מדי יום ממרינת דובאי </br>
+</br>
+במשך שלוש שעות השיט תוכלו ליהנות מנופי הים </br>
+– והעיר (בורג’ אל ערב, אטלנטיס, אי הדקל, עין דובאי </br>
+ ,(הגלגל ענק ועוד</br>
+מארוחה בינלאומית (ברביקיו, מנות מערביות </br>
+ואסיאתיות, סלטים וקינוחים) וכמובן ממתקני </br>
+.הספינה המפנקים הכוללים מופעים וריקודים</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> <b> :שייט ערב </b> </br> הגעה 19:30-18:45 (נא לדייק, השייט יוצא בדיוק בשעה</br>
+ .הנקובה) סיום 22:30</p>
+<p> <b> :שייט צהריים </b> </br> הגעה 15:00-14:30 (נא לדייק, השייט יוצא בדיוק בשעה</br>
+ .הנקובה) סיום 18:00</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> משך השייט כ-3 שעות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> אטרקציה זו איננה נגישה לנכים </p>
+
+<div class="container mt-3">
+<div class="time-selector">
+</div>
+<div class="ticket-container" data-contry='דובאי' data-name='שייט בלוטוס' data-category='סיורים ושייט' data-id="1008">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪279</span>
+      <div>
+        <span class="sub-text">מגיל 10</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪229</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 10</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1008)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+   <div class="gallery custom-gallery">
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu9">
+    <img src="dubaiPictures\boats\aindubai\aindubai.jpg" class="image" alt="שייט מקוצר לגלגל הענק">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu10">
+    <img src="dubaiPictures\boats\yellowboats\yellowboats.jpg" class="image" alt="שייט בסירות צהובות">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu11">
+    <img src="dubaiPictures\boats\sharedtourinhebrew\sharedtourinhebrew.jpg" class="image" alt="חצי יום סיור בעברית">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu12">
+    <img src="dubaiPictures\boats\megayacht\lotusmegayacht.jpg" class="image" alt="שייט בספינת לוטוס">
+       </button>
+  </a>
+</div>
+    </section>
+
+<!-- מוזיאונים -->
+    <section id="tickets">
+        <h4 id="museum-title">מוזיאונים</h4>
+        </br>
+
+        <!-- Offcanvas for Ice Dubai -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu13">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">אייס בר דובאי</h2>
+    <h3 class="offcanvas-subtitle">Ice Dubai</h3>
+    <!-- Content for Ice Dubai -->
+    <div id="Ice-Dubay-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\museum\icedubai\icebar1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\museum\icedubai\icebar2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\museum\icedubai\icebar3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Ice-Dubay-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Ice-Dubay-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Ice-Dubay-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\museum\icedubai\icebar1.jpg" data-bs-target="#Ice-Dubay-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\museum\icedubai\icebar2.jpg" data-bs-target="#Ice-Dubay-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\museum\icedubai\icebar3.jpg" data-bs-target="#Ice-Dubay-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+,קחו הפסקה מהחום המדברי של דובאי וכנסו לממלכת הקרח
+ארץ פלאות חורפית וקפואה שבה הכל, כולל הכל, עשוי מקרח אמיתי. מהקירות, מקומות הישיבה, השולחנות ועד לקישוטים מרהיבים הכוללים פסלים ונטיפים היורדים מהתקרה, הכל קפוא ועשוי קרח.</br>
+</br>
+משם תוכלו לתצפת על נופי מרכז העיר דובאי </br>
+ </br>
+</br>בקיצור לא משהו שכדאי לכם לפספס</br></br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> פתוח בכל ימות השבוע בין השעות  10:00-22:00</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כ – 45 דקות</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> לא קיימת נגישות</p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='אייס בר דובאי' data-category='מוזיאונים' data-id="1015">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪79</span>
+      <div>
+        <span class="sub-text">מגיל 12</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪65</span>
+      <div>
+        <span class="sub-text">מגיל 4 עד 12</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 4</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1015)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Museum Of Illusions -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu14">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">מוזיאון האשליות בדובאי</h2>
+    <h3 class="offcanvas-subtitle">Museum Of Illusions</h3>
+    <!-- Content for Museum Of Illusions -->
+    <div id="Museum-Of-Illusions-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\museum\museumofillusions\illusions1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\museum\museumofillusions\illusions2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\museum\museumofillusions\illusions3.jpg" class="d-block w-100" alt="Image 3">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\museum\museumofillusions\illusions1.jpg" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\museum\museumofillusions\illusions2.jpg" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\museum\museumofillusions\illusions3.jpg" data-bs-target="#Museum-Of-Illusions-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+ברוכים הבאים לעולם המדהים של האשליות, חוויה ויזואלית, חושית וחינוכית מסקרנת עם אשליות חדשות שלא ראיתם בשום מקום.</br>
+משם תוכלו לתצפת על נופי מרכז העיר דובאי </br>
+ </br>
+</br>מוזיאון האשליות בדובאי ממוקם לאורך נחל דובאי יאתגר את תחושת המציאות שלכם עם אוסף האשליות החזותיות הגדול בעולם.</br></br>
+
+</br></br>
+לא שווה לפספס אטרקציה כזו מיוחדת
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> האטרקציה פתוחה בימי שני-חמישי 10:00-22:00 וימים שישי-ראשון 10:00-23:00</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p> כשעתיים עד שלוש</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> לא קיימת נגישות</p>
+
+<div class="container mt-3">
+  <div class="ticket-container" data-contry='דובאי' data-name='מוזיאון האשליות בדובאי' data-category='מוזיאונים' data-id="1014">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪85</span>
+      <div>
+        <span class="sub-text">מגיל 16</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪59</span>
+      <div>
+        <span class="sub-text">מגיל 5 עד 15</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 4</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1014)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+        <!-- Offcanvas for AYA Universe -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu15">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">הגלקסיה של איה</h2>
+    <h3 class="offcanvas-subtitle">AYA Universe</h3>
+    <!-- Content for AYA Universe -->
+    <div id="AYA-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\museum\AYA\AYA1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\museum\AYA\AYA2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\museum\AYA\AYA3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#AYA-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#AYA-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#AYA-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\museum\AYA\AYA1.jpg" data-bs-target="#AYA-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\museum\AYA\AYA2.jpg" data-bs-target="#AYA-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\museum\AYA\AYA3.jpg" data-bs-target="#AYA-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+    </br>
+הגלקסיה של איה בדובאי הוא </br>
+פארק וירטואלי מהפנט, הכולל 12 </br>
+ אזורים הפרוסים על פני שטח </br>
+של 3,700 מ”ר ובהם שילוב </br>
+.של אמנות עם הטכנולוגיה העדכנית ביותר</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p>  ימים ראשון עד חמישי: 10:00-22:00  </br>
+  שישי ושבת: 10:00-24:00</br>
+  </p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p>  כשעה וחצי</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+<div class="time-selector">
+</div>
+<div class="ticket-container" data-contry='דובאי' data-name='הגלקסיה של איה' data-category='מוזיאונים' data-id="1013">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪109</span>
+      <div>
+        <span class="sub-text">מגיל 10</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪109</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 10</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1013)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+<!-- Offcanvas for Museum Of The Future -->
+<div class="offcanvas offcanvas-start" id="offCanvasMenu16">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="offcanvas-title">מוזיאון העתיד בדובאי</h2>
+    <h3 class="offcanvas-subtitle">Museum Of The Future</h3>
+    <!-- Content for Museum Of The Future -->
+    <div id="MuseumOfTheFuture-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="dubaiPictures\museum\museumofthefuture\museumofthefuture1.jpg" class="d-block w-100" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="dubaiPictures\museum\museumofthefuture\museumofthefuture2.jpg" class="d-block w-100" alt="Image 2">
+    </div>
+       <div class="carousel-item">
+      <img src="dubaiPictures\museum\museumofthefuture\museumofthefuture3.jpg" class="d-block w-100" alt="Image ">
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Mini Carousel Ruler -->
+<div class="mini-carousel">
+  <img src="dubaiPictures\museum\museumofthefuture\museumofthefuture1.jpg" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide-to="0" class="img-thumbnail" alt="Mini Image 1">
+  <img src="dubaiPictures\museum\museumofthefuture\museumofthefuture2.jpg" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide-to="1" class="img-thumbnail" alt="Mini Image 2">
+  <img src="dubaiPictures\museum\museumofthefuture\museumofthefuture3.jpg" data-bs-target="#MuseumOfTheFuture-carousel" data-bs-slide-to="2" class="img-thumbnail" alt="Mini Image 3">
+</div>
+    <p>
+</br>
+מוזיאון העתיד בדובאי הוא אחד מהמבנים</br>
+ .הייחודיים ביותר בעולם </br>
+,ביקור במוזיאון מושלם לחובבי עתידנות </br>
+.מדע וחידושים טכנולוגיים </br>
+</br>
+שבע קומות המוזיאון משתמשות באמצעים </br>
+,המתקדמים ביותר, כמו מציאות מדומה והולוגרמות </br>
+כדי להקיף את המבקרים בחזונות של עתיד </br>
+.האנושות על כדור הארץ ובחלל 50 שנים קדימה</br>
+</p>
+<h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+<p> המוזיאון פתוח בכל ימות השבוע </br>
+  בין השעות 10:00-21:30 (כניסה אחרונה עד 19:30)</p>
+<h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+<p>  כשעתיים</p>
+<h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+<p> מקום נגיש לנכים </p>
+
+<div class="container mt-3">
+<div class="time-selector">
+</div>
+<div class="ticket-container" data-contry='דובאי' data-name='מוזיאון העתיד' data-category='מוזיאונים' data-id="1012">
+    <div class="ticket-category" data-type="adult">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+        <span class="amount" data-id="adult-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+      </div>
+      <span class="price" data-id="adult-price">₪149</span>
+      <div>
+        <span class="sub-text">מגיל 10</span>
+      </div>
+      <span>מבוגר</span>
+    </div>
+
+    <div class="ticket-category" data-type="child">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+        <span class="amount" data-id="child-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+      </div>
+      <span class="price" data-id="child-price">₪129</span>
+      <div>
+        <span class="sub-text">מגיל 3 עד 10</span>
+      </div>
+      <span>ילד</span>
+    </div>
+
+    <div class="ticket-category" data-type="infant">
+      <div>
+        <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+        <span class="amount" data-id="infant-amount">0</span>
+        <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+      </div>
+      <span class="price" data-id="infant-price">₪0</span>
+      <div>
+        <span class="sub-text">עד גיל 3</span>
+      </div>
+      <span>פעוט</span>
+    </div>
+
+    <div class="ticket-category">
+      <span id="total-price">₪0</span>
+      <span>סכום ההזמנה</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-custom" type="button" onclick="addCart(1012)">הוסף לסל</button>
+</div>
+
+  </div>
+</div>
+
+
+   <div class="gallery custom-gallery">
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu13">
+    <img src="dubaiPictures\museum\icedubai\icebar.jpg" class="image" alt="אייס בר דובאי">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu14">
+    <img src="dubaiPictures\museum\museumofillusions\illusions.jpg" class="image" alt="מוזיאון האשליות בדובאי">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu15">
+    <img src="dubaiPictures\museum\AYA\AYA.jpg" class="image" alt="הגלקסיה של איה">
+       </button>
+  </a>
+  <a class="image-link" >
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu16">
+    <img src="dubaiPictures\museum\museumofthefuture\museumofthefuture.jpg" class="image" alt="מוזיאון העתיד בדובאי">
+       </button>
+  </a>
+</div>
+    </section>
+
+
+    <footer>
+      <div class="container">
+          <div class="footer-content">
+              <div class="footer-section">
+                  <h3 id="section-text">אנו מקבלים תשלומים באמצעות</h3>
+                  <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                  <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" data-ll-status="loaded" class="entered lazyloaded">
+                  <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                  <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                  <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" data-ll-status="loaded" class="entered lazyloaded">
+              </div>
+              <div class="footer-section">
+                  <h3 id="section-text">חפשו אותנו ברשתות החברתיות</h3>
+                  <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social1.svg" alt="" data-lazy- data-ll-status="loaded" class="entered lazyloaded">
+                                 <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg" data-ll-status="loaded" class="entered lazyloaded">
+                                 <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg" data-ll-status="loaded" class="entered lazyloaded">
+                                 <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg" data-ll-status="loaded" class="entered lazyloaded">
+              </br> </br>
+                  <h3 id="section-text">צרו איתנו קשר</h3>
+                  03-0000000
+              </div>
+              <div class="footer-section">
+                  <h3 id="section-text">?צריכים עזרה</h3>
+                               <a href="q&a.html">
+                     תשובות לשאלות נפוצות  
+                                </a>
+              </div>
+              <div class="footer-section">
+                <h3 id="section-text">איפה נופשים</h3>
+                <a href="dubai.html">  אטרקציות בדובאי  </a>
+                  </br>
+                <a href="paris.html"> אטרקציות בפריז  </a>
+                  </br>
+                <a href="rome.html"> אטרקציות ברומא  </a>
+                  </br>
+                <a href="london.html"> אטרקציות בלונדון  </a>
+            </div>
+          </div>
+      </div>
+      </br>
+     <div id= "contact">
+        כל הזכויות שמורות 2024- איזי טיק בע"מ &copy; 
+     </div>
+  </footer>
+
+    <!-- Bootstrap JS CDN link -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+         <script src="homePagelogic.js"></script>
+         <script src="updateCartCount.js" defer></script>
+     <script src="dubailogic.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+</body>
+</html>
