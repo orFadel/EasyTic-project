@@ -117,6 +117,7 @@ app.post('/login', async (req, res) => {
         const token = jwt.sign({
             id: user._id,
             username: user.username,
+            email: user.email || user.username,
             isAdmin: user.isAdmin
         }, JWT_SECRET, { expiresIn: '7d' });
 
@@ -125,7 +126,8 @@ app.post('/login', async (req, res) => {
 
         res.status(200).json({ 
             userId: user._id, 
-            displayName: user.displayName, 
+            displayName: user.displayName,
+            email: user.email || user.username,
             isAdmin: user.isAdmin,
             role: user.isAdmin ? "admin" : "user",
             token: token // החזרת הטוקן ללקוח
@@ -149,7 +151,7 @@ app.post('/logout', (req, res) => {
 
 // הרשמה
 app.post('/register', async (req, res) => {
-    const { username, password, displayName } = req.body;
+    const { username, password, displayName, email } = req.body;
 
     try {
         const existingUser = await User.findOne({ username });
@@ -157,12 +159,22 @@ app.post('/register', async (req, res) => {
         if (existingUser) {
             return res.status(409).json({ message: 'Username already exists' });
         } else {
-            // פשוט צור את המשתמש בלי להכניס הצפנה
-            const newUser = new User({ username, password, displayName });
+            // יצירת משתמש חדש
+            const newUser = new User({ 
+                username, 
+                password, 
+                displayName,
+                email: email || username // אם לא סופק מייל, השתמש בשם המשתמש
+            });
+            
             await newUser.save(); // ה-pre hook ידאג להצפנה
             
             req.session.username = username;
-            return res.status(201).json({ userId: newUser._id, displayName: newUser.displayName });
+            return res.status(201).json({ 
+                userId: newUser._id, 
+                displayName: newUser.displayName,
+                email: newUser.email 
+            });
         }
     } catch (error) {
         console.error('Error during registration:', error);
@@ -521,41 +533,79 @@ app.get('/api/user/orders', auth, async (req, res) => {
 // נתיב API לקבלת פרטי הזמנה בודדת
 app.get('/api/orders/:orderId', auth, async (req, res) => {
     try {
+        console.log('Order details requested for:', req.params.orderId);
+        
+        // בדיקה אם מזהה ההזמנה תקין בפורמט MongoDB
+        if (!mongoose.Types.ObjectId.isValid(req.params.orderId)) {
+            return res.status(400).json({ message: 'פורמט מזהה הזמנה לא תקין' });
+        }
+        
         const order = await Order.findById(req.params.orderId);
         
         if (!order) {
+            console.log('Order not found:', req.params.orderId);
             return res.status(404).json({ message: 'הזמנה לא נמצאה' });
         }
         
         // בדיקה שההזמנה שייכת למשתמש המבקש
-        if (order.userId.toString() !== req.user.id) {
+        const orderUserId = order.userId ? order.userId.toString() : null;
+        const requestUserId = req.user.id ? req.user.id.toString() : null;
+        
+        console.log('Order belongs to user:', orderUserId);
+        console.log('Request from user:', requestUserId);
+        
+        if (orderUserId !== requestUserId) {
             return res.status(403).json({ message: 'אין הרשאה לצפות בהזמנה זו' });
         }
         
-        // יש למצוא מידע על המשתמש
+        // מציאת פרטי המשתמש
         const user = await User.findById(req.user.id);
         
-        // פורמט התגובה לפי המבנה שהלקוח מצפה לו
-        const orderData = {
-            id: order._id,
-            orderNumber: order.orderNumber,
-            orderDate: order.purchaseDate,
-            status: 'completed', // אפשר לשנות בהתאם לנתונים האמיתיים
-            totalAmount: order.totalCost,
+        // בדיקת מבנה פריטי ההזמנה ותיקון במידת הצורך
+        let processedItems = [];
+        
+        if (Array.isArray(order.items) && order.items.length > 0) {
+            // עיבוד כל פריט בהזמנה
+            processedItems = order.items.map((item, index) => {
+                // וידוא שה-ID של הפריט תקין
+                const itemId = item._id || item.productId || `item-${index + 1}`;
+                
+                return {
+                    id: itemId.toString(),
+                    productName: item.productName || 'כרטיס כניסה',
+                    productDetails: item.productDetails || (item.category ? `${item.category} - ${item.contry || ''}` : ''),
+                    quantity: item.amount || 1,
+                    unitPrice: item.price || 0
+                };
+            });
+        } else {
+            // אם אין פריטים בהזמנה, יצירת פריט ברירת מחדל
+            processedItems = [{
+                id: 'default-item',
+                productName: 'כרטיס כניסה',
+                productDetails: '',
+                quantity: 1,
+                unitPrice: order.totalCost || 0
+            }];
+        }
+        
+        // הכנת אובייקט התשובה
+        const responseData = {
+            id: order._id.toString(),
+            orderNumber: order.orderNumber || order._id.toString(),
+            orderDate: order.purchaseDate || order.createdAt || new Date(),
+            status: order.status || 'completed',
+            totalAmount: order.totalCost || 0,
             customerName: user ? user.displayName || user.username : 'לקוח',
-            customerEmail: user ? user.username : '',
-            items: order.items.map(item => ({
-                productName: item.productName || "מוצר",
-                productDetails: item.category ? `${item.category} - ${item.type}` : item.type || "",
-                quantity: item.amount,
-                unitPrice: item.price
-            }))
+            customerEmail: user ? user.email || user.username : '',
+            items: processedItems
         };
         
-        res.status(200).json(orderData);
+        console.log('Returning order data with items:', responseData.items.length);
+        res.status(200).json(responseData);
     } catch (error) {
         console.error('Error fetching order details:', error);
-        res.status(500).json({ message: 'שגיאה בטעינת פרטי ההזמנה' });
+        res.status(500).json({ message: 'שגיאה בטעינת פרטי ההזמנה: ' + error.message });
     }
 });
 
@@ -763,6 +813,213 @@ app.delete('/api/admin/questions/:id', adminAuth, async (req, res) => {
     } catch (error) {
         console.error('Error deleting question:', error);
         res.status(500).json({ success: false, message: 'שגיאת שרת' });
+    }
+});
+
+app.put('/api/user/profile', auth, async (req, res) => {
+    try {
+        // לוג לצורך דיבוג
+        console.log('בקשה לעדכון פרטי משתמש התקבלה:', req.body);
+        console.log('פרטי המשתמש מהטוקן:', req.user);
+        
+        const { displayName, email, currentPassword, newPassword } = req.body;
+        const userId = req.user.id;
+
+        // מציאת המשתמש על פי המזהה מהטוקן
+        const user = await User.findById(userId);
+        
+        if (!user) {
+            console.error('משתמש לא נמצא:', userId);
+            return res.status(404).json({ message: 'משתמש לא נמצא' });
+        }
+        
+        console.log('משתמש נמצא:', user.username);
+        
+        // שינויים שבוצעו בפרטי המשתמש
+        let changes = [];
+
+        // אם נשלח שם תצוגה, עדכן אותו
+        if (displayName && displayName.trim()) {
+            const oldDisplayName = user.displayName;
+            user.displayName = displayName.trim();
+            changes.push(`שם תצוגה שונה מ-${oldDisplayName || 'ללא שם'} ל-${displayName.trim()}`);
+        }
+
+        // אם נשלח מייל, עדכן אותו
+        if (email && email.trim()) {
+            const oldEmail = user.email || user.username;
+            user.email = email.trim();
+            changes.push(`כתובת מייל שונתה מ-${oldEmail} ל-${email.trim()}`);
+        }
+
+        // אם נשלחה סיסמה חדשה, יש לוודא את הסיסמה הנוכחית ואז לעדכן
+        if (newPassword && currentPassword) {
+            try {
+                // וידוא הסיסמה הנוכחית
+                const validPassword = await argon2.verify(user.password, currentPassword);
+                
+                if (!validPassword) {
+                    console.log('סיסמה נוכחית שגויה');
+                    return res.status(401).json({ message: 'סיסמה נוכחית שגויה' });
+                }
+                
+                // סיסמה תקפה - עדכן את הסיסמה החדשה
+                user.password = newPassword;
+                changes.push('סיסמה עודכנה');
+            } catch (error) {
+                console.error('שגיאה באימות סיסמה:', error);
+                return res.status(500).json({ message: 'שגיאה באימות הסיסמה' });
+            }
+        }
+
+        if (changes.length === 0) {
+            console.log('לא בוצעו שינויים בפרטי המשתמש');
+            return res.status(200).json({ 
+                message: 'לא בוצעו שינויים',
+                user: {
+                    userId: user._id,
+                    username: user.username,
+                    email: user.email || user.username,
+                    displayName: user.displayName,
+                    isAdmin: user.isAdmin
+                }
+            });
+        }
+
+        // שמירת השינויים
+        await user.save();
+        console.log('פרטי המשתמש עודכנו בהצלחה:', changes);
+
+        // יצירת טוקן חדש עם השם החדש (אם השתנה)
+        const token = jwt.sign({
+            id: user._id,
+            username: user.username,
+            email: user.email || user.username,
+            displayName: user.displayName,
+            isAdmin: user.isAdmin
+        }, JWT_SECRET, { expiresIn: '7d' });
+
+        res.status(200).json({
+            message: 'פרטי המשתמש עודכנו בהצלחה',
+            changes: changes,
+            user: {
+                userId: user._id,
+                username: user.username,
+                email: user.email || user.username,
+                displayName: user.displayName,
+                isAdmin: user.isAdmin
+            },
+            token: token // שליחת טוקן חדש למקרה ששם התצוגה השתנה
+        });
+    } catch (error) {
+        console.error('שגיאה בעדכון פרטי משתמש:', error);
+        res.status(500).json({ message: 'שגיאת שרת בעדכון פרטי המשתמש' });
+    }
+});
+
+app.get('/api/tickets/:ticketId', auth, async (req, res) => {
+    try {
+        const { ticketId } = req.params;
+        const { orderId } = req.query;
+        
+        console.log('API request for ticket:', { ticketId, orderId, userId: req.user.id });
+        
+        if (!ticketId || !orderId) {
+            return res.status(400).json({ message: 'חסרים פרמטרים בבקשה' });
+        }
+        
+        // בדיקה האם orderId הוא מזהה מונגו תקין
+        if (!mongoose.Types.ObjectId.isValid(orderId)) {
+            console.log('Invalid orderId format:', orderId);
+            return res.status(400).json({ message: 'מזהה הזמנה בפורמט לא תקין' });
+        }
+        
+        // חיפוש ההזמנה במסד הנתונים
+        const order = await Order.findById(orderId);
+        
+        console.log('Order found:', order ? 'Yes' : 'No');
+        if (!order) {
+            return res.status(404).json({ message: 'הזמנה לא נמצאה' });
+        }
+        
+        // בדיקת מבנה ההזמנה לצרכי דיבאג
+        console.log('Order structure check:');
+        console.log('  Order ID:', order._id);
+        console.log('  Order userId:', order.userId);
+        console.log('  Current user ID:', req.user.id);
+        console.log('  Order has items array:', Array.isArray(order.items));
+        if (Array.isArray(order.items)) {
+            console.log('  Items count:', order.items.length);
+        } else {
+            console.log('  Order items structure:', typeof order.items, order.items);
+            // במקרה שהמבנה לא כפי שציפינו, ניצור מערך ריק
+            order.items = [];
+        }
+        
+        // בדיקה שההזמנה שייכת למשתמש המבקש - מיישרים למחרוזות
+        const orderUserId = order.userId ? order.userId.toString() : null;
+        const requestUserId = req.user.id ? req.user.id.toString() : null;
+        
+        if (orderUserId !== requestUserId) {
+            console.log(`User ID mismatch: Order belongs to ${orderUserId}, request from ${requestUserId}`);
+            return res.status(403).json({ message: 'אין הרשאה לצפות בהזמנה זו' });
+        }
+        
+        // מציאת פרטי המשתמש
+        let user = null;
+        try {
+            user = await User.findById(req.user.id);
+            console.log('User found:', user ? 'Yes' : 'No');
+        } catch (userError) {
+            console.error('Error fetching user:', userError);
+            // ממשיכים גם אם לא מצאנו את המשתמש
+        }
+        
+        // ניסיון למצוא את הפריט בהזמנה
+        let item = null;
+        if (Array.isArray(order.items) && order.items.length > 0) {
+            // חיפוש לפי ID
+            item = order.items.find(item => 
+                (item._id && item._id.toString() === ticketId) || 
+                (item.productId && item.productId.toString() === ticketId)
+            );
+            
+            // אם לא נמצא, ניקח את הפריט הראשון
+            if (!item) {
+                console.log('Specific item not found, using first item');
+                item = order.items[0];
+            }
+        }
+        
+        // אם עדיין אין פריט, נייצר פריט ברירת מחדל
+        if (!item) {
+            console.log('Creating default item');
+            item = {
+                productName: "כרטיס כניסה",
+                amount: 1,
+                type: "כרטיס"
+            };
+        }
+        
+        // הכנת נתוני הכרטיס לשליחה
+        const ticketData = {
+            id: item._id || ticketId,
+            orderNumber: order.orderNumber || orderId,
+            orderDate: order.purchaseDate || new Date(),
+            name: item.productName || "כרטיס",
+            quantity: item.amount || 1,
+            customerName: user ? user.displayName || user.username : 'לקוח',
+            customerEmail: user ? user.email || user.username : '',
+            barcode: `${order.orderNumber || orderId}-${ticketId}`,
+            ticketType: item.type || "כרטיס כניסה",
+            additionalInfo: item.category ? `${item.category} ${item.contry || ''}` : ''
+        };
+        
+        console.log('Returning ticket data:', ticketData);
+        res.status(200).json(ticketData);
+    } catch (error) {
+        console.error('Error fetching ticket details:', error);
+        res.status(500).json({ message: 'שגיאה בטעינת פרטי הכרטיס: ' + error.message });
     }
 });
 

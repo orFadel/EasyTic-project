@@ -1,33 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if user is logged in
+    // בדיקה אם המשתמש מחובר
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (!userInfo || !userInfo.token) {
         window.location.href = 'loginPage.html';
         return;
     }
 
-    // עדכון שם המשתמש בכותרת העליונה - הוסף את הקוד הזה
+    // עדכון שם המשתמש בכותרת העליונה
     const usernameDisplay = document.getElementById('username-display');
     if (usernameDisplay && userInfo.displayName) {
         usernameDisplay.textContent = `שלום ${userInfo.displayName},`;
     }
 
-    // יש להציג את הערך הנוכחי של השם גם בטופס ההגדרות - הוסף את הקוד הזה
+    // מילוי ערכים קיימים בטופס
     const displayNameInput = document.getElementById('display-name');
+    const emailInput = document.getElementById('email');
+    
     if (displayNameInput && userInfo.displayName) {
         displayNameInput.value = userInfo.displayName;
     }
-
-    // אם יש אימייל בפרטי המשתמש, נציג אותו בשדה האימייל - הוסף את הקוד הזה
-    const emailInput = document.getElementById('email');
-    if (emailInput && userInfo.email) {
-        emailInput.value = userInfo.email;
+    
+    if (emailInput) {
+        // מילוי שדה המייל - משתמש בשדה email אם קיים, אחרת משתמש בשדה username
+        emailInput.value = userInfo.email || userInfo.username;
+        // כבר אין צורך להגדיר את השדה כ-readonly, כי כעת אפשר לערוך אותו
+        // emailInput.readOnly = true;
     }
 
-    // Load user questions when the page loads
+    // טעינת שאלות ורכישות
     loadUserQuestions();
-        // טעינת היסטוריית הרכישות
-        loadPurchaseHistory();
+    loadPurchaseHistory();
+    
+    // הוספת טיפול באירוע שליחת הטופס
+    const userSettingsForm = document.getElementById('user-settings-form');
+    if (userSettingsForm) {
+        // החלף את התנהגות ברירת המחדל של שליחת הטופס
+        userSettingsForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // מניעת התנהגות ברירת המחדל של הטופס
+            updateUserProfile();
+        });
+    }
 });
 
 async function loadUserQuestions() {
@@ -473,5 +485,400 @@ function getStatusClass(statusCode) {
             return 'text-info';
         default:
             return 'text-muted';
+    }
+}
+
+function updateUserProfile() {
+    console.log("פונקציית updateUserProfile הופעלה");
+    
+    // השג את הערכים מהטופס
+    const displayNameInput = document.getElementById('display-name');
+    const emailInput = document.getElementById('email');
+    const currentPasswordInput = document.getElementById('current-password');
+    const newPasswordInput = document.getElementById('new-password');
+    const confirmPasswordInput = document.getElementById('confirm-password');
+    
+    // וידוא שכל השדות אותרו
+    if (!displayNameInput || !emailInput || !currentPasswordInput || !newPasswordInput || !confirmPasswordInput) {
+        console.error("לא כל שדות הטופס אותרו:", {
+            displayNameInput: !!displayNameInput,
+            emailInput: !!emailInput,
+            currentPasswordInput: !!currentPasswordInput,
+            newPasswordInput: !!newPasswordInput,
+            confirmPasswordInput: !!confirmPasswordInput
+        });
+        showMessage("שגיאה בטעינת שדות הטופס", "error");
+        return;
+    }
+    
+    // בדיקות תקינות בסיסיות
+    if (!displayNameInput.value.trim()) {
+        showMessage("שם תצוגה הוא שדה חובה", "error");
+        return;
+    }
+    
+    // בדיקת תקינות המייל
+    if (emailInput.value.trim() && !isValidEmail(emailInput.value.trim())) {
+        showMessage("כתובת המייל אינה תקינה", "error");
+        return;
+    }
+    
+    // בדיקת סיסמה חדשה (אם הוזנה)
+    if (newPasswordInput.value) {
+        if (!currentPasswordInput.value) {
+            showMessage("יש להזין את הסיסמה הנוכחית כדי לשנות לסיסמה חדשה", "error");
+            return;
+        }
+        
+        if (newPasswordInput.value !== confirmPasswordInput.value) {
+            showMessage("הסיסמאות החדשות אינן תואמות", "error");
+            return;
+        }
+        
+        if (newPasswordInput.value.length < 6) {
+            showMessage("הסיסמה החדשה חייבת להכיל לפחות 6 תווים", "error");
+            return;
+        }
+    }
+    
+    // קבלת פרטי המשתמש המחובר
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    if (!userInfo || !userInfo.token) {
+        showMessage("נדרשת התחברות מחדש", "error");
+        setTimeout(() => {
+            window.location.href = 'loginPage.html';
+        }, 2000);
+        return;
+    }
+    
+    // הצגת אינדיקטור טעינה
+    const submitButton = document.querySelector('#user-settings-form button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> מעדכן...';
+    
+    // הכנת הנתונים לשליחה
+    const updateData = {
+        displayName: displayNameInput.value.trim(),
+        email: emailInput.value.trim()
+    };
+    
+    // הוסף סיסמאות אם הוזנו
+    if (newPasswordInput.value) {
+        updateData.currentPassword = currentPasswordInput.value;
+        updateData.newPassword = newPasswordInput.value;
+    }
+    
+    console.log("שולח נתונים לעדכון:", JSON.stringify(updateData));
+    
+    // שליחת הנתונים לשרת
+    fetch('/api/user/profile', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${userInfo.token}`
+        },
+        body: JSON.stringify(updateData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(data.message || "שגיאה בעדכון הפרטים");
+            });
+        }
+        return response.json();
+    })
+    .then(result => {
+        console.log("תשובה מהשרת:", result);
+        
+        // עדכון מוצלח - עדכן את הנתונים בלוקל סטורג'
+        if (result.token) {
+            userInfo.token = result.token;
+        }
+        
+        // עדכון פרטי המשתמש בזיכרון המקומי
+        userInfo.displayName = updateData.displayName;
+        userInfo.email = updateData.email;
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        
+        // עדכון שם התצוגה בראש העמוד
+        const usernameDisplay = document.getElementById('username-display');
+        if (usernameDisplay) {
+            usernameDisplay.textContent = `שלום ${userInfo.displayName},`;
+        }
+        
+        // עדכון שם התצוגה בתפריט הניווט
+        const userGreeting = document.getElementById('user-greeting');
+        if (userGreeting) {
+            userGreeting.textContent = ` היי, ${userInfo.displayName}`;
+        }
+        
+        // ניקוי שדות הסיסמה
+        currentPasswordInput.value = '';
+        newPasswordInput.value = '';
+        confirmPasswordInput.value = '';
+        
+        // החזרת כפתור השליחה למצב רגיל
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+        
+        // הצגת הודעת הצלחה
+        showMessage("פרטי המשתמש עודכנו בהצלחה", "success");
+    })
+    .catch(error => {
+        console.error("שגיאה בעדכון פרטי המשתמש:", error);
+        showMessage(error.message || "שגיאה בעדכון הפרטים", "error");
+        
+        // החזרת כפתור השליחה למצב רגיל
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    });
+}
+
+function showMessage(message, type) {
+    // הסרת הודעות קודמות
+    const existingMessages = document.querySelectorAll('.alert');
+    existingMessages.forEach(msg => msg.remove());
+    
+    // יצירת אלמנט הודעה חדש
+    const messageDiv = document.createElement('div');
+    messageDiv.className = type === 'error' ? 'alert alert-danger' : 'alert alert-success';
+    messageDiv.style.marginTop = '15px';
+    messageDiv.style.marginBottom = '15px';
+    messageDiv.textContent = message;
+    
+    // הוספת ההודעה מעל הטופס
+    const form = document.getElementById('user-settings-form');
+    form.parentNode.insertBefore(messageDiv, form);
+    
+    // הסרת ההודעה אחרי 5 שניות
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 5000);
+}
+
+  function showErrorMessage(message) {
+    // בדוק אם כבר קיימת הודעת שגיאה ומחק אותה
+    const existingError = document.querySelector('.profile-error-message');
+    if (existingError) {
+      existingError.remove();
+    }
+    
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'alert alert-danger profile-error-message';
+    errorDiv.textContent = message;
+    
+    const form = document.getElementById('user-settings-form');
+    form.parentNode.insertBefore(errorDiv, form);
+    
+    // הסרת ההודעה אחרי 5 שניות
+    setTimeout(() => {
+      errorDiv.remove();
+    }, 5000);
+  }
+
+  function showSuccessMessage(message) {
+    // בדוק אם כבר קיימת הודעת הצלחה ומחק אותה
+    const existingSuccess = document.querySelector('.profile-success-message');
+    if (existingSuccess) {
+      existingSuccess.remove();
+    }
+    
+    const successDiv = document.createElement('div');
+    successDiv.className = 'alert alert-success profile-success-message';
+    successDiv.textContent = message;
+    
+    const form = document.getElementById('user-settings-form');
+    form.parentNode.insertBefore(successDiv, form);
+    
+    // הסרת ההודעה אחרי 5 שניות
+    setTimeout(() => {
+      successDiv.remove();
+    }, 5000);
+  }
+
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+async function showOrderDetails(orderId) {
+    const orderDetailsContent = document.getElementById('orderDetailsContent');
+    
+    if (!orderDetailsContent) return;
+    
+    try {
+        // הצגת אינדיקטור טעינה
+        orderDetailsContent.innerHTML = '<p class="text-center"><i class="fas fa-spinner fa-spin"></i> טוען פרטים...</p>';
+        
+        // קבלת מידע המשתמש המחובר - כולל המייל המעודכן!
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        const userEmail = userInfo.email || userInfo.username; // שימוש במייל אם קיים
+        
+        // ביצוע קריאה לשרת לקבלת פרטי ההזמנה
+        const response = await fetch(`/api/orders/${orderId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${userInfo.token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to load order details');
+        }
+        
+        // קבלת נתוני ההזמנה מהשרת
+        const orderData = await response.json();
+        
+        // עדכון כותרת המודל
+        const modalTitle = document.getElementById('orderDetailsModalLabel');
+        if (modalTitle) {
+            modalTitle.textContent = `פרטי הזמנה #${orderData.orderNumber}`;
+        }
+        
+        // הצגת פרטי ההזמנה - כל התוכן מיושר לימין
+        // שימוש במייל המעודכן מה-userInfo במקום מהשרת
+        let detailsHTML = `
+            <div class="order-details">
+                <div class="row mb-4">
+                    <div class="col-md-6 text-right">
+                        <h6>פרטי רכישה</h6>
+                        <p>תאריך: ${new Date(orderData.orderDate).toLocaleDateString('he-IL')}</p>
+                        <p>סטטוס: <span class="${getStatusClass(orderData.status)}">${getStatusText(orderData.status)}</span></p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <h6>פרטי רוכש</h6>
+                        <p>${userInfo.displayName || orderData.customerName}</p>
+                        <p>${userEmail}</p>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-right">מוצר</th>
+                                <th class="text-right">פרטים</th>
+                                <th class="text-right">כמות</th>
+                                <th class="text-right">מחיר ליחידה</th>
+                                <th class="text-right">סה"כ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+        `;
+        
+        // הוספת פריטי ההזמנה לטבלה
+        orderData.items.forEach(item => {
+            const itemTotalPrice = item.quantity * item.unitPrice;
+            detailsHTML += `
+                <tr>
+                    <td class="text-right">${item.productName}</td>
+                    <td class="text-right">${item.productDetails || '-'}</td>
+                    <td class="text-right">${item.quantity}</td>
+                    <td class="text-right">${new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(item.unitPrice)}</td>
+                    <td class="text-right">${new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(itemTotalPrice)}</td>
+                </tr>
+            `;
+        });
+        
+        // סיכום הטבלה
+        detailsHTML += `
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-right font-weight-bold">סה"כ:</td>
+                                <td class="text-right font-weight-bold">${new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(orderData.totalAmount)}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+        `;
+        
+        // הצגת מידע על כרטיסים אם קיימים
+        // בדיקה אם יש כרטיסים בהזמנה, או אם אין, יצירת כרטיס אחד לפחות לפי פריטי ההזמנה
+        const tickets = orderData.tickets && orderData.tickets.length > 0 
+            ? orderData.tickets 
+            : orderData.items.map(item => ({
+                id: `item-${item.productName.replace(/\s+/g, '-')}`,
+                name: item.productName
+            }));
+        
+            if (orderData.items && orderData.items.length > 0) {
+                detailsHTML += `
+                    <div class="mt-3">
+                        <h6 class="text-right">כרטיסים:</h6>
+                        <ul class="list-group">
+                `;
+                
+                // קיבוץ הכרטיסים לפי סוג האטרקציה
+                const groupedItems = {};
+                
+                orderData.items.forEach(item => {
+                    const productName = item.productName || "כרטיס כניסה";
+                    
+                    if (!groupedItems[productName]) {
+                        groupedItems[productName] = {
+                            count: 0,
+                            details: item
+                        };
+                    }
+                    
+                    groupedItems[productName].count += (item.quantity || 1);
+                });
+                
+                // הצגת הכרטיסים מקובצים
+                Object.keys(groupedItems).forEach(productName => {
+                    const group = groupedItems[productName];
+                    const item = group.details;
+                    
+                    // יצירת קישור להורדה עם שם המוצר
+                    const downloadLink = `/generateTicketPDF.html?orderId=${orderId}&productName=${encodeURIComponent(productName)}`;
+                    
+                    detailsHTML += `
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="${downloadLink}" class="btn btn-sm btn-primary" target="_blank">
+                                <i class="fas fa-download"></i> הורד
+                            </a>
+                            <div class="text-right">
+                                <strong>${productName}</strong>
+                                <div class="text-muted small">${group.count} כרטיסים</div>
+                            </div>
+                        </li>
+                    `;
+                });
+                
+                // הוספת אפשרות להורדת כל הכרטיסים
+                if (Object.keys(groupedItems).length > 1) {
+                    const allTicketsLink = `/generateTicketPDF.html?orderId=${orderId}`;
+                    
+                    detailsHTML += `
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+                            <a href="${allTicketsLink}" class="btn btn-sm btn-outline-primary" target="_blank">
+                                <i class="fas fa-download"></i> הורד את כל הכרטיסים
+                            </a>
+                            <div class="text-right">
+                                <strong>כל הכרטיסים</strong>
+                            </div>
+                        </li>
+                    `;
+                }
+                
+                detailsHTML += `
+                        </ul>
+                    </div>
+                `;
+            }
+        
+        detailsHTML += '</div>';
+        orderDetailsContent.innerHTML = detailsHTML;
+        
+    } catch (error) {
+        console.error('Error loading order details:', error);
+        orderDetailsContent.innerHTML = `
+            <div class="alert alert-danger text-right">
+                <i class="fas fa-exclamation-circle"></i> אירעה שגיאה בטעינת פרטי ההזמנה. אנא נסה שוב מאוחר יותר.
+            </div>
+        `;
     }
 }

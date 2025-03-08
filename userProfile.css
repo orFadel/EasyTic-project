@@ -74,6 +74,96 @@
     text-align: right;
 }
 
+/* תוספת סגנונות לקובץ userProfile.css */
+
+/* תיקון למודל פרטי הזמנה בהתאם לדרישות */
+.modal-header {
+    display: flex;
+    flex-direction: row; /* לא row-reverse כדי שהאיקס יהיה בצד שמאל */
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-header .modal-title {
+    margin-right: auto; /* דחיפת הכותרת לצד ימין */
+    margin-left: 0;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.modal-header .close {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 1rem;
+    position: relative;
+    left: 0; /* האיקס בצד שמאל */
+}
+
+.modal-footer {
+    justify-content: flex-start; /* כפתור "סגור" בצד שמאל */
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+/* סגנון כפתור הורדה */
+.list-group-item .btn-primary {
+    background-color: #198AD7;
+    border-color: #198AD7;
+}
+
+.list-group-item .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0069d9;
+}
+
+/* עיצוב PDF של כרטיס */
+@media print {
+    .ticket-pdf {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        direction: rtl;
+    }
+    
+    .ticket-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #198AD7;
+    }
+    
+    .ticket-logo {
+        max-width: 150px;
+        height: auto;
+    }
+    
+    .ticket-title {
+        font-size: 24px;
+        color: #198AD7;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .ticket-details {
+        margin-bottom: 20px;
+    }
+    
+    .ticket-barcode {
+        text-align: center;
+        margin: 30px 0;
+    }
+    
+    .ticket-terms {
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 20px;
+    }
+}
+
 .card-body {
     text-align: right;
 }

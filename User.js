@@ -1,9 +1,12 @@
+// עדכון לקובץ User.js - הוספת שדה מייל
+
 const mongoose = require('mongoose');
 const argon2 = require('argon2');
 
 // הגדרת הסכימה (Schema) עבור המשתמשים
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  username: { type: String, required: true, unique: true }, // שם משתמש לצורך התחברות (ייחודי)
+  email: { type: String, default: function() { return this.username; } }, // כתובת מייל (ברירת מחדל היא שם המשתמש)
   password: { type: String, required: true },
   displayName: { type: String, required: true },
   cart: [
@@ -57,6 +60,15 @@ userSchema.pre('save', async function (next) {
   } catch (error) {
     return next(error);
   }
+});
+
+// וידוא שיש כתובת מייל לפני שמירה
+userSchema.pre('save', function(next) {
+  // אם אין כתובת מייל, השתמש בשם המשתמש כברירת מחדל
+  if (!this.email) {
+    this.email = this.username;
+  }
+  next();
 });
 
 // פונקציה להשוואת סיסמאות מוצפנות

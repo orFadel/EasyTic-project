@@ -1,11 +1,39 @@
-
 body {
   background-color: rgba(0, 0, 0, 0.5);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
 }
 
 #welcome-modal {
   width: 500px;
   height: 300px;
+  display: block !important; /* להבטיח שהמודל יוצג */
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-control {
+  text-align: right;
+  direction: rtl;
+  padding-left: 30px; /* מקום לאייקון העין בצד שמאל */
+  padding-right: 12px; /* החזרת הריפוד הרגיל בצד ימין */
+}
+
+/* התאמת הודעות משוב */
+.valid-feedback, .invalid-feedback {
+  text-align: right;
+}
+
+/* סגנון למיכל הסיסמה */
+.password-container {
+  position: relative;
+}
+
+/* הוספת צבע ירוק להודעת תקין */
+.valid-feedback {
+  color: #198754;
 }
 
 #welcome-modal::before {
@@ -28,25 +56,48 @@ body {
   transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
-  text-align: center;
+  text-align: right;
+  width: 400px;
 }
 
-#name-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+/* תיקון כיוון טקסט לעברית */
+.form-control {
+  text-align: right;
+  direction: rtl;
 }
 
+/* תיקון מיקום אייקון העין */
+.input-group {
+  direction: ltr;
+}
+
+.input-group .form-control {
+  direction: rtl;
+  text-align: right;
+}
+
+.input-group .input-group-text {
+  border-left: 0;
+}
+
+/* התאמת הודעות משוב */
+.valid-feedback, .invalid-feedback {
+  text-align: right;
+  direction: rtl;
+}
+
+/* סגנון כפתור הכניסה */
 #submit-button {
   padding: 10px 20px;
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
 }
 
-
+/* הסתרת קלאס גנרי */
+.hidden {
+  display: none !important;
+}
