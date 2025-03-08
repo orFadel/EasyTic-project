@@ -485,6 +485,80 @@ app.get('/api/admin/order/:orderId', isAdmin, async (req, res) => {
     }
 });
 
+// נתיב API להצגת הזמנות של משתמש מסוים
+app.get('/api/user/orders', auth, async (req, res) => {
+    try {
+        // מציאת הזמנות של המשתמש המחובר
+        const orders = await Order.find({ userId: req.user.id })
+            .sort({ purchaseDate: -1 }); // מיון לפי תאריך - חדש לישן
+        
+        if (!orders || orders.length === 0) {
+            return res.status(200).json({ orders: [] });
+        }
+        
+        // עיבוד הנתונים לפורמט שהלקוח מצפה לו
+        const processedOrders = orders.map(order => ({
+            id: order._id,
+            orderNumber: order.orderNumber,
+            orderDate: order.purchaseDate,
+            totalAmount: order.totalCost,
+            status: 'completed', // אפשר לשנות לפי הסטטוס האמיתי בעתיד
+            items: order.items.map(item => ({
+                productName: item.productName || "מוצר",
+                productDetails: item.category ? `${item.category} - ${item.type}` : item.type || "",
+                quantity: item.amount,
+                unitPrice: item.price
+            }))
+        }));
+        
+        res.status(200).json({ orders: processedOrders });
+    } catch (error) {
+        console.error('Error fetching user orders:', error);
+        res.status(500).json({ message: 'שגיאה בטעינת ההזמנות' });
+    }
+});
+
+// נתיב API לקבלת פרטי הזמנה בודדת
+app.get('/api/orders/:orderId', auth, async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.orderId);
+        
+        if (!order) {
+            return res.status(404).json({ message: 'הזמנה לא נמצאה' });
+        }
+        
+        // בדיקה שההזמנה שייכת למשתמש המבקש
+        if (order.userId.toString() !== req.user.id) {
+            return res.status(403).json({ message: 'אין הרשאה לצפות בהזמנה זו' });
+        }
+        
+        // יש למצוא מידע על המשתמש
+        const user = await User.findById(req.user.id);
+        
+        // פורמט התגובה לפי המבנה שהלקוח מצפה לו
+        const orderData = {
+            id: order._id,
+            orderNumber: order.orderNumber,
+            orderDate: order.purchaseDate,
+            status: 'completed', // אפשר לשנות בהתאם לנתונים האמיתיים
+            totalAmount: order.totalCost,
+            customerName: user ? user.displayName || user.username : 'לקוח',
+            customerEmail: user ? user.username : '',
+            items: order.items.map(item => ({
+                productName: item.productName || "מוצר",
+                productDetails: item.category ? `${item.category} - ${item.type}` : item.type || "",
+                quantity: item.amount,
+                unitPrice: item.price
+            }))
+        };
+        
+        res.status(200).json(orderData);
+    } catch (error) {
+        console.error('Error fetching order details:', error);
+        res.status(500).json({ message: 'שגיאה בטעינת פרטי ההזמנה' });
+    }
+});
+
 // ניהול שאלות ופניות
 app.post('/api/submit-question', async (req, res) => {
     console.log('Got request to submit-question:', req.body);

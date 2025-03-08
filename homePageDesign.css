@@ -34,6 +34,7 @@
     display: flex;
     align-items: center;
     margin-top: 60px;
+    margin-left: 30px;
 }
 
 .user-greeting {
@@ -43,14 +44,19 @@
 
 /* בתחילה נסתיר את הברכה */
 #user-greeting {
-    visibility: hidden;
-  }
-  
+    visibility: visible; /* מבטל את ההסתרה */
+    margin-right: 10px; /* מוסיף רווח בין האייקון לטקסט */
+    white-space: nowrap;
+}
+
+#profie-icon{
+    margin-right: -40px;
+}
 
 .icons {
     width: 30px; /* Adjust the width as needed */
     height: 30px; /* Adjust the height as needed */
-    margin-right: 15px; /* Adjust the margin to add space between icons */
+    margin-right: 10px; /* Adjust the margin to add space between icons */
     color: black;
 }
 
@@ -58,10 +64,76 @@
     color: #198AD7 !important; 
 }
 
+/* סגנונות לתפריט הנפתח באייקון הפרופיל */
+#profile-container .dropdown-toggle::after {
+    display: none; /* מסתיר את החץ הרגיל של dropdown */
+}
+
+#profile-container .dropdown-menu {
+    min-width: 200px;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    right: 0;
+    left: auto;
+    text-align: right;
+    right: -40px !important;
+}
+
+#profile-container .dropdown-item {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+#profile-container .dropdown-item:hover {
+    background-color: #f0f7ff;
+}
+
+#profile-container .dropdown-item i {
+    margin-left: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+#profile-container .dropdown-divider {
+    margin: 5px 0;
+}
+
+/* סגנון למצב מחובר/לא מחובר */
+.logged-in-only {
+    display: none; /* מוסתר כברירת מחדל */
+}
+
+.logged-out-only {
+    display: block; /* מוצג כברירת מחדל */
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    #profile-container {
+        position: static;
+    }
+    
+    #profile-container .dropdown-menu {
+        position: absolute;
+        right: 10px;
+        left: auto;
+    }
+}
+
 /* Profile and Logout */
 #profile-container {
     display: flex;
     align-items: center;
+    margin-right: -40px;
+}
+
+a.icons.larger-icon {
+    margin-left: 8px; /* הגדל את הרווח בין העגלה לפרופיל */
 }
 
 /* Logo */
@@ -184,4 +256,33 @@ footer {
 #contact {
     text-align: center;
     font-size: 13px;
+}
+
+/* עדכונים נוספים לתפריט הפרופיל */
+#profile-container .dropdown-item {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+
+#login-link {
+    color: #198AD7; /* צבע כחול מיוחד לקישור ההתחברות - התאמה לצבע האתר */
+}
+
+/* סגנונות למצב תצוגה של פריטי תפריט */
+.dropdown-item.logged-in-only, 
+.dropdown-item.logged-out-only {
+    display: flex;
+    text-align: right;
+}
+
+#personal-area-link,
+#logout-link {
+    text-align: right;
+}
+
+/* הדגשת אייקונים בתפריט */
+#profile-container .dropdown-item i {
+    font-size: 16px;
+    width: 20px;
 }

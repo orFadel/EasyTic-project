@@ -3,6 +3,81 @@
     min-height: 70vh;
 }
 
+#username-display {
+    text-align: right;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #198AD7;
+    border-color: #007bff;
+}
+
+#user-settings-form{
+    text-align: right;
+}
+
+.table .thead-light th{
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    text-align: right;
+}
+
+/* תיקונים נוספים לקובץ userProfile.css */
+
+/* תיקון עבור טבלת ההזמנות - וידוא שהטקסט מיושר לימין */
+.table th, 
+.table td {
+    text-align: right;
+}
+
+/* תיקון עבור מודל פרטי הזמנה */
+.modal-header {
+    flex-direction: row-reverse;
+}
+
+.modal-header .close {
+    margin: -1rem auto -1rem -1rem;
+}
+
+.modal-footer {
+    justify-content: flex-start;
+}
+
+/* תיקון עבור פריטי הזמנה */
+.order-item {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.order-total {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+/* תיקון עבור כפתור הצג פרטים */
+.btn-outline-info {
+    margin-right: 0;
+}
+
+/* תיקונים עבור הכרטיסים */
+.list-group-item {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    text-align: right;
+}
+
+/* תיקון עבור תיבות עם עיצוב מובנה של בוטסטראפ */
+.card-header h2 {
+    text-align: right;
+}
+
+.card-body {
+    text-align: right;
+}
+
 /* כותרת הפרופיל */
 .profile-header {
     text-align: center;
@@ -11,7 +86,7 @@
 
 .user-avatar {
     font-size: 5rem;
-    color: #007bff;
+    color: #198AD7;
     margin-bottom: 1rem;
 }
 
@@ -30,13 +105,13 @@
 }
 
 .profile-tabs .nav-link:hover {
-    color: #007bff;
+    color: #198AD7;
     border-color: #dee2e6;
 }
 
 .profile-tabs .nav-link.active {
-    color: #007bff;
-    border-color: #007bff;
+    color: #198AD7;
+    border-color: #198AD7;
     background-color: transparent;
 }
 
@@ -66,11 +141,11 @@
     margin: 0;
     font-size: 1.5rem;
     color: #212529;
+    text-align: right;
 }
 
 .card-header h2 i {
-    margin-left: 0.5rem;
-    color: #007bff;
+    color: #198AD7;
 }
 
 /* סגנונות לחלק השאלות */
@@ -245,7 +320,7 @@
 .login-link {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: #007bff;
+    background-color: #198AD7;
     color: white;
     border-radius: 4px;
     text-decoration: none;

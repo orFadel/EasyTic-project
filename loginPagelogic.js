@@ -1,3 +1,57 @@
+function handleSuccessfulLogin(userData) {
+    console.log('Handling successful login with data:', userData);
+    
+    // שמירת מידע המשתמש ב-localStorage בפורמט אחיד
+    const userInfo = {
+        userId: userData.userId,
+        username: userData.username || document.getElementById('uname').value.trim(),
+        displayName: userData.displayName,
+        isAdmin: userData.isAdmin,
+        token: userData.token || '' // אם קיים
+    };
+    
+    console.log('Saving user info to localStorage:', userInfo);
+    
+    // שמירה ב-localStorage לשימוש עקבי
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    
+    // שמירה גם ב-sessionStorage וב-localStorage לתאימות עם הקוד הקיים
+    sessionStorage.setItem('userId', userData.userId);
+    sessionStorage.setItem('username', userInfo.username);
+    sessionStorage.setItem('displayName', userData.displayName);
+    localStorage.setItem('displayName', userData.displayName);
+    sessionStorage.setItem('isAdmin', userData.isAdmin ? 'true' : 'false');
+    
+    // בדיקה אם יש דף להפנות אליו
+    const redirectPage = localStorage.getItem('redirectAfterLogin');
+    
+    console.log('Redirect after login:', redirectPage);
+    
+    if (redirectPage) {
+        // מחיקת המידע על ההפניה
+        localStorage.removeItem('redirectAfterLogin');
+        
+        // הפניה לדף המבוקש
+        window.location.href = redirectPage;
+    } else if (userData.isAdmin) {
+        // אם המשתמש מנהל, הפנייה לדף ניהול או בקשת אישור
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('redirect') === 'admin') {
+            window.location.href = 'adminDeshboard.html';
+        } else {
+            const goToAdmin = confirm('ברוך הבא מנהל! האם ברצונך לעבור לממשק הניהול?');
+            if (goToAdmin) {
+                window.location.href = 'adminDeshboard.html';
+            } else {
+                window.location.href = 'homePage.html';
+            }
+        }
+    } else {
+        // הפניה לדף הבית
+        window.location.href = 'homePage.html';
+    }
+}
+
 async function handleLogin() {
     const usernameInput = document.getElementById('uname').value.trim();
     const passwordInput = document.getElementById('password').value.trim();
@@ -29,36 +83,20 @@ async function handleLogin() {
                 const displayName = data.displayName || usernameInput;
 
                 if (userId) {
-                    sessionStorage.setItem('userId', userId);
-                    sessionStorage.setItem('username', usernameInput); // שמירת שם המשתמש בסשן
-                    sessionStorage.setItem('displayName', displayName);
-                    localStorage.setItem('displayName', displayName);
-
-                    // שמירת המידע אם המשתמש הוא מנהל
-                    sessionStorage.setItem('isAdmin', isAdmin ? 'true' : 'false');
-
+                    // הכנת אובייקט המשתמש לשמירה
+                    const userData = {
+                        userId: userId,
+                        username: usernameInput,
+                        displayName: displayName,
+                        isAdmin: isAdmin,
+                        token: data.token || ''
+                    };
+                    
                     // בדיקה שהנתונים נשמרו נכון
-                    console.log('Saved userId in sessionStorage:', sessionStorage.getItem('userId'));
-                    console.log('Saved username in sessionStorage:', sessionStorage.getItem('username'));
-                    console.log('Saved isAdmin in sessionStorage:', sessionStorage.getItem('isAdmin'));
-                    console.log('Saved displayName in localStorage:', localStorage.getItem('displayName'));
-
-                    // בדיקה אם המשתמש מנהל ויש redirect לעמוד המנהל
-                    const urlParams = new URLSearchParams(window.location.search);
-                    if (isAdmin && urlParams.get('redirect') === 'admin') {
-                        window.location.href = 'adminDeshboard.html';
-                    } else if (isAdmin) {
-                        // אם המשתמש מנהל אבל אין redirect, נשאל אם ברצונו לעבור לעמוד המנהל
-                        const goToAdmin = confirm('ברוך הבא מנהל! האם ברצונך לעבור לממשק הניהול?');
-                        if (goToAdmin) {
-                            window.location.href = 'adminDeshboard.html';
-                        } else {
-                            window.location.href = 'homePage.html';
-                        }
-                    } else {
-                        // אחרת - ניתוב לעמוד הבית
-                        window.location.href = 'homePage.html';
-                    }
+                    console.log('User data for login:', userData);
+                    
+                    // טיפול בהתחברות המוצלחת
+                    handleSuccessfulLogin(userData);
                 }
             } else {
                 // המרת JSON רק אם יש שגיאה ברמת השרת
