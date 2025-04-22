@@ -11,10 +11,6 @@
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.9.0",
-<<<<<<< HEAD
     "mongoose": "^8.11.0"
-=======
-    "mongoose": "^8.6.2"
->>>>>>> 6ab9571fae77d3e9e904904252e5c58053a79d66
   }
 }
