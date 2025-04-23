@@ -76,6 +76,9 @@ const adminAuth = (req, res, next) => {
     }
 };
 
+const favoritesRouter = require('./favoritesRouter');
+app.use('/api/favorites', favoritesRouter);
+
 // נתיבי דפים סטטיים
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'homePage.html'));

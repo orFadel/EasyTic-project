@@ -1,0 +1,60 @@
+/* Style for the favorite toggle button on attractions */
+.favorite-btn {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    z-index: 10;
+    background: none;
+    border: 1px solid #198AD7;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 2px 7px;
+    background-color: white;
+    color: #198AD7;
+    scroll-margin-top: 150px;
+}
+
+.favorite-btn:hover {
+    color: white;
+    background-color: #198AD7;
+}
+
+/* Style for the favorites page */
+h1 {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 40px;
+    margin-top: 50px;
+    text-align: right;
+    padding-right: 20px;
+    color: #198AD7;
+    display: flex;
+    flex-direction: row; /* Keeps the icon and text in the correct order */
+    align-items: center; /* Center items vertically */
+    justify-content: flex-start; /* Align items to the right */
+    width: 100%; /* Ensure full width */
+}
+
+.icon-before {
+    margin-left: 10px; /* Space between icon and text */
+    font-size: 35px;
+}
+
+
+.btn.btn-primary {
+    background-color: white !important;
+    border: none !important;
+    outline: none !important;
+}
+
+#my-favorites {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+}
+
+#my-favorites>div {
+    flex: 0 0 calc(25% - 1rem);
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}

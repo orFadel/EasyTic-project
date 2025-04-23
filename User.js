@@ -4,7 +4,7 @@ const argon2 = require('argon2');
 // הגדרת הסכימה (Schema) עבור המשתמשים
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true }, // שם משתמש לצורך התחברות (ייחודי)
-  email: { type: String, default: function() { return this.username; } }, // כתובת מייל (ברירת מחדל היא שם המשתמש)
+  email: { type: String, default: function () { return this.username; } }, // כתובת מייל (ברירת מחדל היא שם המשתמש)
   password: { type: String, required: true },
   displayName: { type: String, required: true },
   cart: [
@@ -36,16 +36,20 @@ const userSchema = new mongoose.Schema({
       question: { type: String, required: true },
       answer: { type: String }
     }
-  ]
+  ],
+  favorites: {
+    type: [String],
+    default: []
+  }
 });
 
 // Hashing הסיסמה לפני שמירתה במסד הנתונים
 userSchema.pre('save', async function (next) {
   const user = this;
-  
+
   // בודקים אם השדה 'password' שונה ורק אז מצפינים
   if (!user.isModified('password')) return next();
-  
+
   if (!user.password) {
     return next(new Error('Password is required'));
   }
@@ -60,7 +64,7 @@ userSchema.pre('save', async function (next) {
 });
 
 // וידוא שיש כתובת מייל לפני שמירה
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   // אם אין כתובת מייל, השתמש בשם המשתמש כברירת מחדל
   if (!this.email) {
     this.email = this.username;
