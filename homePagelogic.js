@@ -1,5 +1,3 @@
-// קובץ homePagelogic.js - גרסה מתוקנת ומאוחדת
-
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Document loaded, initializing user interface...');
   
