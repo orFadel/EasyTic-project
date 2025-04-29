@@ -1,5 +1,5 @@
-// homePagelogic.js
-// קוד לבדיקת מצב חיבור המשתמש בעמוד ההתחברות/הרשמה
+// קובץ homePagelogic.js - גרסה מתוקנת ומאוחדת
+
 document.addEventListener('DOMContentLoaded', function() {
   console.log('דף נטען, בודק סטטוס התחברות...');
   
