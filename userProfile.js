@@ -21,10 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (emailInput) {
-        // מילוי שדה המייל - משתמש בשדה email אם קיים, אחרת משתמש בשדה username
-        emailInput.value = userInfo.email || userInfo.username;
-        // כבר אין צורך להגדיר את השדה כ-readonly, כי כעת אפשר לערוך אותו
-        // emailInput.readOnly = true;
+        // תיקון: השתמש ישירות בשדה email מהמשתמש אם קיים
+        if (userInfo.email) {
+            emailInput.value = userInfo.email;
+        } else {
+            // כגיבוי: השתמש ב-username אם אין email
+            emailInput.value = userInfo.username || '';
+        }
     }
 
     // טעינת שאלות ורכישות

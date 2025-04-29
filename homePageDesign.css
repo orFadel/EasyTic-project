@@ -287,3 +287,40 @@ footer {
     font-size: 16px;
     width: 20px;
 }
+
+/* סגנונות נוספים למצבי התחברות/התנתקות */
+.logged-in-only {
+    display: none; /* מוסתר כברירת מחדל עד לבדיקת מצב התחברות */
+  }
+  
+  .logged-out-only {
+    display: block; /* מוצג כברירת מחדל עד לבדיקת מצב התחברות */
+  }
+  
+  /* סגנונות לפריטי התפריט הנפתח */
+  .dropdown-item.logged-in-only {
+    display: none; /* מוסתר כברירת מחדל */
+  }
+  
+  .dropdown-item.logged-out-only {
+    display: flex; /* מוצג כברירת מחדל */
+  }
+  
+  /* סגנונות לקווים מפרידים בתפריט */
+  .dropdown-divider.logged-in-only {
+    display: none; /* מוסתר כברירת מחדל */
+  }
+  
+  /* סגנון אופציונלי לשינוי צבע פריטי תפריט */
+  .dropdown-item {
+    align-items: center;
+  }
+  
+  .dropdown-item i {
+    margin-left: 8px;
+  }
+  
+  /* הסתרת הברכה עד לטעינת הנתונים */
+  #user-greeting {
+    visibility: hidden; /* יהפוך לנראה לאחר בדיקת מצב התחברות */
+  }

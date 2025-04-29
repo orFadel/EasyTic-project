@@ -1,24 +1,18 @@
-// קובץ homePagelogic.js - גרסה מתוקנת ומאוחדת
-
+// homePagelogic.js
+// קוד לבדיקת מצב חיבור המשתמש בעמוד ההתחברות/הרשמה
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Document loaded, initializing user interface...');
+  console.log('דף נטען, בודק סטטוס התחברות...');
   
-  // בדיקה אם יש משתמש מחובר
+  // קריאה לפונקציה שבודקת את מצב ההתחברות של המשתמש
   checkUserLogin();
   
-  // עדכון כמות המוצרים בעגלה
-  updateCartCount();
-  
-  // טיפול באירוע התנתקות
+  // הוספת האזנה לכפתור ההתנתקות
   const logoutLink = document.getElementById('logout-link');
   if (logoutLink) {
-    console.log('Logout link found, adding event listener');
-    logoutLink.addEventListener('click', function(event) {
-      event.preventDefault();
+    logoutLink.addEventListener('click', function(e) {
+      e.preventDefault();
       logoutUser();
     });
-  } else {
-    console.log('Logout link not found');
   }
 });
 
@@ -26,14 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
  * בדיקה אם המשתמש מחובר ועדכון ממשק המשתמש בהתאם
  */
 function checkUserLogin() {
-  console.log('Checking user login status...');
+  console.log('בודק סטטוס התחברות משתמש...');
   
   // בדיקה אם יש אובייקט userInfo ב-localStorage
   let userInfo = null;
   try {
-    userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const userInfoStr = localStorage.getItem('userInfo');
+    userInfo = userInfoStr ? JSON.parse(userInfoStr) : null;
   } catch (e) {
-    console.error('Error parsing userInfo from localStorage:', e);
+    console.error('שגיאה בפענוח userInfo מ-localStorage:', e);
   }
   
   // בדיקה אם יש מידע ב-session/localStorage הישן
@@ -42,26 +37,29 @@ function checkUserLogin() {
   const userId = sessionStorage.getItem('userId');
   const isAdmin = sessionStorage.getItem('isAdmin') === 'true';
   
-  console.log('Session data:', { username, displayName, userId, isAdmin });
-  console.log('localStorage userInfo:', userInfo);
+  console.log('נתוני משתמש משמירה:', { username, displayName, userId, isAdmin });
+  console.log('נתוני userInfo מ-localStorage:', userInfo);
   
-  // אם אין אובייקט userInfo אבל יש נתונים בשדות הישנים, צור אובייקט חדש
-  if (!userInfo && (username || displayName || userId)) {
-    console.log('Creating new userInfo object from session data');
-    userInfo = {
-      userId: userId,
-      username: username,
-      displayName: displayName,
-      isAdmin: isAdmin,
-      token: ''
-    };
-    
-    // שמירת האובייקט החדש ב-localStorage
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+  // בדיקה אם המשתמש מחובר לפי אחד מהנתונים
+  const isLoggedIn = !!(userInfo || username || displayName || userId);
+  console.log('סטטוס התחברות:', isLoggedIn ? 'מחובר' : 'לא מחובר');
+  
+  // עדכון תצוגת השם במידה ויש משתמש מחובר
+  const userGreeting = document.getElementById('user-greeting');
+  if (userGreeting) {
+    if (isLoggedIn) {
+      // הצגת שם המשתמש
+      const nameToShow = userInfo?.displayName || displayName || username || 'משתמש';
+      userGreeting.textContent = ` היי, ${nameToShow}`;
+    } else {
+      // הצגת "אורח/ת"
+      userGreeting.textContent = ' היי, אורח/ת';
+    }
+    userGreeting.style.visibility = 'visible';
   }
   
-  // עדכון ממשק המשתמש
-  updateProfileContent(userInfo, displayName);
+  // עדכון תצוגת האלמנטים לפי מצב התחברות
+  updateDisplayElements(isLoggedIn);
 }
 
 /**
@@ -109,18 +107,19 @@ function checkIfLoggedIn(userInfo, fallbackDisplayName) {
  * עדכון תצוגת האלמנטים לפי מצב התחברות
  */
 function updateDisplayElements(isLoggedIn) {
-  console.log('Updating display elements, isLoggedIn:', isLoggedIn);
+  console.log('מעדכן תצוגת אלמנטים לפי מצב התחברות:', isLoggedIn);
   
-  // עדכון אלמנטים כלליים
+  // עדכון אלמנטים למשתמש מחובר
   document.querySelectorAll('.logged-in-only').forEach(el => {
     el.style.display = isLoggedIn ? 'block' : 'none';
   });
   
+  // עדכון אלמנטים למשתמש לא מחובר
   document.querySelectorAll('.logged-out-only').forEach(el => {
     el.style.display = isLoggedIn ? 'none' : 'block';
   });
   
-  // טיפול מיוחד בפריטי תפריט
+  // טיפול מיוחד בפריטי תפריט נפתח
   document.querySelectorAll('.dropdown-item.logged-in-only').forEach(el => {
     el.style.display = isLoggedIn ? 'flex' : 'none';
   });
@@ -129,6 +128,7 @@ function updateDisplayElements(isLoggedIn) {
     el.style.display = isLoggedIn ? 'none' : 'flex';
   });
   
+  // עדכון קווים מפרידים בתפריט הנפתח
   document.querySelectorAll('.dropdown-divider.logged-in-only').forEach(el => {
     el.style.display = isLoggedIn ? 'block' : 'none';
   });
@@ -145,7 +145,7 @@ function updateDisplayElements(isLoggedIn) {
     }
   }
   
-  // עדכון עגלת הקניות אם המשתמש מחובר
+  // עדכון עגלת הקניות למשתמש מחובר
   if (isLoggedIn) {
     const username = sessionStorage.getItem('username');
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -166,53 +166,55 @@ function updateDisplayElements(isLoggedIn) {
  * התנתקות המשתמש
  */
 function logoutUser() {
-  console.log('Logging out user...');
+  console.log('מתנתק מהמערכת...');
   
-  // ניקוי הנתונים מה-sessionStorage (שיטה ישנה)
+  // ניקוי נתונים מהזיכרון המקומי
   sessionStorage.removeItem('displayName');
   sessionStorage.removeItem('username');
   sessionStorage.removeItem('userId');
   sessionStorage.removeItem('isAdmin');
   
-  // ניקוי הנתונים מה-localStorage (שיטה ישנה)
   localStorage.removeItem('displayName');
   localStorage.removeItem('UserName');
-  
-  // ניקוי הנתונים מה-localStorage (שיטה חדשה)
   localStorage.removeItem('userInfo');
   
-  // שליחת בקשת התנתקות לשרת
-  fetch('/logout', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(response => {
-    console.log('Logout response:', response);
-    // ריענון הדף הנוכחי במקום הפניה לדף התחברות
+  // ניסיון לשלוח בקשת התנתקות לשרת
+  try {
+    fetch('/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      console.log('תגובת שרת להתנתקות:', response);
+      // ריענון הדף הנוכחי
+      window.location.reload();
+    })
+    .catch(error => {
+      console.error('שגיאה בעת התנתקות:', error);
+      // ריענון הדף הנוכחי גם במקרה של שגיאה
+      window.location.reload();
+    });
+  } catch (error) {
+    console.error('שגיאה בעת שליחת בקשת התנתקות:', error);
+    // ריענון הדף במקרה של שגיאה
     window.location.reload();
-  })
-  .catch(error => {
-    console.error('Error during logout:', error);
-    // ריענון הדף הנוכחי גם במקרה של שגיאה
-    window.location.reload();
-  });
+  }
 }
 
 /**
  * עדכון כמות המוצרים בעגלה
  */
 function updateCartCount(username) {
-  // אם אין שם משתמש, לא נעשה כלום
   if (!username) {
-    console.log('No username provided, skipping cart update');
+    console.log('אין שם משתמש, דילוג על עדכון העגלה');
     return;
   }
   
-  console.log('Updating cart count for username:', username);
+  console.log('מעדכן כמות מוצרים בעגלה עבור משתמש:', username);
   
-  // בקשת נתוני העגלה מהשרת
+  // בדיקה אם יש תקשורת שרת
   fetch(`/api/cart?username=${username}`)
     .then(response => response.json())
     .then(data => {
@@ -226,10 +228,10 @@ function updateCartCount(username) {
         cartCount.textContent = totalItems.toString();
       }
       
-      console.log('Cart updated, total items:', totalItems);
+      console.log('עגלה עודכנה, סה"כ פריטים:', totalItems);
     })
     .catch(error => {
-      console.error('Error fetching cart:', error);
+      console.error('שגיאה בהבאת נתוני עגלה:', error);
     });
 }
 

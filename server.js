@@ -10,6 +10,7 @@ const session = require('express-session');
 const Question = require('./question');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'your_jwt_secret_key';
+const axios = require('axios');
 
 const app = express();
 const PORT = 2001;
@@ -184,6 +185,93 @@ app.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+// נתיב לקבלת קוד אימות מגוגל והחלפתו בטוקן
+app.post('/auth/google', async (req, res) => {
+    try {
+      const { code } = req.body;
+      
+      if (!code) {
+        return res.status(400).json({ message: 'קוד אימות חסר' });
+      }
+      
+      // החלפת קוד האימות בטוקן גישה מול גוגל
+      const tokenResponse = await axios.post('https://oauth2.googleapis.com/token', {
+        code,
+        client_id: '20535000026-ihg42f1n3i68bfd70m5l1vhpgf8m91ou.apps.googleusercontent.com',
+        client_secret: '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',
+        redirect_uri: 'postmessage', // שינוי לערך 'postmessage' במקום URI מלא
+        grant_type: 'authorization_code'
+      });
+      
+      // שאר הקוד נשאר זהה...
+      const { access_token } = tokenResponse.data;
+      
+      // שימוש בטוקן הגישה לקבלת פרטי המשתמש
+      const userInfoResponse = await axios.get('https://www.googleapis.com/oauth2/v2/userinfo', {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
+      
+      const userInfo = userInfoResponse.data;
+      
+      // בדיקה אם המשתמש קיים במערכת
+      let user = await User.findOne({ email: userInfo.email });
+      
+      if (!user) {
+        // יצירת משתמש חדש אם לא קיים
+        console.log('יוצר משתמש חדש עם אימות גוגל');
+        user = new User({
+          username: userInfo.email, // שימוש באימייל כשם משתמש
+          email: userInfo.email,
+          displayName: userInfo.name,
+          googleId: userInfo.id,
+          // יצירת סיסמה אקראית שלא תשמש (המשתמש יתחבר רק דרך גוגל)
+          password: Math.random().toString(36).slice(-10) + Math.random().toString(36).slice(-10)
+        });
+        
+        await user.save();
+      } else {
+        // עדכון פרטי גוגל אם המשתמש כבר קיים
+        if (!user.googleId) {
+          user.googleId = userInfo.id;
+          await user.save();
+        }
+      }
+      
+      // יצירת טוקן JWT למשתמש
+      const token = jwt.sign({
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        displayName: user.displayName,
+        isAdmin: user.isAdmin
+      }, JWT_SECRET, { expiresIn: '7d' });
+      
+      // שמירת נתוני המשתמש בסשן
+      req.session.userId = user._id;
+      req.session.username = user.username;
+      req.session.isAdmin = user.isAdmin;
+      
+      // החזרת פרטי המשתמש לצד הלקוח
+      res.status(200).json({
+        userId: user._id,
+        username: user.username,
+        displayName: user.displayName,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        token: token
+      });
+      
+    } catch (error) {
+      console.error('שגיאה באימות גוגל:', error.message);
+      
+      if (error.response) {
+        console.error('תגובת שגיאה מגוגל:', error.response.data);
+      }
+      
+      res.status(500).json({ message: 'שגיאה באימות גוגל: ' + error.message });
+    }
+  });
 
 // עגלת קניות
 app.post('/api/cart/update', async (req, res) => {

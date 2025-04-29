@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הרשמה</title>
   <link href="homePageDesign.css" rel="stylesheet">
-  <link href="LoginPageDesign.css" rel="stylesheet">
+  <link href="registerPageDesign.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
@@ -64,7 +64,7 @@
     }
 
     /* לוודא שאייקון העין נראה היטב */
-    #togglePassword {
+    #toggleRegPassword {
       font-size: 16px;
       z-index: 10;
       position: absolute;
@@ -111,7 +111,7 @@
     }
 
     .form-toggle a {
-      color: #000000; /* שינוי צבע הטקסט "הירשם עכשיו" לשחור */
+      color: #000000; /* שינוי צבע הטקסט "התחבר כאן" לשחור */
       text-decoration: none;
       font-weight: 700; /* Bold אמיתי */
       cursor: pointer;
@@ -142,11 +142,11 @@
     }
 
     /* סגנון למודאל - ממורכז במסך */
-    .login-container {
+    .register-container {
       flex: 1 0 auto;
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* במקום center */
+      align-items: flex-start;
       padding-top: 160px; /* רווח מה-Nav */
       padding-bottom: 30px; /* הקטנת הרווח מלמטה */
     }
@@ -179,7 +179,7 @@
 
     /* התאמה למסכים קטנים */
     @media (max-width: 768px) {
-      .login-container {
+      .register-container {
         padding-top: 100px;
       }
       
@@ -188,11 +188,49 @@
         padding: 15px;
       }
     }
+
+    /* סגנון לתיבת סימון תנאי שימוש */
+    /* סגנון לתיבת סימון תנאי שימוש - תיקון מלא */
+    .form-check {
+      display: block !important;
+      margin-top: 15px !important;
+      position: relative !important;
+      text-align: right !important;
+    }
+
+    .form-check-input {
+      position: static !important;
+      margin-left: 10px !important;
+      float: right !important;
+      margin-top: 3px !important;
+      cursor: pointer !important;
+    }
+
+    .form-check-label {
+      display: inline-block !important; 
+      padding-right: 30px !important; /* מרווח לריבוע הסימון */
+      margin-right: 0 !important;
+      font-size: 14px !important;
+      line-height: 1.4 !important;
+      text-align: right !important;
+    }
+
+    .form-check-label a {
+      color: #198AD7 !important;
+      text-decoration: none !important;
+    }
+
+    .form-check-label a:hover {
+      text-decoration: underline !important;
+    }
+    
+    .invalid-feedback {
+      margin-right: 30px !important;
+      display: block !important;
+    }
   </style>
-
-  <title>התחברות</title>
+  
 </head>
-
 <body>
   <div class="page-wrapper">
     <!-- סרגל ניווט -->
@@ -232,17 +270,17 @@
 
         <!-- Profile Icon Dropdown -->
 <div id="profile-container" class="dropdown">
-  <a class="icons no-underline dropdown-toggle" href="#" id="profile-dropdown" role="button"
-     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="fas fa-user" id="profie-icon"></i><span id="user-greeting"> היי, אורח/ת</span>
-  </a>
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-    <!-- בדף התחברות נציג רק את הקישור להתחברות -->
-    <a class="dropdown-item logged-out-only" href="loginPage.html" id="login-link">
-      <i class="fas fa-sign-in-alt"></i> התחברות
+    <a class="icons no-underline dropdown-toggle" href="#" id="profile-dropdown" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-user" id="profie-icon"></i><span id="user-greeting"> היי, אורח/ת</span>
     </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+      <!-- בדף התחברות נציג רק את הקישור להתחברות -->
+      <a class="dropdown-item logged-out-only" href="loginPage.html" id="login-link">
+        <i class="fas fa-sign-in-alt"></i> התחברות
+      </a>
+    </div>
   </div>
-</div>
 
         <!-- Cart Icon -->
         <a class="icons larger-icon no-underline" href="cart.html" style="position: relative;">
@@ -260,15 +298,15 @@
       </div>
     </nav>
 
-    <!-- תוכן התחברות -->
-    <div class="login-container">
+    <!-- תוכן הרשמה -->
+    <div class="register-container">
       <div class="popup-content">
-        <h2 id="welcome-title">ברוכים הבאים!</h2>
-        <p>התחבר כדי להמשיך</p>
+        <h2>הרשמה לאתר</h2>
+        <p>צור חשבון חדש</p>
         
         <!-- כפתורי התחברות חברתית -->
         <button class="social-login-btn google-btn" onclick="handleGoogleLogin()">
-          <i class="fab fa-google"></i> התחברות עם גוגל
+          <i class="fab fa-google"></i> הרשמה עם גוגל
         </button>
         
         <div class="divider">
@@ -277,31 +315,51 @@
 
         <form class="was-validated">
           <div class="mb-3 mt-3">
-            <label for="uname" class="form-label">שם משתמש:</label>
-            <input type="text" class="form-control" id="uname" placeholder="הכנס שם משתמש" name="uname" required>
+            <label for="reg-email" class="form-label">דואר אלקטרוני:</label>
+            <input type="email" class="form-control" id="reg-email" placeholder="הכנס כתובת אימייל" name="email" required>
+            <div class="valid-feedback">תקין.</div>
+            <div class="invalid-feedback">נא להזין כתובת אימייל תקינה.</div>
+          </div>
+          <div class="mb-3">
+            <label for="reg-uname" class="form-label">שם משתמש:</label>
+            <input type="text" class="form-control" id="reg-uname" placeholder="בחר שם משתמש" name="reg-uname" required>
             <div class="valid-feedback">תקין.</div>
             <div class="invalid-feedback">נא למלא שדה זה.</div>
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label">סיסמא:</label>
+            <label for="reg-displayname" class="form-label">שם תצוגה:</label>
+            <input type="text" class="form-control" id="reg-displayname" placeholder="בחר שם שיוצג באתר" name="reg-displayname" required>
+            <div class="valid-feedback">תקין.</div>
+            <div class="invalid-feedback">נא למלא שדה זה.</div>
+          </div>
+          <div class="mb-3">
+            <label for="reg-password" class="form-label">סיסמא:</label>
             <div class="password-container" style="position: relative;">
-              <input type="password" class="form-control" id="password" placeholder="הכנס סיסמא" name="pswd" required>
-              <i id="togglePassword" class="fas fa-eye-slash"></i>
+              <input type="password" class="form-control" id="reg-password" placeholder="בחר סיסמא" name="reg-password" required>
+              <i id="toggleRegPassword" class="fas fa-eye-slash"></i>
               <div class="valid-feedback">תקין.</div>
               <div class="invalid-feedback">נא למלא שדה זה.</div>
             </div>
           </div>
-          <button type="button" class="btn btn-primary" id="submit-button" onclick="handleLogin()">התחברות</button>
+          
+          <div class="mb-3 form-check" style="display: flex; align-items: center; flex-direction: row-reverse; justify-content: flex-end;">
+            <input type="checkbox" class="form-check-input" id="terms-check" required style="margin-left: 8px; margin-right: 0; margin-top: 0; float: none; flex-shrink: 0;">
+            <label class="form-check-label" for="terms-check" style="margin: 0; text-align: right; display: inline; margin-top: -50px;">
+              אני מסכים/ה ל<a href="terms.html" target="_blank">תנאי השימוש</a> ו<a href="privacy.html" target="_blank">מדיניות הפרטיות</a> כדי להמשיך.
+            </label>
+            <div class="invalid-feedback" style="width: 100%; text-align: right; margin-bottom: 5px; order: 3;">יש לאשר את תנאי השימוש כדי להמשיך.</div>
+          </div>
+          <button type="button" class="btn btn-primary" id="register-button" onclick="handleRegistration()">הרשמה</button>
         </form>
         
         <div class="form-toggle">
-          אין לך חשבון? <a href="registerPage.html">הירשם עכשיו</a>
+          כבר יש לך חשבון? <a href="loginPage.html">התחבר כאן</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- פוטר צמוד לתחתית -->
+  <!-- פוטר -->
   <footer>
     <div class="container">
       <div class="footer-content">
@@ -364,16 +422,44 @@
     </div>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const checkbox = document.getElementById('terms-check');
+  const invalidFeedback = checkbox.nextElementSibling.nextElementSibling; // קבלת אלמנט .invalid-feedback
+  
+  // התנהגות בטעינה ראשונית - לא מראים את ההודעה לפני שהמשתמש מנסה לשלוח את הטופס
+  invalidFeedback.style.display = 'none';
+  
+  // בדיקת שינוי בתיבת הסימון
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      invalidFeedback.style.display = 'none';
+    } else if (this.form.classList.contains('was-validated')) {
+      // מציג את ההודעה רק אם הטופס כבר עבר ולידציה
+      invalidFeedback.style.display = 'block';
+    }
+  });
+  
+  // הוספת בדיקה לכפתור הרשמה
+  document.getElementById('register-button').addEventListener('click', function() {
+    const form = checkbox.form;
+    form.classList.add('was-validated');
+    
+    // בדיקה אם התיבה מסומנת לאחר הלחיצה על הרשמה
+    invalidFeedback.style.display = checkbox.checked ? 'none' : 'block';
+  });
+});
+    </script>
+
   <!-- Bootstrap JS CDN link -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-  <!-- טעינת קבצי JS  -->
+  <!-- טעינת קבצי JS נוספים -->
   <script src="updateCartCount.js" defer></script>
   <script src="homePagelogic.js"></script>
   <script src="loginPagelogic.js"></script>
 </body>
-
 </html>
