@@ -259,3 +259,50 @@ function updateCartCount() {
       }
     });
 }
+
+async function addSearch(productId, userId) {
+  try {
+      // שלב ראשון - שליפת החיפושים הקיימים של המשתמש
+      const existingResponse = await fetch(`http://localhost:2001/user-searches/`+userId);
+      const existingSearches = await existingResponse.json();
+    console.log(existingSearches);
+      // בדיקה אם החיפוש כבר קיים
+      const alreadyExists = existingSearches.some(search => search.productId === productId);
+      if (alreadyExists) {
+          console.log('Search already exists, not adding again.');
+          return; // לא שולחים את הבקשה לשרת
+      }
+
+      // שלב שני - שליחת החיפוש לשרת אם הוא לא קיים
+      const response = await fetch("http://localhost:2001/add-searches", {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ productId, userId })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+          throw new Error(data.message || 'Failed to add search');
+      }
+
+      console.log('Search added successfully:', data);
+      return data;
+  } catch (error) {
+      console.error('Error adding search:', error);
+  }
+}
+
+
+function showCanvas(id) {
+  $('.offcanvas-start#'+id).addClass('show');
+  if(localStorage.getItem('usrId') && localStorage.getItem('usrId') != ''){
+    addSearch(String(id), localStorage.getItem('usrId'));
+  }
+}
+
+function closeCanvas(id) {
+  $('.offcanvas-start#'+id).removeClass('show');
+}
