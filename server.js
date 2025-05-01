@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const argon2 = require('argon2');
 const User = require('./User');
 const Product = require('./product');
+const Searches = require('./searches');
 const Order = require('./order'); 
 const cors = require('cors');
 const session = require('express-session');
@@ -436,6 +437,228 @@ app.get('/get-attractions', async (req, res) => {
     } catch (error) {
         console.error('Error retrieving attractions:', error);
         res.status(500).json({ message: 'Error retrieving attractions', error });
+    }
+});
+app.get('/api/attraction-productId/:id', async (req, res) => {
+    try {
+        const attraction = await Product.findOne({ productId: req.params.id }); // כאן השינוי
+        if (!attraction) {
+            return res.status(404).json({ message: 'Attraction not found' });
+        }
+        res.status(200).json(attraction);
+    } catch (error) {
+        console.error('Error fetching attraction:', error);
+        res.status(500).json({ message: 'Error fetching attraction data' });
+    }
+});
+
+
+app.get('/get-user', async (req, res) => {
+    try {
+        const users = await User.find({});
+        res.status(200).json(users);
+    } catch (error) {
+        console.error('Error retrieving users:', error);
+        res.status(500).json({ message: 'Error retrieving users', error });
+    }
+});
+
+app.get('/get-searches', async (req, res) => {
+    try {
+        const searches = await Searches.find({});
+        res.status(200).json(searches);
+    } catch (error) {
+        console.error('Error retrieving searches:', error);
+        res.status(500).json({ message: 'Error retrieving searches', error });
+    }
+});
+
+app.put('/add-searches', async (req, res) => {
+    try {
+        const { productId, userId } = req.body;
+
+        if (!productId || !userId) {
+            return res.status(400).json({ message: 'Missing productId or userId' });
+        }
+
+        const userSearches = await Searches.find({ userId }).sort({ createdAt: 1 });
+
+        if (userSearches.length >= 3) {
+            await Searches.findByIdAndDelete(userSearches[0]._id);
+        }
+
+        // הוספת החיפוש החדש
+        const newSearch = new Searches({ productId, userId, createdAt: new Date() });
+        await newSearch.save();
+
+        res.status(201).json({ message: 'Search added successfully', search: newSearch });
+    } catch (error) {
+        console.error('Error adding search:', error);
+        res.status(500).json({ message: 'Error adding search', error });
+    }
+});
+
+
+app.delete('/delete-search/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedSearch = await Searches.findByIdAndDelete(id);
+
+        if (!deletedSearch) {
+            return res.status(404).json({ message: 'Search not found' });
+        }
+
+        res.status(200).json({ message: 'Search deleted successfully', deletedSearch });
+    } catch (error) {
+        console.error('Error deleting search:', error);
+        res.status(500).json({ message: 'Error deleting search', error });
+    }
+});
+
+app.get('/random-product/:productId', async (req, res) => {
+    try {
+        const { productId } = req.params;
+
+        // בדיקה אם ה-ID הוא String תקני
+        if (typeof productId !== 'string' || productId.trim() === '') {
+            return res.status(400).json({ message: 'Invalid productId format' });
+        }
+
+        // חיפוש המוצר המקורי לפי productId
+        const product = await Product.findOne({ productId: productId });
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        // שליפת מוצרים אחרים מאותה קטגוריה, למעט זה שנבחר
+        const otherProducts = await Product.find({ 
+            category: product.category, 
+            productId: { $ne: product.productId }  // לא לכלול את המוצר המקורי
+        });
+
+        if (otherProducts.length === 0) {
+            return res.status(404).json({ message: 'No other products found in this category' });
+        }
+
+        // בחירת מוצר רנדומלי
+        const randomProduct = otherProducts[Math.floor(Math.random() * otherProducts.length)];
+
+        res.status(200).json(randomProduct);
+    } catch (error) {
+        console.error('Error fetching random product:', error);
+        res.status(500).json({ message: 'Error fetching random product', error });
+    }
+});
+
+app.get('/random-product-by-city/:city', async (req, res) => {
+    try {
+        const { city } = req.params;
+
+        if (typeof city !== 'string' || city.trim() === '') {
+            return res.status(400).json({ message: 'Invalid city format' });
+        }
+
+        const product = await Product.findOne({ city: city });
+        if (!product) {
+            return res.status(404).json({ message: 'No product found in this city' });
+        }
+
+        const otherProducts = await Product.find({ 
+            category: product.category, 
+            city: city, 
+            productId: { $ne: product.productId }
+        });
+
+        if (otherProducts.length === 0) {
+            return res.status(404).json({ message: 'No other products found in this city and category' });
+        }
+
+        const randomProduct = otherProducts[Math.floor(Math.random() * otherProducts.length)];
+
+        res.status(200).json(randomProduct);
+    } catch (error) {
+        console.error('Error fetching random product by city:', error);
+        res.status(500).json({ message: 'Error fetching random product by city', error });
+    }
+});
+
+app.get('/user-searches/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        // שליפת כל החיפושים של המשתמש לפי userId
+        const searches = await Searches.find({ userId:userId });
+
+        res.status(200).json(searches);
+    } catch (error) {
+        console.error('Error fetching user searches:', error);
+        res.status(500).json({ message: 'Failed to fetch user searches' });
+    }
+});
+
+
+app.get('/user-recent-searches/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        // מביא את שלושת החיפושים האחרונים של המשתמש הנוכחי
+        const recentSearches = await Searches.find({ userId })
+            .sort({ createdAt: -1 }) 
+            .limit(3); 
+
+        if (recentSearches.length < 3) {
+            return res.status(400).json({ message: 'Not enough searches for the user' });
+        }
+
+        const searchIds = recentSearches.map(search => search.productId);
+
+        const product1 = await Product.findOne({ 
+            productId: searchIds[0] 
+        });
+
+        const product2 = await Product.findOne({ 
+            productId: searchIds[1] 
+        });
+
+        const product3 = await Product.findOne({ 
+            productId: searchIds[2] 
+        });
+        // מערך שמכיל את הproductId של שלושת החיפושים של המשתמש השמורים בטבלת חיפושים
+        const excludedIds = [product3.productId, product2.productId, product3.productId];
+        // מוצר רנדומלי מאותה העיר ומאותה הקטגוריה של החיפוש האחרון שלו
+        const productInSameCityCategory = await Product.aggregate([
+            { 
+              $match: { 
+                city: product3.city,
+                category: product3.category,
+                productId: { $nin: excludedIds }
+              }
+            },
+            { $sample: { size: 1 } }  // שליפה רנדומלית
+          ]);
+        excludedIds.push(productInSameCityCategory[0].productId);
+        console.log(excludedIds);
+        // שני מוצרים רנדומיליים מאותה העיר של החיפוש הראשון משל המשתמש מטבלת החיפושים
+        const productInSameCity = await Product.aggregate([
+            { 
+              $match: { 
+                city: product1.city, 
+                productId: { $nin: excludedIds }  // לא לכלול את המוצר המקורי
+              }
+            },
+            { $sample: { size: 2 } }  // שליפה רנדומלית
+          ]);
+        //   מערך עם כל התוצאות
+        const resultArray = [
+            searchIds[2], 
+            productInSameCity[0].productId,
+            productInSameCity[1].productId, 
+            productInSameCityCategory[0] ? productInSameCityCategory[0].productId : product2.productId
+        ];
+        res.status(200).json(resultArray);
+    } catch (error) {
+        console.error('Error fetching user recent searches:', error);
+        res.status(500).json({ message: 'Error fetching user recent searches', error });
     }
 });
 
@@ -1250,6 +1473,28 @@ app.get('/api/admin/order/:orderId', isAdmin, async (req, res) => {
         res.status(500).json({ message: 'Error fetching order details' });
     }
 });
+
+app.patch('/update-attraction/:productId', async (req, res) => {
+    const { productId } = req.params;
+    const updateFields = req.body;
+  
+    try {
+      const updatedAttraction = await Product.findOneAndUpdate(
+        { productId: productId },
+        { $set: updateFields },
+        { new: true }
+      );
+  
+      if (!updatedAttraction) {
+        return res.status(404).send('Attraction not found');
+      }
+  
+      res.json(updatedAttraction);
+    } catch (error) {
+      console.error('Error updating attraction:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 // Get individual attraction data
 app.get('/api/attraction/:id', async (req, res) => {
