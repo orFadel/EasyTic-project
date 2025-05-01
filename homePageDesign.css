@@ -324,3 +324,100 @@ footer {
   #user-greeting {
     visibility: hidden; /* יהפוך לנראה לאחר בדיקת מצב התחברות */
   }
+
+@font-face {
+    font-family: "Noto_Sans_Hebrew";
+    src: url("fonts/Noto_Sans_Hebrew.ttf");
+}
+body{
+    font-size: 16px;
+}
+.dynamic-gallery{
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-evenly;
+}
+.dynamic-ticket {
+    direction: rtl;
+    font-family: "Noto_Sans_Hebrew";
+    cursor: pointer;
+    width: 17em; /* 300px / 16 */
+    border: 0.0625em solid #ccc; /* 1px / 16 */
+    border-radius: 0.625em; /* 10px / 16 */
+    overflow: hidden;
+    box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2); /* 4px / 16, 8px / 16 */
+    margin: 1.25em auto; /* 20px / 16 */
+    background: #d9d9d9;
+}
+
+.dynamic-ticket .image-container { 
+    height: 150px;
+    overflow: hidden;
+}
+
+.dynamic-ticket .image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transform: translateY(-30px); /* או -35px, שחקי עם הערך */
+}
+
+.dynamic-ticket .content {
+    padding: 0.9375em; /* 15px / 16 */
+}
+.dynamic-ticket .title {
+    color: #198ad8;
+    font-size: 1.125em;
+    font-weight: bold;
+}
+.dynamic-ticket .subtitle {
+    font-size: 1em;
+    color: #222222;
+}
+.dynamic-ticket .price {
+    font-size: 0.875em;
+    color: #222222;
+    margin: 0.7em 0;
+}
+.dynamic-ticket .bottom-ticket{
+    direction: ltr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.19em dashed white;
+    padding: 0.7em 0;
+}
+.dynamic-ticket .bottom-ticket .button,
+.dynamic-ticket .bottom-ticket .button:hover {
+    display: inline-block;
+    background: #198ad8;
+    color: white;
+    padding: 0.3em 1em; /* 10px / 16, 20px / 16 */
+    border-radius: 6em; /* 5px / 16 */
+    text-decoration: none;
+    margin-top: 0.625em; /* 10px / 16 */
+    font-size: 1em;
+    font-weight: 600;
+}
+.dynamic-ticket .barcode {
+    margin-top: 0.625em; /* 10px / 16 */
+}
+.dynamic-ticket .barcode img {
+    width: 9.375em; /* 150px / 16 */
+}
+.dynamic-ticket .product-number {
+    font-size: 0.875em; /* 14px / 16 */
+    margin-top: 0.3125em; /* 5px / 16 */
+}
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* אפור שקוף */
+    z-index: 1040; /* פחות מה-offcanvas אבל מעל כל השאר */
+    backdrop-filter: blur(2px); /* אופציונלי: טשטוש */
+}
