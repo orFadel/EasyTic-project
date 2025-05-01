@@ -267,6 +267,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // טיפול בהתחברות המוצלחת
             handleSuccessfulLogin(userData);
           }
+          else {
+           localStorage.removeItem('usrId');
+          }
         } else {
           // המרת JSON רק אם יש שגיאה ברמת השרת
           let message;
@@ -361,6 +364,7 @@ async function handleRegistration() {
         
         // שמירה גם בשדות הנפרדים לתאימות עם הקוד הקיים
         sessionStorage.setItem('userId', userData.userId);
+        localStorage.setItem('usrId', userData.userId);
         sessionStorage.setItem('username', userData.username);
         sessionStorage.setItem('displayName', userData.displayName);
         localStorage.setItem('displayName', userData.displayName);
@@ -382,10 +386,11 @@ async function handleRegistration() {
           message = 'שגיאה לא ידועה התרחשה בתהליך ההרשמה.';
         }
         alert(message);
+        localStorage.removeItem('usrId');
       }
     } catch (error) {
       console.error('שגיאה במהלך הרשמה:', error);
-      
+      localStorage.removeItem('usrId');
       // במקרה של שגיאת רשת, נדמה הרשמה מוצלחת בסביבת הפיתוח
       console.log('מדמה הרשמה מוצלחת לצורך פיתוח...');
       const userData = {
@@ -434,6 +439,7 @@ async function handleRegistration() {
     
     // שמירה גם ב-sessionStorage וב-localStorage לתאימות עם הקוד הקיים
     sessionStorage.setItem('userId', userData.userId);
+    localStorage.setItem('usrId', userData.userId);
     sessionStorage.setItem('username', userInfo.username);
     sessionStorage.setItem('displayName', userData.displayName);
     localStorage.setItem('displayName', userData.displayName);
