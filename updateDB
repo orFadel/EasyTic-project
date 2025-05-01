@@ -1,0 +1,45 @@
+const mongoose = require('mongoose');
+const Product = require('./product'); // מודל Mongoose
+const attractions = require('./extractData'); // טעינת הנתונים
+
+mongoose.connect('mongodb://localhost:27017/EasyTicDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.error("Could not connect to MongoDB...", err));
+
+  async function updateAllAttractions() {
+    try {
+        for (const attraction of attractions) {  
+            // 🔹 מילוי ערכים חסרים בברירת מחדל
+            attraction.mainImage = attraction.mainImage || "default.jpg";
+            attraction.gallery = attraction.gallery || [];
+            attraction.description = attraction.description || "אין תיאור זמין";
+            attraction.openingHours = attraction.openingHours || "לא צוינו שעות פעילות";
+            attraction.visitDuration = attraction.visitDuration || "משך הביקור לא ידוע";
+            attraction.accessibility = attraction.accessibility || "לא צוינה נגישות";
+
+            const existingAttraction = await Product.findOne({ productId: attraction.productId });
+
+            if (existingAttraction) {
+                await Product.updateOne(
+                    { productId: attraction.productId },
+                    { $set: attraction }
+                );
+                console.log(`✅ Attraction ${attraction.productId} updated successfully.`);
+            } else {
+                const newAttraction = new Product(attraction);
+                await newAttraction.save();
+                console.log(`✅ Attraction ${attraction.productId} added successfully.`);
+            }
+        }
+    } catch (error) {
+        console.error("❌ Error updating attractions:", error);
+    } finally {
+        mongoose.connection.close();
+    }
+}
+
+
+// קריאה לפונקציה לעדכון / הוספת הנתונים
+updateAllAttractions();
