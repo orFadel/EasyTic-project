@@ -8,7 +8,13 @@
 
     <!-- Bootstrap CSS CDN link -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="homePageDesign.css" rel="stylesheet">
+     <link href="dubaiDS.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+   
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-4p+Qk1k5V+bz+MA8fpFy+H6pAqk4lY5qfG8UeeLsB62AF5Zj/H6p8FS56DW2C2m4FoLpLL3TX3DUn4J+cBd3A=="
@@ -18,7 +24,8 @@
     <link href="homePageDesign.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="extractData.js"></script>
     <script src="checkAuth.js"></script>
 
     <!-- Bootstrap Icons -->
@@ -149,7 +156,177 @@
             <li data-target="#imageCarousel" data-slide-to="2"></li>
         </ol>
     </div>
+ <h4> אטרקציות מומלצות בשבילך</h4>
+    <div class="dynamic-gallery" id="dynamic-gallery"></div>
+    <section id="ticketsB"></section>
+        <script>
+        if(localStorage.getItem("usrId") && localStorage.getItem("usrId") != ''){
+        document.addEventListener("DOMContentLoaded", async function () {
+            async function fetchAttractions() {
+            try {
+                const userId = localStorage.getItem("usrId");
+                const responseSearches = await fetch("http://localhost:2001/user-recent-searches/"+userId);
+                // מערך של האטרקציות הרנדומליות
+                const attractionsId = await responseSearches.json();
+                var responseAttractions = [];
+                // מעבר על ה-ids וארגון האטרקציות במערך json
+                for (const id of attractionsId) {
+                    try {
+                        const response = await fetch(`http://localhost:2001/api/attraction-productId/`+id);
+                        if (!response.ok) {
+                            console.warn(`Error fetching attraction with id ${id}`);
+                            continue;
+                        }
+                        const data = await response.json();
+                        console.log(data);
+                        responseAttractions.push(data);
+                    } catch (error) {
+                        console.error(`Failed to fetch attraction ${id}:`, error.message);
+                    }
+                }
+                const container = document.getElementById("dynamic-gallery");
+                container.innerHTML = ""; // מנקה תוכן קודם
+                const canvasContainer = document.getElementById("ticketsB");
+                canvasContainer.innerHTML="";
+                // מציג את האטרקציות הרנדומליות ב-html
+                responseAttractions.forEach(attraction => {
+                    const attractionID = attraction.productId;
+                    const card = document.createElement("button");
+                    card.className = "dynamic-ticket";
+                    card.setAttribute("data-id", attractionID);
+                    card.setAttribute("onclick", "showCanvas("+attractionID+")");
+                    card.innerHTML = `
+                            <div class="image-container">
+                                <img id="dynamicImage" src="${attraction.mainImage}">
+                            </div>
+                            <div class="content">
+                                <div class="title">${attraction.attractionName}</div>
+                                <div class="subtitle">${attraction.category}</div>
+                                <div class="bottom-ticket">
+                                <a href="#" class="button">בחרו אפשרות</a>
+                                <div class="product-number">מוצר מס: <b>${attraction.productId}</b></div>
+                                </div>
+                            </div>
+                    `;
+                    container.appendChild(card);
+                    // test
+                    const canvas = document.createElement("div");
+                   canvas.innerHTML = `<div class="offcanvas offcanvas-start" tabindex="-1" data-bs-backdrop="true" data-bs-scroll="false" id="${attractionID}">
+                <div class="offcanvas-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" onclick="closeCanvas(${attractionID})"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <h2 class="offcanvas-title">${attraction.attractionName}</h2>
+                  <h3 class="offcanvas-subtitle">${attraction.attractionNameENGLISH}</h3>
+                  <!-- Content for Lotus Mega Yacht -->
+                  <div id="LotusYacht-carousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="${attraction.gallery[0]}" class="d-block w-100" alt="Image 1">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="${attraction.gallery[1]}" class="d-block w-100" alt="Image 2">
+                  </div>
+                    <div class="carousel-item">
+                    <img src="${attraction.gallery[2]}" class="d-block w-100" alt="Image ">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#Parc-de-France-carousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#Parc-de-France-carousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#Parc-de-France-carousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+                  <p>${attraction.description}</p>
+              <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
+              <p>${attraction.openingHours}</p>
+              <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
+              <p> ${attraction.visitDuration}</p>
+              <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
+              <p>${attraction.accessibility}</p>
 
+              <div class="container mt-3">
+                  <div class="ticket-container" data-contry='attraction.city' data-name='${attraction.attractionName}' data-category='${attraction.category}' data-id="${attractionID}"">
+                  <div class="ticket-category" data-type="adult">
+                    <div>
+                      <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
+                      <span class="amount" data-id="adult-amount">0</span>
+                      <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
+                    </div>
+                    <span class="price" data-id="adult-price">₪${attraction.ticketTypes[0].price}</span>
+                    <div>
+                      <span class="sub-text">מגיל 10</span>
+                    </div>
+                    <span>מבוגר</span>
+                  </div>
+
+                  <div class="ticket-category" data-type="child">
+                    <div>
+                      <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
+                      <span class="amount" data-id="child-amount">0</span>
+                      <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
+                    </div>
+                    <span class="price" data-id="child-price">₪${attraction.ticketTypes[1].price}</span>
+                    <div>
+                      <span class="sub-text">מגיל 3 עד 10</span>
+                    </div>
+                    <span>ילד</span>
+                  </div>
+
+                  <div class="ticket-category" data-type="infant">
+                    <div>
+                      <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
+                      <span class="amount" data-id="infant-amount">0</span>
+                      <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
+                    </div>
+                    <span class="price" data-id="infant-price">₪${attraction.ticketTypes[2].price}</span>
+                    <div>
+                      <span class="sub-text">עד גיל 3</span>
+                    </div>
+                    <span>פעוט</span>
+                  </div>
+
+                  <div class="ticket-category">
+                    <span id="total-price">₪0</span>
+                    <span>סכום ההזמנה</span>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button class="btn btn-custom" type="button" onclick="addCart(${attractionID})">הוסף לסל</button>
+                </button>
+              </div>
+
+                </div>
+              </div>`
+                    // test
+                    canvasContainer.appendChild(canvas);
+                });
+            } catch (error) {
+                console.error("שגיאה בשליפת הנתונים:", error);
+            }
+            }
+            fetchAttractions();
+        });
+        
+        function showCanvas(id) {
+    const offcanvasElement = document.getElementById(id);
+    const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
+    bsOffcanvas.show();
+}
+
+    }
+    </script>
+    
     <!-- text -->
     <h4> למה כדאי להזמין מראש כרטיסים לאטרקציות? </h4>
     <p>
