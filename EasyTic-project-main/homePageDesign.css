@@ -423,3 +423,17 @@ body{
     z-index: 1040; /* פחות מה-offcanvas אבל מעל כל השאר */
     backdrop-filter: blur(2px); /* אופציונלי: טשטוש */
 }
+
+/* סגנונות למנהלי מערכת */
+.admin-only {
+    display: none; /* מוסתר כברירת מחדל */
+  }
+  
+  /* צבע מיוחד לקישור ניהול */
+  #admin-link {
+    color: #e74c3c; /* צבע אדום מיוחד לאפשרות הניהול */
+  }
+  
+  #admin-link i {
+    margin-left: 8px;
+  }

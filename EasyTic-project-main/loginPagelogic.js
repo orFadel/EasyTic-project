@@ -421,18 +421,18 @@ async function handleRegistration() {
   
   // פונקציה לטיפול בהתחברות מוצלחת (משותפת לכל סוגי ההתחברות)
   function handleSuccessfulLogin(userData) {
-    console.log('מטפל בהתחברות מוצלחת עם נתונים:', userData);
+    console.log('***DEBUG*** מטפל בהתחברות מוצלחת עם נתונים:', userData);
     
     // שמירת מידע המשתמש ב-localStorage בפורמט אחיד
     const userInfo = {
-      userId: userData.userId,
-      username: userData.username || document.getElementById('uname')?.value.trim(),
-      displayName: userData.displayName,
-      isAdmin: userData.isAdmin,
-      token: userData.token || '' // אם קיים
+        userId: userData.userId,
+        username: userData.username || document.getElementById('uname')?.value.trim(),
+        displayName: userData.displayName,
+        isAdmin: userData.isAdmin,
+        token: userData.token || '' // אם קיים
     };
     
-    console.log('שומר נתוני משתמש ב-localStorage:', userInfo);
+    console.log('***DEBUG*** שומר נתוני משתמש ב-localStorage ו-sessionStorage:', userInfo);
     
     // שמירה ב-localStorage לשימוש עקבי
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
@@ -445,35 +445,58 @@ async function handleRegistration() {
     localStorage.setItem('displayName', userData.displayName);
     sessionStorage.setItem('isAdmin', userData.isAdmin ? 'true' : 'false');
     
+    // חשוב: שמירת הטוקן גם ב-sessionStorage
+    if (userData.token) {
+        sessionStorage.setItem('token', userData.token);
+        console.log('***DEBUG*** טוקן נשמר ב-sessionStorage:', userData.token.substring(0, 10) + '...');
+    }
+    
+    // וידוא שהטוקן נשמר
+    const sessionToken = sessionStorage.getItem('token');
+    const localToken = userInfo.token;
+    
+    if (!sessionToken && localToken) {
+        console.error('***DEBUG*** הטוקן לא נשמר ב-sessionStorage כראוי! מנסה שוב...');
+        sessionStorage.setItem('token', localToken);
+    }
+    
+    // בדיקה שוב שהטוקן נשמר
+    if (sessionStorage.getItem('token')) {
+        console.log('***DEBUG*** אימות: טוקן נמצא ב-sessionStorage');
+    } else {
+        console.error('***DEBUG*** אזהרה: טוקן עדיין לא נמצא ב-sessionStorage!');
+    }
+    
     // בדיקה אם יש דף להפנות אליו
     const redirectPage = localStorage.getItem('redirectAfterLogin');
     
-    console.log('הפניה לאחר התחברות:', redirectPage);
+    console.log('***DEBUG*** הפניה לאחר התחברות:', redirectPage);
     
     if (redirectPage) {
-      // מחיקת המידע על ההפניה
-      localStorage.removeItem('redirectAfterLogin');
-      
-      // הפניה לדף המבוקש
-      window.location.href = redirectPage;
+        // מחיקת המידע על ההפניה
+        localStorage.removeItem('redirectAfterLogin');
+        
+        // הפניה לדף המבוקש
+        window.location.href = redirectPage;
     } else if (userData.isAdmin) {
-      // אם המשתמש מנהל, הפנייה לדף ניהול או בקשת אישור
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('redirect') === 'admin') {
-        window.location.href = 'adminDeshboard.html';
-      } else {
-        const goToAdmin = confirm('ברוך הבא מנהל! האם ברצונך לעבור לממשק הניהול?');
-        if (goToAdmin) {
-          window.location.href = 'adminDeshboard.html';
+        // אם המשתמש מנהל, הפנייה לדף ניהול או בקשת אישור
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('redirect') === 'admin') {
+            console.log('***DEBUG*** מעביר למסך ניהול עם הטוקן:', sessionStorage.getItem('token') ? 'נמצא' : 'לא נמצא');
+            window.location.href = 'adminDeshboard.html';
         } else {
-          window.location.href = 'homePage.html';
+            const goToAdmin = confirm('ברוך הבא מנהל! האם ברצונך לעבור לממשק הניהול?');
+            if (goToAdmin) {
+                window.location.href = 'adminDeshboard.html';
+            } else {
+                window.location.href = 'homePage.html';
+            }
         }
-      }
     } else {
-      // הפניה לדף הבית
-      window.location.href = 'homePage.html';
+        // הפניה לדף הבית
+        window.location.href = 'homePage.html';
     }
-  }
+}
   
   // בדיקה אם יש משתמש מחובר
   function checkUserLogin() {

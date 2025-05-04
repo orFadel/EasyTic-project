@@ -380,3 +380,223 @@ p{
     background-color: var(--warning-color);
     color: black;
 }
+
+/* תיקונים ספציפיים עבור סרגל הניווט בדף ניהול */
+#admin-greeting {
+    visibility: visible !important; 
+    margin-right: 10px; 
+    white-space: nowrap;
+    font-family: 'Rubik', 'Varela Round', sans-serif;
+    font-size: 16px; /* הגדלת הגופן לגודל הרגיל באתר */
+}
+
+#user-greeting, #admin-greeting {
+    font-size: 16px; /* גודל גופן אחיד בכל האתר */
+    font-family: 'Rubik', 'Varela Round', sans-serif;
+}
+
+#profie-icon {
+    margin-right: -40px;
+}
+
+.navbar-nav {
+    font-family: 'Rubik', 'Varela Round', sans-serif;
+}
+
+.dropdown-item {
+    font-family: 'Rubik', 'Varela Round', sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.dropdown-item i {
+    margin-left: 8px;
+    width: 20px;
+}
+
+/* סגנונות לתפריט הנפתח באייקון הפרופיל */
+#profile-container .dropdown-toggle::after {
+    display: none; /* מסתיר את החץ הרגיל של dropdown */
+}
+
+#profile-container .dropdown-menu {
+    min-width: 200px;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    right: 0;
+    left: auto;
+    text-align: right;
+    right: -40px !important;
+    top: 100% !important;
+    transform: none !important;
+}
+
+/*דף שאלות */
+.card-title {
+    text-align: center !important;
+  }
+  
+  .card-body .h2 {
+    text-align: center !important;
+    display: block;
+    width: 100%;
+  }
+  
+  .info-box-content {
+    text-align: center !important;
+  }
+
+  /* עיצוב ספציפי לטבלת שאלות */
+#questions-list {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  #questions-list th,
+  #questions-list td {
+    text-align: right !important;
+  }
+  
+  #questions-list .badge {
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  /* עיצוב לחלון מענה לשאלה */
+  #replyModal .modal-header {
+    flex-direction: row-reverse;
+  }
+  
+  #replyModal .modal-header .close {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  
+  #replyModal .modal-body {
+    text-align: right;
+  }
+  
+  #replyModal .form-group {
+    text-align: right;
+  }
+  
+  #replyModal .form-check {
+    padding-right: 1.25rem;
+    padding-left: 0;
+  }
+  
+  #replyModal .form-check-input {
+    margin-right: -1.25rem;
+    margin-left: 0;
+  }
+  
+  #replyModal .modal-footer {
+    justify-content: flex-start;
+  }
+  
+  /* עיצוב לכפתורי סינון */
+  .question-filters {
+    margin-bottom: 20px;
+    text-align: right;
+  }
+  
+  .question-filters .form-control {
+    text-align: right;
+  }
+  
+  /* עיצוב לממשק דפים */
+  #questions-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* תיקון לחלון המענה לשאלה */
+.modal-header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .modal-title {
+    margin: 0;
+    text-align: right;
+    flex-grow: 1;
+  }
+  
+  .modal-header .close {
+    margin: 0;
+    padding: 0;
+    order: -1;
+  }
+  
+  .modal-body {
+    text-align: right;
+    direction: rtl;
+  }
+  
+  .modal-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /* מיישר לשמאל בדף RTL */
+    padding: 1rem;
+  }
+  
+  .modal-footer .btn {
+    margin-left: 0.5rem;
+  }
+  
+  /* תיקון למיקום כפתור האיקס */
+  .modal-header .close {
+    position: absolute;
+    left: 1rem;
+  }
+  
+  /* תיקון לתיבת הסימון "הוסף לשאלות נפוצות" */
+  .form-check {
+    padding-right: 1.5rem;
+    padding-left: 0;
+    text-align: right;
+  }
+  
+  .form-check-input {
+    position: absolute;
+    right: 0;
+    margin-right: 0;
+  }
+  
+  .form-check-label {
+    margin-right: 1.5rem;
+  }
+  
+  /* תיקון לסרגל הסינון */
+  .question-filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+  
+  .question-filters .form-group {
+    margin-left: 1rem;
+    margin-bottom: 0;
+  }
+  
+  .question-filters label {
+    margin-left: 0.5rem;
+  }
+  
+  /* הסתרת הסרגל הכפול */
+  .question-filters:nth-of-type(2) {
+    display: none;
+  }

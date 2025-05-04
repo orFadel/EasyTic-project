@@ -93,6 +93,75 @@ function checkIfUserIsLoggedIn() {
   return !!(hasUserId || hasUserInfo || username || displayName || sessionUserId);
 }
 
+// פונקציה לבדיקה אם המשתמש הוא מנהל
+function isUserAdmin() {
+  // בדיקה בכל המקומות האפשריים
+  const sessionAdmin = sessionStorage.getItem('isAdmin') === 'true';
+  let localStorageAdmin = false;
+  
+  try {
+    const localStorageUserInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    localStorageAdmin = localStorageUserInfo.isAdmin === true;
+  } catch (e) {
+    console.error('שגיאה בקריאת נתוני מנהל מהזיכרון המקומי:', e);
+  }
+  
+  console.log('בדיקת הרשאות מנהל:', { 
+    sessionAdmin, 
+    localStorageAdmin
+  });
+  
+  return sessionAdmin || localStorageAdmin;
+}
+
+/**
+ * הוספת קישור ניהול לתפריט הנפתח
+ * צריך להוסיף לכל הדפים שמכילים את התפריט
+ */
+function addAdminMenuLink() {
+  // בדיקה אם המשתמש מחובר ואם הוא מנהל
+  const isLoggedIn = checkIfUserIsLoggedIn();
+  const isAdmin = isUserAdmin();
+  
+  if (isLoggedIn && isAdmin) {
+    // בדיקה אם הקישור כבר קיים
+    const existingAdminLink = document.getElementById('admin-link');
+    if (existingAdminLink) {
+      existingAdminLink.style.display = 'flex';
+      return;
+    }
+    
+    // יצירת הקישור לניהול האתר
+    const adminLink = document.createElement('a');
+    adminLink.className = 'dropdown-item logged-in-only admin-only';
+    adminLink.href = 'adminDeshboard.html';
+    adminLink.id = 'admin-link';
+    adminLink.innerHTML = '<i class="fas fa-cogs"></i> ניהול אתר';
+    adminLink.style.display = 'flex';
+    adminLink.style.color = '#e74c3c'; // צבע אדום מיוחד לאפשרות הניהול
+    
+    // יצירת קו מפריד נוסף
+    const divider = document.createElement('div');
+    divider.className = 'dropdown-divider logged-in-only admin-only';
+    divider.style.display = 'block';
+    
+    // מציאת המקום המתאים להוספת הקישור
+    const dropdown = document.querySelector('#profile-dropdown + .dropdown-menu');
+    if (dropdown) {
+      // הוספת הקישור לפני האפשרות האחרונה (התנתקות)
+      const logoutLink = document.getElementById('logout-link');
+      if (logoutLink) {
+        dropdown.insertBefore(divider, logoutLink);
+        dropdown.insertBefore(adminLink, divider);
+      } else {
+        // אם אין קישור התנתקות, נוסיף בסוף
+        dropdown.appendChild(adminLink);
+        dropdown.appendChild(divider);
+      }
+    }
+  }
+}
+
 /**
  * פונקציה לטעינת ההמלצות של המשתמש המחובר
  */
@@ -442,6 +511,27 @@ function updateDisplayElements(isLoggedIn) {
       personalAreaLink.setAttribute('href', 'loginPage.html');
     }
   }
+  
+  // בדיקה אם המשתמש הוא מנהל
+  const isAdmin = isUserAdmin();
+  
+  console.log('האם המשתמש מחובר:', isLoggedIn);
+  console.log('האם המשתמש מנהל:', isAdmin);
+  
+  // עדכון אלמנטים למנהלים בלבד
+  document.querySelectorAll('.admin-only').forEach(el => {
+    el.style.display = (isLoggedIn && isAdmin) ? 'block' : 'none';
+  });
+  
+  // טיפול מיוחד בפריטי תפריט למנהלים
+  document.querySelectorAll('.dropdown-item.admin-only').forEach(el => {
+    el.style.display = (isLoggedIn && isAdmin) ? 'flex' : 'none';
+  });
+  
+  // עדכון קווים מפרידים למנהלים
+  document.querySelectorAll('.dropdown-divider.admin-only').forEach(el => {
+    el.style.display = (isLoggedIn && isAdmin) ? 'block' : 'none';
+  });
   
   // עדכון עגלת הקניות למשתמש מחובר
   if (isLoggedIn) {
