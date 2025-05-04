@@ -58,7 +58,15 @@ const auth = (req, res, next) => {
 };
 
 const adminAuth = (req, res, next) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+    // בדיקת טוקן מהכותרת Authorization
+    let token = req.header('Authorization')?.replace('Bearer ', '');
+    
+    // אם אין טוקן בכותרת, בדוק בסשן
+    if (!token && req.session && req.session.isAdmin) {
+        // אם יש הרשאת מנהל בסשן, אפשר לעבור הלאה
+        req.user = { isAdmin: true };
+        return next();
+    }
     
     if (!token) {
         return res.status(401).json({ message: 'אימות נכשל - נדרש טוקן' });
