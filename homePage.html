@@ -6,31 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shop Homepage</title>
 
-    <!-- Bootstrap CSS CDN link -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS - טען פעם אחת בלבד -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="homePageDesign.css" rel="stylesheet">
-     <link href="dubaiDS.css" rel="stylesheet">
+    
+    <!-- Font Awesome - טען פעם אחת בלבד -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
    
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-4p+Qk1k5V+bz+MA8fpFy+H6pAqk4lY5qfG8UeeLsB62AF5Zj/H6p8FS56DW2C2m4FoLpLL3TX3DUn4J+cBd3A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Custom CSS -->
-    <link href="homePageDesign.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!-- פונטים -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="extractData.js"></script>
-    <script src="checkAuth.js"></script>
-
+    
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link href="homePageDesign.css" rel="stylesheet">
+    <link href="dubaiDS.css" rel="stylesheet">
 
+    <!-- Pre-connection to improve performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- הוספת preload לתמונות העיקריות -->
+    <link rel="preload" href="homePagePictures/banner1.jpg" as="image">
+    <link rel="preload" href="homePagePictures/dubai.jpg" as="image">
+    <link rel="preload" href="homePagePictures/paris.jpg" as="image">
+    <link rel="preload" href="homePagePictures/rome.jpg" as="image">
+    <link rel="preload" href="homePagePictures/london.jpg" as="image">
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <!-- Custom JavaScript - הוספת defer כדי לטעון את הסקריפטים רק אחרי טעינת הדף -->
+    <script src="extractData.js" defer></script>
+    <script src="checkAuth.js" defer></script>
+    <script src="updateCartCount.js" defer></script>
+    <script src="dubailogic.js" defer></script>
+    <script src="homePagelogic.js" defer></script>
 </head>
 
 <body>
@@ -157,7 +171,8 @@
         </ol>
     </div>
 
- <h4> אטרקציות מומלצות בשבילך</h4>
+    <!-- אטרקציות מומלצות - מוצג רק למשתמשים מחוברים -->
+    <h4 id="recommended-attractions-title" style="display: none;"> אטרקציות מומלצות בשבילך</h4>
     <div class="dynamic-gallery" id="dynamic-gallery"></div>
     <section id="ticketsB"></section>
         <script>
