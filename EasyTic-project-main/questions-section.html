@@ -1,0 +1,105 @@
+<section id="questions-section" class="content-section">
+    <div class="content-header">
+    </br> </br>
+        <h1><i class="fas fa-question-circle"></i> שאלות ופניות</h1>
+        <p class="text-muted">ניהול שאלות, מענה לפניות והוספה לדף שאלות נפוצות</p>
+    </div>
+    
+    <!-- סטטיסטיקות שאלות -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="dashboard-stat bg-warning">
+                <h3 id="pending-questions-count">4</h3>
+                <p>שאלות ממתינות</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-stat bg-success">
+                <h3 id="answered-questions-count">16</h3>
+                <p>שאלות שנענו</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-stat bg-info">
+                <h3 id="faq-questions-count">8</h3>
+                <p>שאלות בעמוד ה-FAQ</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-stat bg-primary">
+                <h3 id="total-questions-count">20</h3>
+                <p>סה"כ שאלות</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- פילטרים ומיון -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="form-container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">סינון שאלות</h5>
+                    <div class="d-flex">
+                        <div class="form-group mr-2 mb-0">
+                            <select class="form-control" id="question-filter-status">
+                                <option value="">כל הסטטוסים</option>
+                                <option value="pending">ממתינות</option>
+                                <option value="answered">נענו</option>
+                                <option value="added_to_faq">נוספו ל-FAQ</option>
+                            </select>
+                        </div>
+                        <div class="form-group mr-2 mb-0">
+                            <select class="form-control" id="question-sort-order">
+                                <option value="date_desc">תאריך: מהחדש לישן</option>
+                                <option value="date_asc">תאריך: מהישן לחדש</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="חיפוש..." id="question-search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- טבלת שאלות -->
+    <div class="data-table">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>תאריך</th>
+                    <th>שאלה</th>
+                    <th>שואל</th>
+                    <th>סטטוס</th>
+                    <th>פעולות</th>
+                </tr>
+            </thead>
+            <tbody id="questions-list">
+                <!-- Questions will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- פאגינציה -->
+    <nav aria-label="Questions pagination">
+        <ul class="pagination" id="questions-pagination">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">הקודם</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">הבא</a>
+            </li>
+        </ul>
+    </nav>
+</section>

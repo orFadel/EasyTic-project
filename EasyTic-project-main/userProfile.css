@@ -1,0 +1,440 @@
+/* סגנונות כלליים */
+.content {
+    min-height: 70vh;
+}
+
+#username-display {
+    text-align: right;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #198AD7;
+    border-color: #007bff;
+}
+
+#user-settings-form{
+    text-align: right;
+}
+
+.table .thead-light th{
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    text-align: right;
+}
+
+/* תיקונים נוספים לקובץ userProfile.css */
+
+/* תיקון עבור טבלת ההזמנות - וידוא שהטקסט מיושר לימין */
+.table th, 
+.table td {
+    text-align: right;
+}
+
+/* תיקון עבור מודל פרטי הזמנה */
+.modal-header {
+    flex-direction: row-reverse;
+}
+
+.modal-header .close {
+    margin: -1rem auto -1rem -1rem;
+}
+
+.modal-footer {
+    justify-content: flex-start;
+}
+
+/* תיקון עבור פריטי הזמנה */
+.order-item {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.order-total {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+/* תיקון עבור כפתור הצג פרטים */
+.btn-outline-info {
+    margin-right: 0;
+}
+
+/* תיקונים עבור הכרטיסים */
+.list-group-item {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    text-align: right;
+}
+
+/* תיקון עבור תיבות עם עיצוב מובנה של בוטסטראפ */
+.card-header h2 {
+    text-align: right;
+}
+
+/* תוספת סגנונות לקובץ userProfile.css */
+
+/* תיקון למודל פרטי הזמנה בהתאם לדרישות */
+.modal-header {
+    display: flex;
+    flex-direction: row; /* לא row-reverse כדי שהאיקס יהיה בצד שמאל */
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-header .modal-title {
+    margin-right: auto; /* דחיפת הכותרת לצד ימין */
+    margin-left: 0;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.modal-header .close {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 1rem;
+    position: relative;
+    left: 0; /* האיקס בצד שמאל */
+}
+
+.modal-footer {
+    justify-content: flex-start; /* כפתור "סגור" בצד שמאל */
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+/* סגנון כפתור הורדה */
+.list-group-item .btn-primary {
+    background-color: #198AD7;
+    border-color: #198AD7;
+}
+
+.list-group-item .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0069d9;
+}
+
+/* עיצוב PDF של כרטיס */
+@media print {
+    .ticket-pdf {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        direction: rtl;
+    }
+    
+    .ticket-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #198AD7;
+    }
+    
+    .ticket-logo {
+        max-width: 150px;
+        height: auto;
+    }
+    
+    .ticket-title {
+        font-size: 24px;
+        color: #198AD7;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .ticket-details {
+        margin-bottom: 20px;
+    }
+    
+    .ticket-barcode {
+        text-align: center;
+        margin: 30px 0;
+    }
+    
+    .ticket-terms {
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 20px;
+    }
+}
+
+.card-body {
+    text-align: right;
+}
+
+/* כותרת הפרופיל */
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.user-avatar {
+    font-size: 5rem;
+    color: #198AD7;
+    margin-bottom: 1rem;
+}
+
+/* לשוניות פרופיל */
+.profile-tabs {
+    border-bottom: 2px solid #dee2e6;
+    margin-bottom: 2rem;
+}
+
+.profile-tabs .nav-link {
+    color: #495057;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s;
+}
+
+.profile-tabs .nav-link:hover {
+    color: #198AD7;
+    border-color: #dee2e6;
+}
+
+.profile-tabs .nav-link.active {
+    color: #198AD7;
+    border-color: #198AD7;
+    background-color: transparent;
+}
+
+.profile-tabs .nav-link i {
+    margin-left: 0.5rem;
+}
+
+/* תוכן לשוניות */
+.profile-tab-content {
+    padding: 1rem 0;
+}
+
+.card {
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #212529;
+    text-align: right;
+}
+
+.card-header h2 i {
+    color: #198AD7;
+}
+
+/* סגנונות לחלק השאלות */
+.questions-container {
+    margin-top: 1rem;
+}
+
+.question-item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #f8f9fa;
+    transition: all 0.3s;
+}
+
+.question-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-text {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.question-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.question-status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+}
+
+.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-answered {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-added-to-faq {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.answer-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #e9f7ef;
+    border-radius: 8px;
+    border-right: 3px solid #28a745;
+}
+
+.answer-container p {
+    margin-bottom: 0.5rem;
+}
+
+.error-message {
+    color: #dc3545;
+    text-align: center;
+    padding: 1rem;
+    background-color: #f8d7da;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+}
+
+/* סגנונות לחלק ההזמנות */
+.order-card {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.order-header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-number {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.order-date {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.order-body {
+    padding: 1rem;
+}
+
+.order-items {
+    margin-bottom: 1rem;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item-name {
+    font-weight: bold;
+}
+
+.order-item-details {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.order-item-price {
+    font-weight: bold;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+    font-weight: bold;
+}
+
+/* סגנונות להודעת התחברות */
+.login-required-message {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px solid #e9ecef;
+}
+
+.login-required-message p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.login-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #198AD7;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.login-link:hover {
+    background-color: #0069d9;
+}
+
+/* התאמות למובייל */
+@media (max-width: 768px) {
+    .profile-tabs .nav-link {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .question-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .question-status {
+        margin-top: 0.5rem;
+        margin-right: 0;
+    }
+}

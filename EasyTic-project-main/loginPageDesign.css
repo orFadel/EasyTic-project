@@ -1,0 +1,278 @@
+/* RegisterPageDesign.css */
+
+/* מבנה כללי של הדף */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* גובה מינימלי של 100% מגובה המסך */
+}
+
+/* חלוקת הדף לאזורים */
+.page-wrapper {
+  flex: 1 0 auto; /* תופס את כל השטח הפנוי */
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  flex-shrink: 0; /* הפוטר לא מתכווץ */
+}
+
+/* תיקון כיוון טקסט וסגנון לשדות הקלט */
+.form-control {
+  text-align: right;
+  direction: rtl;
+  padding-left: 30px; /* מקום לאייקון העין בצד שמאל */
+  padding-right: 12px; /* החזרת הריפוד הרגיל בצד ימין */
+}
+
+/* התאמת הודעות משוב */
+.valid-feedback,
+.invalid-feedback {
+  text-align: right;
+}
+
+/* סגנון למיכל הסיסמה */
+.password-container {
+  position: relative;
+}
+
+/* הוספת צבע ירוק להודעת תקין */
+.valid-feedback {
+  color: #198754;
+}
+
+/* לוודא שאייקון העין נראה היטב */
+#toggleRegPassword {
+  font-size: 16px;
+  z-index: 10;
+  position: absolute;
+  left: 10px;
+  top: 13px;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+/* סגנון כפתורי התחברות חברתית */
+.social-login-btn {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.social-login-btn:hover {
+  opacity: 0.9;
+}
+
+.social-login-btn i {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.google-btn {
+  background-color: #DB4437;
+}
+
+/* מעבר בין טפסים */
+.form-toggle {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.form-toggle a {
+  color: #000000; /* שינוי צבע הטקסט "התחבר כאן" לשחור */
+  text-decoration: none;
+  font-weight: 700; /* Bold אמיתי */
+  cursor: pointer;
+}
+
+.form-toggle a:hover {
+  text-decoration: underline;
+}
+
+/* הוספת קו מפריד עם טקסט */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.divider span {
+  padding: 0 10px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* סגנון למודאל - ממורכז במסך */
+.register-container {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 160px; /* רווח מה-Nav */
+  padding-bottom: 30px; /* הקטנת הרווח מלמטה */
+}
+
+.popup-content {
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  z-index: 1;
+}
+
+/* כפתורים */
+.btn-primary {
+  background-color: #198AD7;
+  border-color: #198AD7;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #1678b9;
+  border-color: #1678b9;
+}
+
+/* התאמה למסכים קטנים */
+@media (max-width: 768px) {
+  .register-container {
+    padding-top: 100px;
+  }
+  
+  .popup-content {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
+/* סגנון לתיבת סימון תנאי שימוש */
+.form-check {
+  display: block !important;
+  margin-top: 15px !important;
+  position: relative !important;
+  text-align: right !important;
+}
+
+.form-check-input {
+  position: static !important;
+  margin-left: 10px !important;
+  float: right !important;
+  margin-top: 3px !important;
+  cursor: pointer !important;
+}
+
+.form-check-label {
+  display: inline-block !important; 
+  padding-right: 30px !important; /* מרווח לריבוע הסימון */
+  margin-right: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  text-align: right !important;
+}
+
+.form-check-label a {
+  color: #198AD7 !important;
+  text-decoration: none !important;
+}
+
+.form-check-label a:hover {
+  text-decoration: underline !important;
+}
+
+.invalid-feedback {
+  margin-right: 30px !important;
+  display: block !important;
+}
+
+/* תיקון עבור תפריט הדרופדאון */
+.dropdown-menu-right {
+  top: 100% !important; /* וודא שהתפריט מוצג מתחת לאלמנט */
+  right: 0; /* יישור לצד ימין */
+  left: auto !important; /* ביטול שינוי אוטומטי של צד שמאל */
+  margin-top: 0.5rem; /* מרווח קטן מהאייקון */
+}
+
+/* וודא שהמיקום של הקונטיינר מוגדר כהלכה */
+#profile-container {
+  position: relative;
+}
+
+/* תיקון עבור כיוון RTL */
+[dir="rtl"] .form-control {
+  text-align: right;
+}
+
+/* תיקון לתצוגת האייקונים בדרופדאון */
+.dropdown-item i {
+  margin-left: 8px;
+}
+
+/* תיקון לפריטי דרופדאון */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  text-align: right;
+}
+
+/* סגנון לצורת אייקון העריכה בתיבת סיסמה */
+.password-container .fas {
+  transition: color 0.3s;
+}
+
+.password-container .fas:hover {
+  color: #333;
+}
+
+/* תיקון לתיבת הודעת שגיאה */
+#login-error {
+  text-align: right;
+  direction: rtl;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+/* אנימציה להודעות */
+.alert {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

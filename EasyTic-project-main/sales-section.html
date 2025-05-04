@@ -1,0 +1,123 @@
+<section id="sales-section" class="content-section">
+    <div class="content-header">
+    </br> </br>
+        <h1><i class="fas fa-chart-line"></i> ניתוח מכירות</h1>
+        <p class="text-muted">סטטיסטיקות מכירות וניתוח נתונים</p>
+    </div>
+    
+    <!-- בחירת טווח תאריכים -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="form-container">
+                <div class="form-row align-items-end">
+                    <div class="col-md-3">
+                        <label for="date-range">טווח זמן:</label>
+                        <select class="form-control" id="date-range">
+                            <option value="month">חודש נוכחי</option>
+                            <option value="quarter">רבעון נוכחי</option>
+                            <option value="year">שנה נוכחית</option>
+                            <option value="custom">טווח מותאם אישית</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3" id="custom-date-container" style="display: none;">
+                        <label for="date-from">מתאריך:</label>
+                        <input type="date" class="form-control" id="date-from">
+                    </div>
+                    <div class="col-md-3" id="custom-date-to-container" style="display: none;">
+                        <label for="date-to">עד תאריך:</label>
+                        <input type="date" class="form-control" id="date-to">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" id="update-stats">
+                            <i class="fas fa-sync-alt"></i> עדכן נתונים
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- סיכום מכירות -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="dashboard-stat bg-primary">
+                <h3 id="total-sales">₪15,240</h3>
+                <p>סה"כ מכירות</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-stat bg-success">
+                <h3 id="orders-count">42</h3>
+                <p>מספר הזמנות</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-stat bg-info">
+                <h3 id="average-order">₪362.85</h3>
+                <p>ממוצע להזמנה</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-stat bg-warning">
+                <h3 id="top-attraction">סיור במגדל אייפל</h3>
+                <p>אטרקציה מובילה</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- גרפים -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="chart-container">
+                <h5>נתוני מכירות לפי תקופה</h5>
+                <canvas id="sales-chart" height="300"></canvas>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="chart-container">
+                <h5>התפלגות מכירות לפי מדינה</h5>
+                <canvas id="countries-chart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="chart-container">
+                <h5>התפלגות מכירות לפי קטגוריה</h5>
+                <canvas id="categories-chart" height="250"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="chart-container">
+                <h5>10 האטרקציות המובילות</h5>
+                <canvas id="top-attractions-chart" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- הזמנות אחרונות -->
+    <div class="card">
+        <div class="card-header">
+            <h5>הזמנות אחרונות</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped" id="recent-orders-table">
+                    <thead>
+                        <tr>
+                            <th>מס' הזמנה</th>
+                            <th>תאריך</th>
+                            <th>לקוח</th>
+                            <th>סכום</th>
+                            <th>פרטים</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-orders">
+                        <!-- Recent orders will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

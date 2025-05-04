@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הרשמה</title>
+  <link href="homePageDesign.css" rel="stylesheet">
+  <link href="registerPageDesign.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+    /* מבנה כללי של הדף */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* גובה מינימלי של 100% מגובה המסך */
+    }
+    
+    /* חלוקת הדף לאזורים */
+    .page-wrapper {
+      flex: 1 0 auto; /* תופס את כל השטח הפנוי */
+      display: flex;
+      flex-direction: column;
+    }
+    
+    footer {
+      flex-shrink: 0; /* הפוטר לא מתכווץ */
+    }
+
+    /* תיקון כיוון טקסט וסגנון לשדות הקלט */
+    .form-control {
+      text-align: right;
+      direction: rtl;
+      padding-left: 30px;
+      /* מקום לאייקון העין בצד שמאל */
+      padding-right: 12px;
+      /* החזרת הריפוד הרגיל בצד ימין */
+    }
+
+    /* התאמת הודעות משוב */
+    .valid-feedback,
+    .invalid-feedback {
+      text-align: right;
+    }
+
+    /* סגנון למיכל הסיסמה */
+    .password-container {
+      position: relative;
+    }
+
+    /* הוספת צבע ירוק להודעת תקין */
+    .valid-feedback {
+      color: #198754;
+    }
+
+    /* לוודא שאייקון העין נראה היטב */
+    #toggleRegPassword {
+      font-size: 16px;
+      z-index: 10;
+      position: absolute;
+      left: 10px;
+      top: 13px;
+      cursor: pointer;
+      color: #6c757d;
+    }
+
+    /* סגנון כפתורי התחברות חברתית */
+    .social-login-btn {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      color: white;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .social-login-btn:hover {
+      opacity: 0.9;
+    }
+
+    .social-login-btn i {
+      margin-left: 10px;
+      font-size: 18px;
+    }
+
+    .google-btn {
+      background-color: #DB4437;
+    }
+
+    /* מעבר בין טפסים */
+    .form-toggle {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .form-toggle a {
+      color: #000000; /* שינוי צבע הטקסט "התחבר כאן" לשחור */
+      text-decoration: none;
+      font-weight: 700; /* Bold אמיתי */
+      cursor: pointer;
+    }
+
+    .form-toggle a:hover {
+      text-decoration: underline;
+    }
+
+    /* הוספת קו מפריד עם טקסט */
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .divider span {
+      padding: 0 10px;
+      color: #6c757d;
+      font-size: 14px;
+    }
+
+    /* סגנון למודאל - ממורכז במסך */
+    .register-container {
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 160px; /* רווח מה-Nav */
+      padding-bottom: 30px; /* הקטנת הרווח מלמטה */
+    }
+    
+    .popup-content {
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      background-color: white;
+      max-width: 450px;
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid #e0e0e0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* כפתורים */
+    .btn-primary {
+      background-color: #198AD7;
+      border-color: #198AD7;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background-color: #1678b9;
+      border-color: #1678b9;
+    }
+
+    /* התאמה למסכים קטנים */
+    @media (max-width: 768px) {
+      .register-container {
+        padding-top: 100px;
+      }
+      
+      .popup-content {
+        width: 95%;
+        padding: 15px;
+      }
+    }
+
+    /* סגנון לתיבת סימון תנאי שימוש */
+    /* סגנון לתיבת סימון תנאי שימוש - תיקון מלא */
+    .form-check {
+      display: block !important;
+      margin-top: 15px !important;
+      position: relative !important;
+      text-align: right !important;
+    }
+
+    .form-check-input {
+      position: static !important;
+      margin-left: 10px !important;
+      float: right !important;
+      margin-top: 3px !important;
+      cursor: pointer !important;
+    }
+
+    .form-check-label {
+      display: inline-block !important; 
+      padding-right: 30px !important; /* מרווח לריבוע הסימון */
+      margin-right: 0 !important;
+      font-size: 14px !important;
+      line-height: 1.4 !important;
+      text-align: right !important;
+    }
+
+    .form-check-label a {
+      color: #198AD7 !important;
+      text-decoration: none !important;
+    }
+
+    .form-check-label a:hover {
+      text-decoration: underline !important;
+    }
+    
+    .invalid-feedback {
+      margin-right: 30px !important;
+      display: block !important;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- סרגל ניווט -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container">
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#">
+                <i class="fas fa-ticket-alt"></i> איפה נופשים
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="dubai.html">דובאי</a></li>
+                <li><a class="dropdown-item" href="paris.html">פריז</a></li>
+                <li><a class="dropdown-item" href="rome.html">רומא</a></li>
+                <li><a class="dropdown-item" href="london.html">לונדון</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="צק ליסט.pdf">
+                <i class="fas fa-check checklist-icon"></i> צ'ק ליסט
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="q&a.html">
+                <i class="fas fa-question-circle"></i> שאלות ותשובות
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#contact">
+                <i class="fas fa-phone"></i> צור קשר
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Profile Icon Dropdown -->
+<div id="profile-container" class="dropdown">
+    <a class="icons no-underline dropdown-toggle" href="#" id="profile-dropdown" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-user" id="profie-icon"></i><span id="user-greeting"> היי, אורח/ת</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+      <!-- בדף התחברות נציג רק את הקישור להתחברות -->
+      <a class="dropdown-item logged-out-only" href="loginPage.html" id="login-link">
+        <i class="fas fa-sign-in-alt"></i> התחברות
+      </a>
+    </div>
+  </div>
+
+        <!-- Cart Icon -->
+        <a class="icons larger-icon no-underline" href="cart.html" style="position: relative;">
+          <!-- אייקון עגלה-->
+          <i class="fas fa-shopping-cart"></i>
+          <!-- מספר המוצרים בעגלה -->
+          <span id="cart-count" class="cart-count"
+            style="position: absolute; top: -8px; right: -8px; background-color: rgb(0, 183, 255); color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; font-weight: bold; text-align: center; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;">0</span>
+        </a>
+
+        <a class="navbar-brand ml-auto" href="homePage.html">
+          <span class="logo-text"></span>
+          <img src="EasyTic.svg" alt="Logo" width="150px" class="logo location">
+        </a>
+      </div>
+    </nav>
+
+    <!-- תוכן הרשמה -->
+    <div class="register-container">
+      <div class="popup-content">
+        <h2>הרשמה לאתר</h2>
+        <p>צור חשבון חדש</p>
+        
+        <!-- כפתורי התחברות חברתית -->
+        <button class="social-login-btn google-btn" onclick="handleGoogleLogin()">
+          <i class="fab fa-google"></i> הרשמה עם גוגל
+        </button>
+        
+        <div class="divider">
+          <span>או</span>
+        </div>
+
+        <form class="was-validated">
+          <div class="mb-3 mt-3">
+            <label for="reg-email" class="form-label">דואר אלקטרוני:</label>
+            <input type="email" class="form-control" id="reg-email" placeholder="הכנס כתובת אימייל" name="email" required>
+            <div class="valid-feedback">תקין.</div>
+            <div class="invalid-feedback">נא להזין כתובת אימייל תקינה.</div>
+          </div>
+          <div class="mb-3">
+            <label for="reg-uname" class="form-label">שם משתמש:</label>
+            <input type="text" class="form-control" id="reg-uname" placeholder="בחר שם משתמש" name="reg-uname" required>
+            <div class="valid-feedback">תקין.</div>
+            <div class="invalid-feedback">נא למלא שדה זה.</div>
+          </div>
+          <div class="mb-3">
+            <label for="reg-displayname" class="form-label">שם תצוגה:</label>
+            <input type="text" class="form-control" id="reg-displayname" placeholder="בחר שם שיוצג באתר" name="reg-displayname" required>
+            <div class="valid-feedback">תקין.</div>
+            <div class="invalid-feedback">נא למלא שדה זה.</div>
+          </div>
+          <div class="mb-3">
+            <label for="reg-password" class="form-label">סיסמא:</label>
+            <div class="password-container" style="position: relative;">
+              <input type="password" class="form-control" id="reg-password" placeholder="בחר סיסמא" name="reg-password" required>
+              <i id="toggleRegPassword" class="fas fa-eye-slash"></i>
+              <div class="valid-feedback">תקין.</div>
+              <div class="invalid-feedback">נא למלא שדה זה.</div>
+            </div>
+          </div>
+          
+          <div class="mb-3 form-check" style="display: flex; align-items: center; flex-direction: row-reverse; justify-content: flex-end;">
+            <input type="checkbox" class="form-check-input" id="terms-check" required style="margin-left: 8px; margin-right: 0; margin-top: 0; float: none; flex-shrink: 0;">
+            <label class="form-check-label" for="terms-check" style="margin: 0; text-align: right; display: inline; margin-top: -50px;">
+              אני מסכים/ה ל<a href="terms.html" target="_blank">תנאי השימוש</a> ו<a href="privacy.html" target="_blank">מדיניות הפרטיות</a> כדי להמשיך.
+            </label>
+            <div class="invalid-feedback" style="width: 100%; text-align: right; margin-bottom: 5px; order: 3;">יש לאשר את תנאי השימוש כדי להמשיך.</div>
+          </div>
+          <button type="button" class="btn btn-primary" id="register-button" onclick="handleRegistration()">הרשמה</button>
+        </form>
+        
+        <div class="form-toggle">
+          כבר יש לך חשבון? <a href="loginPage.html">התחבר כאן</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- פוטר -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 id="section-text">אנו מקבלים תשלומים באמצעות</h3>
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" alt=""
+            data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Visa-3.svg" data-ll-status="loaded"
+            class="entered lazyloaded">
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" alt=""
+            data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Amex-4.svg" data-ll-status="loaded"
+            class="entered lazyloaded">
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" alt=""
+            data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/DinersClub-3.svg" data-ll-status="loaded"
+            class="entered lazyloaded">
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" alt=""
+            data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/ApplePay-3.svg" data-ll-status="loaded"
+            class="entered lazyloaded">
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" alt=""
+            data-lazy-src="https://tic.dubai.co.il/wp-content/uploads/2022/08/Bit-3.svg" data-ll-status="loaded"
+            class="entered lazyloaded">
+        </div>
+        <div class="footer-section">
+          <h3 id="section-text">חפשו אותנו ברשתות החברתיות</h3>
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social1.svg"
+            alt="" data-lazy- data-ll-status="loaded" class="entered lazyloaded">
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg"
+            alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social2.svg"
+            data-ll-status="loaded" class="entered lazyloaded">
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg"
+            alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social3.svg"
+            data-ll-status="loaded" class="entered lazyloaded">
+          <img width="24" height="24" src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg"
+            alt="" data-lazy-src="https://tic.dubai.co.il/wp-content/themes/ticdubai/assets/img/social5.svg"
+            data-ll-status="loaded" class="entered lazyloaded">
+          </br> </br>
+          <h3 id="section-text">צרו איתנו קשר</h3>
+          03-0000000
+        </div>
+        <div class="footer-section">
+          <h3 id="section-text">צריכים עזרה?</h3>
+          <a href="q&a.html">
+            תשובות לשאלות נפוצות
+          </a>
+        </div>
+        <div class="footer-section">
+          <h3 id="section-text">איפה נופשים</h3>
+          <a href="dubai.html"> אטרקציות בדובאי </a>
+          </br>
+          <a href="paris.html"> אטרקציות בפריז </a>
+          </br>
+          <a href="rome.html"> אטרקציות ברומא </a>
+          </br>
+          <a href="london.html"> אטרקציות בלונדון </a>
+        </div>
+      </div>
+    </div>
+    </br>
+    <div id="contact">
+      &copy; כל הזכויות שמורות 2024- איזי טיק בע"מ
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const checkbox = document.getElementById('terms-check');
+  const invalidFeedback = checkbox.nextElementSibling.nextElementSibling; // קבלת אלמנט .invalid-feedback
+  
+  // התנהגות בטעינה ראשונית - לא מראים את ההודעה לפני שהמשתמש מנסה לשלוח את הטופס
+  invalidFeedback.style.display = 'none';
+  
+  // בדיקת שינוי בתיבת הסימון
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      invalidFeedback.style.display = 'none';
+    } else if (this.form.classList.contains('was-validated')) {
+      // מציג את ההודעה רק אם הטופס כבר עבר ולידציה
+      invalidFeedback.style.display = 'block';
+    }
+  });
+  
+  // הוספת בדיקה לכפתור הרשמה
+  document.getElementById('register-button').addEventListener('click', function() {
+    const form = checkbox.form;
+    form.classList.add('was-validated');
+    
+    // בדיקה אם התיבה מסומנת לאחר הלחיצה על הרשמה
+    invalidFeedback.style.display = checkbox.checked ? 'none' : 'block';
+  });
+});
+    </script>
+
+  <!-- Bootstrap JS CDN link -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <!-- טעינת קבצי JS נוספים -->
+  <script src="updateCartCount.js" defer></script>
+  <script src="homePagelogic.js"></script>
+  <script src="loginPagelogic.js"></script>
+</body>
+</html>

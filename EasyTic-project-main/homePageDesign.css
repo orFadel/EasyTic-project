@@ -1,0 +1,425 @@
+/* Navbar */
+.navbar.bg-dark {
+    background-color: white !important;
+    color: black !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: black !important;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: black !important;
+}
+
+.navbar-nav {
+    margin-top: 60px; /* Adjust the margin-top value as needed */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #198AD7 !important; 
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.no-underline:hover {
+    text-decoration: none;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    margin-top: 60px;
+    margin-left: 30px;
+}
+
+.user-greeting {
+    margin-left: 5px; /* Adjust the margin as needed */
+    white-space: nowrap;
+}
+
+/* בתחילה נסתיר את הברכה */
+#user-greeting {
+    visibility: visible; /* מבטל את ההסתרה */
+    margin-right: 10px; /* מוסיף רווח בין האייקון לטקסט */
+    white-space: nowrap;
+}
+
+#profie-icon{
+    margin-right: -40px;
+}
+
+.icons {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    margin-right: 10px; /* Adjust the margin to add space between icons */
+    color: black;
+}
+
+.icons:hover {
+    color: #198AD7 !important; 
+}
+
+/* סגנונות לתפריט הנפתח באייקון הפרופיל */
+#profile-container .dropdown-toggle::after {
+    display: none; /* מסתיר את החץ הרגיל של dropdown */
+}
+
+#profile-container .dropdown-menu {
+    min-width: 200px;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    right: 0;
+    left: auto;
+    text-align: right;
+    right: -40px !important;
+    top: 100% !important; /* מוסיף קביעה שהתפריט יהיה מתחת */
+    transform: none !important; /* מבטל כל טרנספורמציה שעלולה להזיז את התפריט */
+}
+
+#profile-container .dropdown-item {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+#profile-container .dropdown-item:hover {
+    background-color: #f0f7ff;
+}
+
+#profile-container .dropdown-item i {
+    margin-left: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+#profile-container .dropdown-divider {
+    margin: 5px 0;
+}
+
+/* סגנון למצב מחובר/לא מחובר */
+.logged-in-only {
+    display: none; /* מוסתר כברירת מחדל */
+}
+
+.logged-out-only {
+    display: block; /* מוצג כברירת מחדל */
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    #profile-container {
+        position: static;
+    }
+    
+    #profile-container .dropdown-menu {
+        position: absolute;
+        right: 10px;
+        left: auto;
+    }
+}
+
+/* Profile and Logout */
+#profile-container {
+    display: flex;
+    align-items: center;
+    margin-right: -40px;
+}
+
+a.icons.larger-icon {
+    margin-left: 8px; /* הגדל את הרווח בין העגלה לפרופיל */
+}
+
+/* Logo */
+.logo {
+    position: absolute;
+    top: -10px; 
+    right: 0px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    text-align: right !important; /* Align text to the right */
+}
+
+.dropdown-menu a:hover {
+    color: #198AD7 !important; 
+}
+
+#imageCarousel {
+    margin-top: 10px;
+    width: 100%;
+    max-height: 400px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-inner img {
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+h4 {
+    font-family: 'Varela Round', sans-serif;
+    margin-top: 50px;
+    text-align: right;
+    padding-right: 20px;
+    color: #198AD7;
+}
+
+p {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.gallery {
+    margin-top: 30px;
+    display: flex;
+    margin: 0 auto;
+    width: 90%; /* Adjust the width as needed */
+    gap: 15px; /* Adjust the gap between images */
+}
+
+.image {
+    margin: 0;
+    padding: 5px;
+    width: 100%; /* Make each image take 100% of the width of the gallery */
+    height: auto;
+    max-width: 100%;
+    transition: transform 0.3s, z-index 0.3s, background-color 0.3s;
+    overflow: hidden; /* Ensure that the image is not cut off */
+}
+
+.image-link {
+    display: block; /* Make the link cover the entire image */
+}
+
+.image-link:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
+
+.image:hover {
+    transform: scale(1.1);
+    z-index: 1;
+    background-color: #198AD7; /* Set the background color to blue on hover */
+}
+
+footer {
+    flex-shrink: 0;
+    background-color: #198AD7;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px; /* Add a margin to separate from the content */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: right;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+    text-align: right;
+}
+
+#section-text {
+    font-size: 18px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section img {
+    margin-right: 15px; 
+}
+
+#contact {
+    text-align: center;
+    font-size: 13px;
+}
+
+/* עדכונים נוספים לתפריט הפרופיל */
+#profile-container .dropdown-item {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+
+#login-link {
+    color: #198AD7; /* צבע כחול מיוחד לקישור ההתחברות - התאמה לצבע האתר */
+}
+
+/* סגנונות למצב תצוגה של פריטי תפריט */
+.dropdown-item.logged-in-only, 
+.dropdown-item.logged-out-only {
+    display: flex;
+    text-align: right;
+}
+
+#personal-area-link,
+#favorites-link,
+#logout-link {
+    text-align: right;
+}
+
+/* הדגשת אייקונים בתפריט */
+#profile-container .dropdown-item i {
+    font-size: 16px;
+    width: 20px;
+}
+
+/* סגנונות נוספים למצבי התחברות/התנתקות */
+.logged-in-only {
+    display: none; /* מוסתר כברירת מחדל עד לבדיקת מצב התחברות */
+  }
+  
+  .logged-out-only {
+    display: block; /* מוצג כברירת מחדל עד לבדיקת מצב התחברות */
+  }
+  
+  /* סגנונות לפריטי התפריט הנפתח */
+  .dropdown-item.logged-in-only {
+    display: none; /* מוסתר כברירת מחדל */
+  }
+  
+  .dropdown-item.logged-out-only {
+    display: flex; /* מוצג כברירת מחדל */
+  }
+  
+  /* סגנונות לקווים מפרידים בתפריט */
+  .dropdown-divider.logged-in-only {
+    display: none; /* מוסתר כברירת מחדל */
+  }
+  
+  /* סגנון אופציונלי לשינוי צבע פריטי תפריט */
+  .dropdown-item {
+    align-items: center;
+  }
+  
+  .dropdown-item i {
+    margin-left: 8px;
+  }
+  
+  /* הסתרת הברכה עד לטעינת הנתונים */
+  #user-greeting {
+    visibility: hidden; /* יהפוך לנראה לאחר בדיקת מצב התחברות */
+  }
+
+@font-face {
+    font-family: "Noto_Sans_Hebrew";
+    src: url("fonts/Noto_Sans_Hebrew.ttf");
+}
+body{
+    font-size: 16px;
+}
+.dynamic-gallery{
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-evenly;
+}
+.dynamic-ticket {
+    direction: rtl;
+    font-family: "Noto_Sans_Hebrew";
+    cursor: pointer;
+    width: 17em; /* 300px / 16 */
+    border: 0.0625em solid #ccc; /* 1px / 16 */
+    border-radius: 0.625em; /* 10px / 16 */
+    overflow: hidden;
+    box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.2); /* 4px / 16, 8px / 16 */
+    margin: 1.25em auto; /* 20px / 16 */
+    background: #d9d9d9;
+}
+
+.dynamic-ticket .image-container { 
+    height: 150px;
+    overflow: hidden;
+}
+
+.dynamic-ticket .image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transform: translateY(-30px); /* או -35px, שחקי עם הערך */
+}
+
+.dynamic-ticket .content {
+    padding: 0.9375em; /* 15px / 16 */
+}
+.dynamic-ticket .title {
+    color: #198ad8;
+    font-size: 1.125em;
+    font-weight: bold;
+}
+.dynamic-ticket .subtitle {
+    font-size: 1em;
+    color: #222222;
+}
+.dynamic-ticket .price {
+    font-size: 0.875em;
+    color: #222222;
+    margin: 0.7em 0;
+}
+.dynamic-ticket .bottom-ticket{
+    direction: ltr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.19em dashed white;
+    padding: 0.7em 0;
+}
+.dynamic-ticket .bottom-ticket .button,
+.dynamic-ticket .bottom-ticket .button:hover {
+    display: inline-block;
+    background: #198ad8;
+    color: white;
+    padding: 0.3em 1em; /* 10px / 16, 20px / 16 */
+    border-radius: 6em; /* 5px / 16 */
+    text-decoration: none;
+    margin-top: 0.625em; /* 10px / 16 */
+    font-size: 1em;
+    font-weight: 600;
+}
+.dynamic-ticket .barcode {
+    margin-top: 0.625em; /* 10px / 16 */
+}
+.dynamic-ticket .barcode img {
+    width: 9.375em; /* 150px / 16 */
+}
+.dynamic-ticket .product-number {
+    font-size: 0.875em; /* 14px / 16 */
+    margin-top: 0.3125em; /* 5px / 16 */
+}
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* אפור שקוף */
+    z-index: 1040; /* פחות מה-offcanvas אבל מעל כל השאר */
+    backdrop-filter: blur(2px); /* אופציונלי: טשטוש */
+}
