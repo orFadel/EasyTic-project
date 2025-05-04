@@ -80,6 +80,8 @@
     left: auto;
     text-align: right;
     right: -40px !important;
+    top: 100% !important; /* מוסיף קביעה שהתפריט יהיה מתחת */
+    transform: none !important; /* מבטל כל טרנספורמציה שעלולה להזיז את התפריט */
 }
 
 #profile-container .dropdown-item {
