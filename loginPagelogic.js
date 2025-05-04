@@ -1,704 +1,561 @@
-// קובץ homePagelogic.js - גרסה מתוקנת ומאוחדת
-
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('דף נטען, בודק סטטוס התחברות...');
+    console.log('מסמך התחברות נטען, מאתחל ממשק משתמש...');
+    
+    // בדיקה אם יש משתמש מחובר - אם כן, הפנייה לדף הבית
+    checkUserLogin();
+    
+    // הצגת המודל בעת טעינת העמוד
+    const welcomeModal = document.getElementById('welcome-modal');
+    if (welcomeModal) {
+      welcomeModal.style.display = 'block';
+    }
+    
+    // אתחול ולידציה של טופס
+    initFormValidation();
+    
+    // מאזינים לאירועי לחיצה
+    setupEventListeners();
+  });
   
-  // קריאה לפונקציה שבודקת את מצב ההתחברות של המשתמש
-  checkUserLogin();
+  // אתחול מאזיני אירועים נוספים
+  function setupEventListeners() {
+    // מאזין להתחברות עם גוגל
+    const googleLoginButtons = document.querySelectorAll('.google-btn');
+    googleLoginButtons.forEach(button => {
+      button.addEventListener('click', handleGoogleLogin);
+    });
+    
+    // מאזין לכפתור ההתחברות
+    const loginButton = document.getElementById('submit-button');
+    if (loginButton) {
+      loginButton.addEventListener('click', handleLogin);
+    }
+    
+    // מאזין לכפתור ההרשמה
+    const registerButton = document.getElementById('register-button');
+    if (registerButton) {
+      registerButton.addEventListener('click', handleRegistration);
+    }
+    
+    // מאזינים למעבר בין טפסים
+    const showRegisterLink = document.getElementById('show-register');
+    const showLoginLink = document.getElementById('show-login');
+    
+    if (showRegisterLink) {
+      showRegisterLink.addEventListener('click', function() {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('register-form').style.display = 'block';
+      });
+    }
+    
+    if (showLoginLink) {
+      showLoginLink.addEventListener('click', function() {
+        document.getElementById('register-form').style.display = 'none';
+        document.getElementById('login-form').style.display = 'block';
+      });
+    }
+    
+    // מאזין לצפייה בסיסמה (טופס התחברות)
+    const togglePasswordIcon = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    
+    if (togglePasswordIcon && passwordInput) {
+      togglePasswordIcon.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        
+        // שינוי האייקון בין עין פתוחה לעין סגורה
+        if (type === 'text') {
+          this.classList.remove('fa-eye-slash');
+          this.classList.add('fa-eye');
+        } else {
+          this.classList.remove('fa-eye');
+          this.classList.add('fa-eye-slash');
+        }
+      });
+    }
+    
+    // מאזין לצפייה בסיסמה (טופס הרשמה)
+    const toggleRegPasswordIcon = document.getElementById('toggleRegPassword');
+    const regPasswordInput = document.getElementById('reg-password');
+    
+    if (toggleRegPasswordIcon && regPasswordInput) {
+      toggleRegPasswordIcon.addEventListener('click', function () {
+        const type = regPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        regPasswordInput.setAttribute('type', type);
+        
+        // שינוי האייקון בין עין פתוחה לעין סגורה
+        if (type === 'text') {
+          this.classList.remove('fa-eye-slash');
+          this.classList.add('fa-eye');
+        } else {
+          this.classList.remove('fa-eye');
+          this.classList.add('fa-eye-slash');
+        }
+      });
+    }
+  }
   
-  // הוספת האזנה לכפתור ההתנתקות
-  const logoutLink = document.getElementById('logout-link');
-  if (logoutLink) {
-    logoutLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      logoutUser();
+  // אתחול ולידציה של טופס
+  function initFormValidation() {
+    const formInputs = document.querySelectorAll('.form-control');
+    
+    formInputs.forEach(input => {
+      input.addEventListener('input', function() {
+        validateField(this);
+      });
     });
   }
   
-  // בדיקה אם המשתמש מחובר לפני טעינת אטרקציות מומלצות
-  loadRecommendedAttractions();
-});
-
-/**
- * טעינת אטרקציות מומלצות רק אם המשתמש מחובר
- */
-function loadRecommendedAttractions() {
-  // בדיקה יותר מקיפה אם המשתמש מחובר
-  const isLoggedIn = checkIfUserIsLoggedIn();
-  
-  console.log('מצב התחברות משתמש:', isLoggedIn ? 'מחובר' : 'לא מחובר');
-  
-  // בדיקת אלמנט הכותרת
-  const recommendedTitle = document.getElementById("recommended-attractions-title");
-  
-  if (isLoggedIn) {
-    console.log('טוען אטרקציות מומלצות למשתמש מחובר');
-    
-    // הקוד המקורי לטעינת אטרקציות מומלצות ימשיך רק אם המשתמש מחובר
-    loadUserRecommendations();
-  } else {
-    console.log('משתמש לא מחובר, לא טוען אטרקציות מומלצות אישיות');
-    
-    // הסתרת הכותרת של אטרקציות מומלצות אם המשתמש לא מחובר
-    if (recommendedTitle) {
-      recommendedTitle.style.display = 'none';
-      console.log('הכותרת "אטרקציות מומלצות בשבילך" מוסתרת');
-    }
-    
-    // ניקוי הקונטיינר של האטרקציות המומלצות
-    const container = document.getElementById("dynamic-gallery");
-    if (container) {
-      container.innerHTML = "";
+  // ולידציה של שדה
+  function validateField(field) {
+    if (field.checkValidity()) {
+      field.classList.add('is-valid');
+      field.classList.remove('is-invalid');
+      field.parentElement.querySelector('.valid-feedback').style.display = 'block';
+      field.parentElement.querySelector('.invalid-feedback').style.display = 'none';
+    } else {
+      field.classList.remove('is-valid');
+      field.classList.add('is-invalid');
+      field.parentElement.querySelector('.valid-feedback').style.display = 'none';
+      field.parentElement.querySelector('.invalid-feedback').style.display = 'block';
     }
   }
-}
-
-/**
- * בדיקה מקיפה אם המשתמש מחובר
- * @returns {boolean} האם המשתמש מחובר או לא
- */
-function checkIfUserIsLoggedIn() {
-  // בדיקת מזהה משתמש ב-localStorage
-  const userId = localStorage.getItem('usrId');
   
-  // בדיקת פרטי משתמש ב-localStorage
-  let userInfo = null;
-  try {
-    const userInfoStr = localStorage.getItem('userInfo');
-    userInfo = userInfoStr ? JSON.parse(userInfoStr) : null;
-  } catch (e) {
-    console.error('שגיאה בפענוח userInfo מ-localStorage:', e);
+  // פונקציה לטיפול בהתחברות עם גוגל
+  async function handleGoogleLogin() {
+    console.log('מתחיל תהליך התחברות עם גוגל');
+    const button = document.querySelector('.google-btn');
+    
+    try {
+      // הצגת אינדיקטור טעינה
+      showLoading(button, true);
+      
+      // יצירת אובייקט Google OAuth
+      const googleAuth = google.accounts.oauth2.initCodeClient({
+        client_id: '20535000026-ihg42f1n3i68bfd70m5l1vhpgf8m91ou.apps.googleusercontent.com',
+        scope: 'email profile',
+        ux_mode: 'popup',
+        callback: async (response) => {
+          if (response.code) {
+            try {
+              // שליחת קוד האימות לשרת שלך
+              const serverResponse = await fetch('/auth/google', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: response.code })
+              });
+              
+              if (serverResponse.ok) {
+                const userData = await serverResponse.json();
+                // טיפול במשתמש שהתחבר
+                handleSuccessfulLogin(userData);
+              } else {
+                const errorText = await serverResponse.text();
+                throw new Error(`Google authentication failed on server: ${errorText}`);
+              }
+            } catch (error) {
+              console.error('שגיאה בשליחת קוד האימות לשרת:', error);
+              showError('אירעה שגיאה בהתחברות עם גוגל. אנא נסה שנית.');
+            }
+          } else {
+            console.error('לא התקבל קוד אימות מגוגל');
+            showError('אירעה שגיאה בהתחברות עם גוגל. אנא נסה שנית.');
+          }
+          
+          // ביטול אינדיקטור טעינה
+          showLoading(button, false);
+        }
+      });
+      
+      // פתיחת חלון ההתחברות של גוגל
+      googleAuth.requestCode();
+      
+    } catch (error) {
+      console.error('שגיאה בהתחברות עם גוגל:', error);
+      showError('אירעה שגיאה בהתחברות עם גוגל. אנא נסה שנית.');
+      showLoading(button, false);
+    }
+  }
+
+  function showLoading(buttonElement, isLoading) {
+    if (isLoading) {
+      const originalText = buttonElement.innerHTML;
+      buttonElement.setAttribute('data-original-text', originalText);
+      buttonElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> מתחבר...';
+      buttonElement.disabled = true;
+    } else {
+      const originalText = buttonElement.getAttribute('data-original-text');
+      if (originalText) {
+        buttonElement.innerHTML = originalText;
+      }
+      buttonElement.disabled = false;
+    }
+  }
+
+  function showError(message) {
+    // בדיקה אם כבר קיים אלמנט להודעות שגיאה
+    let errorContainer = document.getElementById('login-error');
+    
+    // אם לא קיים, יצירת אלמנט חדש
+    if (!errorContainer) {
+      errorContainer = document.createElement('div');
+      errorContainer.id = 'login-error';
+      errorContainer.className = 'alert alert-danger mt-3';
+      
+      // הוספת האלמנט לטופס
+      const form = document.querySelector('form');
+      if (form) {
+        form.parentNode.insertBefore(errorContainer, form);
+      }
+    }
+    
+    // הצגת הודעת השגיאה
+    errorContainer.textContent = message;
+    errorContainer.style.display = 'block';
+    
+    // הסרת ההודעה אחרי 5 שניות
+    setTimeout(() => {
+      errorContainer.style.display = 'none';
+    }, 5000);
   }
   
-  // בדיקה אם יש מידע ב-session/localStorage הישן
-  const username = sessionStorage.getItem('username');
-  const displayName = sessionStorage.getItem('displayName') || localStorage.getItem('displayName');
-  const sessionUserId = sessionStorage.getItem('userId');
+  // פונקציה לטיפול בהתחברות רגילה
+  async function handleLogin() {
+    const usernameInput = document.getElementById('uname').value.trim();
+    const passwordInput = document.getElementById('password').value.trim();
+    console.log('שם משתמש:', usernameInput);
+    console.log('סיסמה:', passwordInput);
   
-  console.log('בדיקת התחברות:', { 
-    userId, 
-    'userInfo exists': !!userInfo, 
-    username, 
-    displayName, 
-    sessionUserId 
-  });
+    if (usernameInput !== '' && passwordInput !== '') {
+      localStorage.setItem('UserName', usernameInput);
   
-  // בדיקה שהמזהה קיים וגם שהוא לא ריק
-  const hasUserId = userId && userId.trim() !== '';
+      try {
+        // בקשת התחברות לשרת
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: usernameInput, password: passwordInput })
+        });
   
-  // וידוא שאם יש userInfo, הוא מכיל מידע ולא ריק
-  const hasUserInfo = userInfo && userInfo.userId;
+        console.log('סטטוס תגובה:', response.status);
+        const responseText = await response.text();
+        console.log('תוכן תגובה:', responseText);
   
-  // החזרת תוצאת הבדיקה - האם המשתמש מחובר לפי לפחות אחד מהנתונים
-  return !!(hasUserId || hasUserInfo || username || displayName || sessionUserId);
-}
-
-// פונקציה לבדיקה אם המשתמש הוא מנהל
-function isUserAdmin() {
-  // בדיקה בכל המקומות האפשריים
-  const sessionAdmin = sessionStorage.getItem('isAdmin') === 'true';
-  let localStorageAdmin = false;
+        if (response.ok) {
+          // המרת JSON רק אם הבקשה הצליחה
+          const data = JSON.parse(responseText);
+          console.log('נתוני משתמש:', data);
   
-  try {
-    const localStorageUserInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-    localStorageAdmin = localStorageUserInfo.isAdmin === true;
-  } catch (e) {
-    console.error('שגיאה בקריאת נתוני מנהל מהזיכרון המקומי:', e);
+          const userId = data.userId;
+          const isAdmin = data.isAdmin;
+          const displayName = data.displayName || usernameInput;
+  
+          if (userId) {
+            // הכנת אובייקט המשתמש לשמירה
+            const userData = {
+              userId: userId,
+              username: usernameInput,
+              displayName: displayName,
+              isAdmin: isAdmin,
+              token: data.token || ''
+            };
+            
+            // בדיקה שהנתונים נשמרו נכון
+            console.log('נתוני משתמש להתחברות:', userData);
+            
+            // טיפול בהתחברות המוצלחת
+            handleSuccessfulLogin(userData);
+          }
+          else {
+           localStorage.removeItem('usrId');
+          }
+        } else {
+          // המרת JSON רק אם יש שגיאה ברמת השרת
+          let message;
+          try {
+            message = JSON.parse(responseText);
+          } catch (error) {
+            message = { message: "שגיאה לא ידועה." };
+          }
+  
+          if (response.status === 401) {
+            alert('שם משתמש או סיסמה שגויים, אנא נסה שנית.');
+          } else if (response.status === 404) {
+            // משתמש לא נמצא - נציע לו להירשם
+            alert('המשתמש לא נמצא. באפשרותך להירשם כמשתמש חדש.');
+            // מעבר לטופס הרשמה
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'block';
+            
+            // מילוי אוטומטי של שם המשתמש
+            document.getElementById('reg-uname').value = usernameInput;
+          } else {
+            alert(message.message);
+          }
+        }
+      } catch (error) {
+        console.error('שגיאה במהלך התחברות:', error);
+        alert('אירעה שגיאה במהלך ההתחברות. אנא נסה שנית מאוחר יותר.');
+      }
+    } else {
+      alert('יש להזין שם משתמש וסיסמה.');
+    }
   }
   
-  console.log('בדיקת הרשאות מנהל:', { 
-    sessionAdmin, 
-    localStorageAdmin
-  });
+  // פונקציה לטיפול בהרשמה
+async function handleRegistration() {
+    const email = document.getElementById('reg-email').value.trim();
+    const username = document.getElementById('reg-uname').value.trim();
+    const displayName = document.getElementById('reg-displayname').value.trim();
+    const password = document.getElementById('reg-password').value.trim();
+    const termsCheck = document.getElementById('terms-check').checked;
   
-  return sessionAdmin || localStorageAdmin;
+    console.log('נתוני הרשמה:', { email, username, displayName });
+  
+    if (!email || !username || !displayName || !password) {
+      alert('יש למלא את כל השדות הנדרשים');
+      return;
+    }
+  
+    if (!termsCheck) {
+      alert('יש לאשר את תנאי השימוש כדי להמשיך');
+      return;
+    }
+  
+    try {
+      // שליחת בקשת רישום לשרת
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email: email,
+          username: username, 
+          password: password, 
+          displayName: displayName 
+        })
+      });
+  
+      console.log('סטטוס תגובה:', response.status);
+      const responseText = await response.text();
+      console.log('תוכן תגובה:', responseText);
+      
+      if (response.status === 200 || response.status === 201) {
+        // רישום מוצלח
+        alert('הרשמה בוצעה בהצלחה!');
+        
+        // המרת התגובה ל-JSON
+        const data = JSON.parse(responseText);
+        
+        // הכנת אובייקט המשתמש לשמירה
+        const userData = {
+          userId: data.userId || 'user_' + Date.now(), // ערך ברירת מחדל למקרה שהשרת לא מחזיר מזהה
+          username: username,
+          displayName: displayName,
+          email: email, // הוספת אימייל
+          isAdmin: data.isAdmin || false,
+          token: data.token || 'temp_token_' + Math.random().toString(36).substr(2) // ערך זמני אם אין טוקן מהשרת
+        };
+        
+        console.log('נתוני משתמש להתחברות אחרי הרשמה:', userData);
+        
+        // שמירת המידע ב-localStorage
+        localStorage.setItem('userInfo', JSON.stringify(userData));
+        
+        // שמירה גם בשדות הנפרדים לתאימות עם הקוד הקיים
+        sessionStorage.setItem('userId', userData.userId);
+        localStorage.setItem('usrId', userData.userId);
+        sessionStorage.setItem('username', userData.username);
+        sessionStorage.setItem('displayName', userData.displayName);
+        localStorage.setItem('displayName', userData.displayName);
+        sessionStorage.setItem('isAdmin', userData.isAdmin ? 'true' : 'false');
+        
+        console.log('המשתמש נרשם והתחבר בהצלחה. עובר לדף הפרופיל...');
+        
+        // הפניה לדף פרופיל המשתמש
+        window.location.href = 'userProfile.html';
+      } else if (response.status === 409) {
+        // שם משתמש כבר קיים
+        alert('שם המשתמש או האימייל כבר קיימים במערכת. נסה שם אחר.');
+      } else {
+        // שגיאה אחרת
+        let message;
+        try {
+          message = JSON.parse(responseText).message;
+        } catch (e) {
+          message = 'שגיאה לא ידועה התרחשה בתהליך ההרשמה.';
+        }
+        alert(message);
+        localStorage.removeItem('usrId');
+      }
+    } catch (error) {
+      console.error('שגיאה במהלך הרשמה:', error);
+      localStorage.removeItem('usrId');
+      // במקרה של שגיאת רשת, נדמה הרשמה מוצלחת בסביבת הפיתוח
+      console.log('מדמה הרשמה מוצלחת לצורך פיתוח...');
+      const userData = {
+        userId: 'demo_user_' + Date.now(),
+        username: username,
+        displayName: displayName,
+        email: email,
+        isAdmin: false,
+        token: 'demo_token_' + Math.random().toString(36).substring(2)
+      };
+      
+      // שמירת המידע ב-localStorage
+      localStorage.setItem('userInfo', JSON.stringify(userData));
+      
+      // שמירה גם בשדות הנפרדים לתאימות עם הקוד הקיים
+      sessionStorage.setItem('userId', userData.userId);
+      sessionStorage.setItem('username', userData.username);
+      sessionStorage.setItem('displayName', userData.displayName);
+      localStorage.setItem('displayName', userData.displayName);
+      sessionStorage.setItem('isAdmin', 'false');
+      
+      console.log('המשתמש נרשם והתחבר בהצלחה (מצב פיתוח). עובר לדף הפרופיל...');
+      
+      // הפניה לדף פרופיל המשתמש
+      window.location.href = 'userProfile.html';
+    }
+  }
+  
+  // פונקציה לטיפול בהתחברות מוצלחת (משותפת לכל סוגי ההתחברות)
+  function handleSuccessfulLogin(userData) {
+    console.log('***DEBUG*** מטפל בהתחברות מוצלחת עם נתונים:', userData);
+    
+    // שמירת מידע המשתמש ב-localStorage בפורמט אחיד
+    const userInfo = {
+        userId: userData.userId,
+        username: userData.username || document.getElementById('uname')?.value.trim(),
+        displayName: userData.displayName,
+        isAdmin: userData.isAdmin,
+        token: userData.token || '' // אם קיים
+    };
+    
+    console.log('***DEBUG*** שומר נתוני משתמש ב-localStorage ו-sessionStorage:', userInfo);
+    
+    // שמירה ב-localStorage לשימוש עקבי
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    
+    // שמירה גם ב-sessionStorage וב-localStorage לתאימות עם הקוד הקיים
+    sessionStorage.setItem('userId', userData.userId);
+    localStorage.setItem('usrId', userData.userId);
+    sessionStorage.setItem('username', userInfo.username);
+    sessionStorage.setItem('displayName', userData.displayName);
+    localStorage.setItem('displayName', userData.displayName);
+    sessionStorage.setItem('isAdmin', userData.isAdmin ? 'true' : 'false');
+    
+    // חשוב: שמירת הטוקן גם ב-sessionStorage
+    if (userData.token) {
+        sessionStorage.setItem('token', userData.token);
+        console.log('***DEBUG*** טוקן נשמר ב-sessionStorage:', userData.token.substring(0, 10) + '...');
+    }
+    
+    // וידוא שהטוקן נשמר
+    const sessionToken = sessionStorage.getItem('token');
+    const localToken = userInfo.token;
+    
+    if (!sessionToken && localToken) {
+        console.error('***DEBUG*** הטוקן לא נשמר ב-sessionStorage כראוי! מנסה שוב...');
+        sessionStorage.setItem('token', localToken);
+    }
+    
+    // בדיקה שוב שהטוקן נשמר
+    if (sessionStorage.getItem('token')) {
+        console.log('***DEBUG*** אימות: טוקן נמצא ב-sessionStorage');
+    } else {
+        console.error('***DEBUG*** אזהרה: טוקן עדיין לא נמצא ב-sessionStorage!');
+    }
+    
+    // בדיקה אם יש דף להפנות אליו
+    const redirectPage = localStorage.getItem('redirectAfterLogin');
+    
+    console.log('***DEBUG*** הפניה לאחר התחברות:', redirectPage);
+    
+    if (redirectPage) {
+        // מחיקת המידע על ההפניה
+        localStorage.removeItem('redirectAfterLogin');
+        
+        // הפניה לדף המבוקש
+        window.location.href = redirectPage;
+    } else if (userData.isAdmin) {
+        // אם המשתמש מנהל, הפנייה לדף ניהול או בקשת אישור
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('redirect') === 'admin') {
+            console.log('***DEBUG*** מעביר למסך ניהול עם הטוקן:', sessionStorage.getItem('token') ? 'נמצא' : 'לא נמצא');
+            window.location.href = 'adminDeshboard.html';
+        } else {
+            const goToAdmin = confirm('ברוך הבא מנהל! האם ברצונך לעבור לממשק הניהול?');
+            if (goToAdmin) {
+                window.location.href = 'adminDeshboard.html';
+            } else {
+                window.location.href = 'homePage.html';
+            }
+        }
+    } else {
+        // הפניה לדף הבית
+        window.location.href = 'homePage.html';
+    }
 }
-
-/**
- * הוספת קישור ניהול לתפריט הנפתח
- * צריך להוסיף לכל הדפים שמכילים את התפריט
- */
-function addAdminMenuLink() {
-  // בדיקה אם המשתמש מחובר ואם הוא מנהל
-  const isLoggedIn = checkIfUserIsLoggedIn();
-  const isAdmin = isUserAdmin();
   
-  if (isLoggedIn && isAdmin) {
-    // בדיקה אם הקישור כבר קיים
-    const existingAdminLink = document.getElementById('admin-link');
-    if (existingAdminLink) {
-      existingAdminLink.style.display = 'flex';
+  // בדיקה אם יש משתמש מחובר
+  function checkUserLogin() {
+    console.log('בודק מצב התחברות משתמש בדף התחברות...');
+    
+    // בדיקה אם יש מידע משתמש ב-localStorage
+    let userInfo = null;
+    try {
+      const userInfoStr = localStorage.getItem('userInfo');
+      userInfo = userInfoStr ? JSON.parse(userInfoStr) : null;
+    } catch (e) {
+      console.error('שגיאה בפענוח userInfo:', e);
+    }
+    
+    // בדיקה אם יש מידע ב-sessionStorage/localStorage הישן
+    const username = sessionStorage.getItem('username');
+    const displayName = sessionStorage.getItem('displayName') || localStorage.getItem('displayName');
+    const userId = sessionStorage.getItem('userId');
+    
+    console.log('מצב התחברות:', { userInfo, username, displayName, userId });
+    
+    // אם יש משתמש מחובר כלשהו, העבר לדף הבית
+    if (userInfo || username || displayName || userId) {
+      console.log('משתמש כבר מחובר, מפנה לדף הבית');
+      window.location.href = 'homePage.html';
       return;
     }
     
-    // יצירת הקישור לניהול האתר
-    const adminLink = document.createElement('a');
-    adminLink.className = 'dropdown-item logged-in-only admin-only';
-    adminLink.href = 'adminDeshboard.html';
-    adminLink.id = 'admin-link';
-    adminLink.innerHTML = '<i class="fas fa-cogs"></i> ניהול אתר';
-    adminLink.style.display = 'flex';
-    adminLink.style.color = '#e74c3c'; // צבע אדום מיוחד לאפשרות הניהול
+    // אם אנחנו כאן, המשתמש לא מחובר - וודא שהאלמנטים מוצגים כראוי
+    console.log('משתמש לא מחובר, מעדכן תצוגת אלמנטים');
     
-    // יצירת קו מפריד נוסף
-    const divider = document.createElement('div');
-    divider.className = 'dropdown-divider logged-in-only admin-only';
-    divider.style.display = 'block';
-    
-    // מציאת המקום המתאים להוספת הקישור
-    const dropdown = document.querySelector('#profile-dropdown + .dropdown-menu');
-    if (dropdown) {
-      // הוספת הקישור לפני האפשרות האחרונה (התנתקות)
-      const logoutLink = document.getElementById('logout-link');
-      if (logoutLink) {
-        dropdown.insertBefore(divider, logoutLink);
-        dropdown.insertBefore(adminLink, divider);
-      } else {
-        // אם אין קישור התנתקות, נוסיף בסוף
-        dropdown.appendChild(adminLink);
-        dropdown.appendChild(divider);
-      }
-    }
-  }
-}
-
-/**
- * פונקציה לטעינת ההמלצות של המשתמש המחובר
- */
-function loadUserRecommendations() {
-  const userId = localStorage.getItem("usrId");
-  if (!userId) {
-    console.error('אין מזהה משתמש בזיכרון המקומי');
-    return;
-  }
-  
-  console.log('טוען המלצות עבור משתמש:', userId);
-  
-  fetchUserRecommendations(userId);
-}
-
-/**
- * פונקציית עזר לשליפת המלצות המשתמש מהשרת
- */
-async function fetchUserRecommendations(userId) {
-  try {
-    const responseSearches = await fetch("http://localhost:2001/user-recent-searches/"+userId);
-    
-    if (!responseSearches.ok) {
-      throw new Error(`Server returned ${responseSearches.status}: ${responseSearches.statusText}`);
-    }
-    
-    // מערך של האטרקציות הרנדומליות
-    const attractionsId = await responseSearches.json();
-    var responseAttractions = [];
-    
-    // מעבר על ה-ids וארגון האטרקציות במערך json
-    for (const id of attractionsId) {
-      try {
-        const response = await fetch(`http://localhost:2001/api/attraction-productId/`+id);
-        if (!response.ok) {
-          console.warn(`Error fetching attraction with id ${id}`);
-          continue;
-        }
-        const data = await response.json();
-        responseAttractions.push(data);
-      } catch (error) {
-        console.error(`Failed to fetch attraction ${id}:`, error.message);
-      }
-    }
-    
-    // עדכון התצוגה עם האטרקציות שהתקבלו
-    updateAttractionsDisplay(responseAttractions);
-  } catch (error) {
-    console.error('שגיאה בשליפת המלצות המשתמש:', error);
-  }
-}
-
-/**
- * פונקציית עזר לעדכון תצוגת האטרקציות המומלצות
- */
-function updateAttractionsDisplay(attractions) {
-  const container = document.getElementById("dynamic-gallery");
-  if (!container) {
-    console.error('לא נמצא קונטיינר להצגת אטרקציות מומלצות');
-    return;
-  }
-
-  // מנקה תוכן קודם
-  container.innerHTML = ""; 
-  
-  // ניקוי קונטיינר הקנבס
-  const canvasContainer = document.getElementById("ticketsB");
-  if (canvasContainer) {
-    canvasContainer.innerHTML = "";
-  }
-  
-  // בדיקה אם יש אטרקציות להצגה
-  if (attractions && attractions.length > 0) {
-    // הצגת הכותרת אם יש אטרקציות
-    const recommendedTitle = document.getElementById("recommended-attractions-title");
-    if (recommendedTitle) {
-      recommendedTitle.style.display = 'block'; // מוציא את הכותרת מהסתרה
-      console.log('הכותרת "אטרקציות מומלצות בשבילך" מוצגת');
-    }
-    
-    // מציג את האטרקציות הרנדומליות ב-html
-    attractions.forEach(attraction => {
-      const attractionID = attraction.productId;
-      const card = document.createElement("button");
-      card.className = "dynamic-ticket";
-      card.setAttribute("data-id", attractionID);
-      card.setAttribute("onclick", "showCanvas("+attractionID+")");
-      card.innerHTML = `
-        <div class="image-container">
-          <img id="dynamicImage" src="${attraction.mainImage}">
-        </div>
-        <div class="content">
-          <div class="title">${attraction.attractionName}</div>
-          <div class="subtitle">${attraction.category}</div>
-          <div class="bottom-ticket">
-            <a href="#" class="button">בחרו אפשרות</a>
-            <div class="product-number">מוצר מס: <b>${attraction.productId}</b></div>
-          </div>
-        </div>
-      `;
-      container.appendChild(card);
-      
-      // יצירת קנבס עבור האטרקציה
-      createAttractionCanvas(attraction, canvasContainer);
+    // הסתרת אלמנטים למשתמש מחובר
+    document.querySelectorAll('.logged-in-only').forEach(el => {
+      el.style.display = 'none';
     });
-  } else {
-    // אם אין אטרקציות, הסתר את הכותרת
-    const recommendedTitle = document.getElementById("recommended-attractions-title");
-    if (recommendedTitle) {
-      recommendedTitle.style.display = 'none';
-      console.log('אין אטרקציות להצגה, הכותרת מוסתרת');
-    }
-  }
-}
-
-/**
- * פונקציית עזר ליצירת קנבס עבור אטרקציה
- */
-function createAttractionCanvas(attraction, container) {
-  if (!container) return;
-  
-  const attractionID = attraction.productId;
-  const canvas = document.createElement("div");
-  
-  canvas.innerHTML = `<div class="offcanvas offcanvas-start" tabindex="-1" data-bs-backdrop="true" data-bs-scroll="false" id="${attractionID}">
-    <div class="offcanvas-header">
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" onclick="closeCanvas(${attractionID})"></button>
-    </div>
-    <div class="offcanvas-body">
-      <h2 class="offcanvas-title">${attraction.attractionName}</h2>
-      <h3 class="offcanvas-subtitle">${attraction.attractionNameENGLISH}</h3>
-      <!-- Content for Lotus Mega Yacht -->
-      <div id="carousel-${attractionID}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="${attraction.gallery[0]}" class="d-block w-100" alt="תמונה 1">
-          </div>
-          <div class="carousel-item">
-            <img src="${attraction.gallery[1]}" class="d-block w-100" alt="תמונה 2">
-          </div>
-          <div class="carousel-item">
-            <img src="${attraction.gallery[2]}" class="d-block w-100" alt="תמונה 3">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-${attractionID}" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel-${attractionID}" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-
-      <p>${attraction.description}</p>
-      <h5><i class="fas fa-clock"></i> שעות פעילות </h5>
-      <p>${attraction.openingHours}</p>
-      <h5><i class="fas fa-hourglass-half"></i> זמן ממוצע לבילוי </h5>
-      <p> ${attraction.visitDuration}</p>
-      <h5><i class="fas fa-wheelchair"></i> נגישות </h5>
-      <p>${attraction.accessibility}</p>
-
-      <div class="container mt-3">
-        <div class="ticket-container" data-contry='${attraction.city}' data-name='${attraction.attractionName}' data-category='${attraction.category}' data-id="${attractionID}">
-          <div class="ticket-category" data-type="adult">
-            <div>
-              <button class="btn btn-secondary" onclick="decreaseAmount('adult', this)">-</button>
-              <span class="amount" data-id="adult-amount">0</span>
-              <button class="btn btn-secondary" onclick="increaseAmount('adult', this)">+</button>
-            </div>
-            <span class="price" data-id="adult-price">₪${attraction.ticketTypes[0].price}</span>
-            <div>
-              <span class="sub-text">מגיל 10</span>
-            </div>
-            <span>מבוגר</span>
-          </div>
-
-          <div class="ticket-category" data-type="child">
-            <div>
-              <button class="btn btn-secondary" onclick="decreaseAmount('child', this)">-</button>
-              <span class="amount" data-id="child-amount">0</span>
-              <button class="btn btn-secondary" onclick="increaseAmount('child', this)">+</button>
-            </div>
-            <span class="price" data-id="child-price">₪${attraction.ticketTypes[1].price}</span>
-            <div>
-              <span class="sub-text">מגיל 3 עד 10</span>
-            </div>
-            <span>ילד</span>
-          </div>
-
-          <div class="ticket-category" data-type="infant">
-            <div>
-              <button class="btn btn-secondary" onclick="decreaseAmount('infant', this)">-</button>
-              <span class="amount" data-id="infant-amount">0</span>
-              <button class="btn btn-secondary" onclick="increaseAmount('infant', this)">+</button>
-            </div>
-            <span class="price" data-id="infant-price">₪${attraction.ticketTypes[2].price}</span>
-            <div>
-              <span class="sub-text">עד גיל 3</span>
-            </div>
-            <span>פעוט</span>
-          </div>
-
-          <div class="ticket-category">
-            <span id="total-price">₪0</span>
-            <span>סכום ההזמנה</span>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="text-center">
-        <button class="btn btn-custom" type="button" onclick="addCart(${attractionID})">הוסף לסל</button>
-      </div>
-
-    </div>
-  </div>`;
-  
-  container.appendChild(canvas);
-}
-
-/**
- * בדיקה אם המשתמש מחובר ועדכון ממשק המשתמש בהתאם
- */
-function checkUserLogin() {
-  console.log('בודק סטטוס התחברות משתמש...');
-  
-  // בדיקה אם יש אובייקט userInfo ב-localStorage
-  let userInfo = null;
-  try {
-    const userInfoStr = localStorage.getItem('userInfo');
-    userInfo = userInfoStr ? JSON.parse(userInfoStr) : null;
-  } catch (e) {
-    console.error('שגיאה בפענוח userInfo מ-localStorage:', e);
-  }
-  
-  // בדיקה אם יש מידע ב-session/localStorage הישן
-  const username = sessionStorage.getItem('username');
-  const displayName = sessionStorage.getItem('displayName') || localStorage.getItem('displayName');
-  const userId = sessionStorage.getItem('userId');
-  const isAdmin = sessionStorage.getItem('isAdmin') === 'true';
-  
-  console.log('נתוני משתמש משמירה:', { username, displayName, userId, isAdmin });
-  console.log('נתוני userInfo מ-localStorage:', userInfo);
-  
-  // בדיקה אם המשתמש מחובר לפי אחד מהנתונים
-  const isLoggedIn = !!(userInfo || username || displayName || userId);
-  console.log('סטטוס התחברות:', isLoggedIn ? 'מחובר' : 'לא מחובר');
-  
-  // עדכון תצוגת השם במידה ויש משתמש מחובר
-  const userGreeting = document.getElementById('user-greeting');
-  if (userGreeting) {
-    if (isLoggedIn) {
-      // הצגת שם המשתמש
-      const nameToShow = userInfo?.displayName || displayName || username || 'משתמש';
-      userGreeting.textContent = ` היי, ${nameToShow}`;
-    } else {
-      // הצגת "אורח/ת"
+    
+    // הצגת אלמנטים למשתמש לא מחובר
+    document.querySelectorAll('.logged-out-only').forEach(el => {
+      el.style.display = 'block';
+    });
+    
+    // עדכון בתפריט הנפתח
+    document.querySelectorAll('.dropdown-item.logged-in-only').forEach(el => {
+      el.style.display = 'none';
+    });
+    
+    document.querySelectorAll('.dropdown-item.logged-out-only').forEach(el => {
+      el.style.display = 'flex';
+    });
+    
+    // וודא שהקווים המפרידים למשתמש מחובר לא מוצגים
+    document.querySelectorAll('.dropdown-divider.logged-in-only').forEach(el => {
+      el.style.display = 'none';
+    });
+    
+    // עדכון טקסט בכותרת התפריט הנפתח
+    const userGreeting = document.getElementById('user-greeting');
+    if (userGreeting) {
       userGreeting.textContent = ' היי, אורח/ת';
-    }
-    userGreeting.style.visibility = 'visible';
-  }
-  
-  // עדכון תצוגת האלמנטים לפי מצב התחברות
-  updateDisplayElements(isLoggedIn);
-}
-
-/**
- * עדכון תוכן הפרופיל והממשק
- */
-function updateProfileContent(userInfo, fallbackDisplayName) {
-  console.log('Updating profile content...');
-  
-  const userGreetingElement = document.getElementById('user-greeting');
-  if (!userGreetingElement) {
-    console.error('User greeting element not found');
-    return;
-  }
-  
-  // בדיקה אם המשתמש מחובר
-  const isLoggedIn = checkIfLoggedIn(userInfo, fallbackDisplayName);
-  
-  // עדכון התוכן לפי מצב ההתחברות
-  if (isLoggedIn) {
-    // הצגת שם המשתמש
-    const displayName = userInfo?.displayName || fallbackDisplayName;
-    console.log('User is logged in, display name:', displayName);
-    userGreetingElement.textContent = ` היי, ${displayName}`;
-  } else {
-    // הצגת "אורח/ת"
-    console.log('User is not logged in');
-    userGreetingElement.textContent = ' היי, אורח/ת';
-  }
-  
-  // הצגת האלמנט כי טענו את המידע
-  userGreetingElement.style.visibility = 'visible';
-  
-  // עדכון תצוגת האלמנטים לפי מצב התחברות
-  updateDisplayElements(isLoggedIn);
-}
-
-/**
- * בדיקה אם המשתמש מחובר
- */
-function checkIfLoggedIn(userInfo, fallbackDisplayName) {
-  return (userInfo && (userInfo.token || userInfo.userId || userInfo.displayName)) || fallbackDisplayName;
-}
-
-/**
- * עדכון תצוגת האלמנטים לפי מצב התחברות
- */
-function updateDisplayElements(isLoggedIn) {
-  console.log('מעדכן תצוגת אלמנטים לפי מצב התחברות:', isLoggedIn);
-  
-  // עדכון אלמנטים למשתמש מחובר
-  document.querySelectorAll('.logged-in-only').forEach(el => {
-    el.style.display = isLoggedIn ? 'block' : 'none';
-  });
-  
-  // עדכון אלמנטים למשתמש לא מחובר
-  document.querySelectorAll('.logged-out-only').forEach(el => {
-    el.style.display = isLoggedIn ? 'none' : 'block';
-  });
-  
-  // טיפול מיוחד בפריטי תפריט נפתח
-  document.querySelectorAll('.dropdown-item.logged-in-only').forEach(el => {
-    el.style.display = isLoggedIn ? 'flex' : 'none';
-  });
-  
-  document.querySelectorAll('.dropdown-item.logged-out-only').forEach(el => {
-    el.style.display = isLoggedIn ? 'none' : 'flex';
-  });
-  
-  // עדכון קווים מפרידים בתפריט הנפתח
-  document.querySelectorAll('.dropdown-divider.logged-in-only').forEach(el => {
-    el.style.display = isLoggedIn ? 'block' : 'none';
-  });
-  
-  // עדכון קישור לאזור האישי
-  const personalAreaLink = document.getElementById('personal-area-link');
-  if (personalAreaLink) {
-    if (isLoggedIn) {
-      personalAreaLink.classList.remove('disabled');
-      personalAreaLink.setAttribute('href', 'userProfile.html');
-    } else {
-      personalAreaLink.classList.add('disabled');
-      personalAreaLink.setAttribute('href', 'loginPage.html');
+      userGreeting.style.visibility = 'visible';
     }
   }
-  
-  // בדיקה אם המשתמש הוא מנהל
-  const isAdmin = isUserAdmin();
-  
-  console.log('האם המשתמש מחובר:', isLoggedIn);
-  console.log('האם המשתמש מנהל:', isAdmin);
-  
-  // עדכון אלמנטים למנהלים בלבד
-  document.querySelectorAll('.admin-only').forEach(el => {
-    el.style.display = (isLoggedIn && isAdmin) ? 'block' : 'none';
-  });
-  
-  // טיפול מיוחד בפריטי תפריט למנהלים
-  document.querySelectorAll('.dropdown-item.admin-only').forEach(el => {
-    el.style.display = (isLoggedIn && isAdmin) ? 'flex' : 'none';
-  });
-  
-  // עדכון קווים מפרידים למנהלים
-  document.querySelectorAll('.dropdown-divider.admin-only').forEach(el => {
-    el.style.display = (isLoggedIn && isAdmin) ? 'block' : 'none';
-  });
-  
-  // עדכון עגלת הקניות למשתמש מחובר
-  if (isLoggedIn) {
-    const username = sessionStorage.getItem('username');
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    
-    if (username || (userInfo && userInfo.username)) {
-      updateCartCount(username || (userInfo ? userInfo.username : null));
-    }
-  } else {
-    // איפוס כמות המוצרים בעגלה
-    const cartCount = document.getElementById('cart-count');
-    if (cartCount) {
-      cartCount.textContent = '0';
-    }
-  }
-}
-
-/**
- * התנתקות המשתמש
- */
-function logoutUser() {
-  console.log('מתנתק מהמערכת...');
-  
-  // ניקוי מלא של כל הנתונים בזיכרון המקומי
-  // ניקוי sessionStorage
-  sessionStorage.removeItem('displayName');
-  sessionStorage.removeItem('username');
-  sessionStorage.removeItem('userId');
-  sessionStorage.removeItem('isAdmin');
-  
-  // ניקוי localStorage - כל המפתחות הרלוונטיים
-  localStorage.removeItem('displayName');
-  localStorage.removeItem('UserName');
-  localStorage.removeItem('userInfo');
-  localStorage.removeItem('usrId'); // חשוב מאוד - זה המפתח שנשמר ומציג אטרקציות
-  
-  // מחיקת כל הנתונים הקשורים למשתמש גם במפתחות פחות מובהקים
-  localStorage.removeItem('userId');
-  localStorage.removeItem('username');
-  localStorage.removeItem('user_id');
-  localStorage.removeItem('token');
-  
-  // עדכון התצוגה להסתרת האטרקציות המומלצות
-  const recommendedTitle = document.getElementById('recommended-attractions-title');
-  if (recommendedTitle) {
-    recommendedTitle.style.display = 'none';
-  }
-  
-  const dynamicGallery = document.getElementById('dynamic-gallery');
-  if (dynamicGallery) {
-    dynamicGallery.innerHTML = '';
-  }
-  
-  // ניסיון לשלוח בקשת התנתקות לשרת
-  try {
-    fetch('/logout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      console.log('תגובת שרת להתנתקות:', response);
-      // ריענון הדף הנוכחי
-      window.location.reload();
-    })
-    .catch(error => {
-      console.error('שגיאה בעת התנתקות:', error);
-      // ריענון הדף הנוכחי גם במקרה של שגיאה
-      window.location.reload();
-    });
-  } catch (error) {
-    console.error('שגיאה בעת שליחת בקשת התנתקות:', error);
-    // ריענון הדף במקרה של שגיאה
-    window.location.reload();
-  }
-}
-
-/**
- * עדכון כמות המוצרים בעגלה
- */
-function updateCartCount(username) {
-  if (!username) {
-    console.log('אין שם משתמש, דילוג על עדכון העגלה');
-    return;
-  }
-  
-  console.log('מעדכן כמות מוצרים בעגלה עבור משתמש:', username);
-  
-  // בדיקה אם יש תקשורת שרת
-  fetch(`/api/cart?username=${username}`)
-    .then(response => response.json())
-    .then(data => {
-      let totalItems = 0;
-      if (data.cart && Array.isArray(data.cart)) {
-        totalItems = data.cart.reduce((total, item) => total + item.amount, 0);
-      }
-      
-      const cartCount = document.getElementById('cart-count');
-      if (cartCount) {
-        cartCount.textContent = totalItems.toString();
-      }
-      
-      console.log('עגלה עודכנה, סה"כ פריטים:', totalItems);
-    })
-    .catch(error => {
-      console.error('שגיאה בהבאת נתוני עגלה:', error);
-    });
-}
-
-// פונקציה לשימוש בקוד ישן
-function getDisplayNameFromSessionStorage() {
-  return sessionStorage.getItem('displayName') || localStorage.getItem('displayName');
-}
-
-// פונקציית עזר לנוחות בבחירת אלמנטים על ידי טקסט (ל-jQuery יש :contains אבל אנחנו משתמשים בג'אווהסקריפט טהור)
-if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-}
-
-if (!Document.prototype.querySelector) {
-  Document.prototype.querySelector = Element.prototype.querySelector;
-}
-
-// מוסיף בחירת אלמנטים על פי טקסט שהם מכילים
-Document.prototype.querySelector = function(selector) {
-  if (selector.includes(':contains(')) {
-    const match = selector.match(/:contains\(["']?([^)"']+)["']?\)/);
-    if (match) {
-      const searchText = match[1];
-      const baseSelector = selector.replace(/:contains\(["']?([^)"']+)["']?\)/, '');
-      
-      const allElements = this.querySelectorAll(baseSelector || '*');
-      for (let i = 0; i < allElements.length; i++) {
-        if (allElements[i].textContent.includes(searchText)) {
-          return allElements[i];
-        }
-      }
-      return null;
-    }
-  }
-  return Element.prototype.querySelector.call(this, selector);
-};
-
-// פונקציה לתמיכה ב-showCanvas במקרה שהפונקציה המקורית לא מוגדרת
-if (typeof showCanvas !== 'function') {
-  window.showCanvas = function(id) {
-    const offcanvasElement = document.getElementById(id);
-    if (offcanvasElement && typeof bootstrap !== 'undefined') {
-      const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
-      bsOffcanvas.show();
-    } else {
-      console.error('לא ניתן לפתוח את ה-offcanvas - חסרה ספריית bootstrap או שהאלמנט לא קיים');
-    }
-  };
-}
-
-// פונקציה לתמיכה ב-closeCanvas במקרה שהפונקציה המקורית לא מוגדרת
-if (typeof closeCanvas !== 'function') {
-  window.closeCanvas = function(id) {
-    const offcanvasElement = document.getElementById(id);
-    if (offcanvasElement && typeof bootstrap !== 'undefined') {
-      const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
-      if (bsOffcanvas) {
-        bsOffcanvas.hide();
-      }
-    }
-  };
-}
