@@ -126,3 +126,965 @@ background-color: #198AD7;
   text-align: right;
   direction: rtl; /* This ensures the dropdown arrow is on the left */
 }
+
+/* עיצוב למדריך הכרטיסיות של דובאי */
+
+.dubai-guide-section {
+  font-family: 'Varela Round', sans-serif;
+  max-width: 1200px;
+  margin: 40px auto;
+  direction: rtl;
+  padding: 0 15px;
+}
+
+.dubai-guide-title {
+  color: #198AD7;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.dubai-guide-title:after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 3px;
+  background-color: #198AD7;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.guide-card.active {
+  border: 2px solid #198AD7;
+}
+
+.card-header {
+  background-color: #f8f8f8;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header i {
+  font-size: 1.8rem;
+  color: #198AD7;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.card-preview {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start; /* במקום center, כדי שהטקסט לא ייחתך */
+  flex-direction: column; /* סידור אנכי של התוכן */
+}
+
+.card-preview p {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+  width: 100%; /* רוחב מלא */
+  overflow-wrap: break-word; /* מאפשר לטקסט ארוך להתפצל */
+}
+
+/* עיצוב מיכל התוכן */
+.guide-content-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 50px 15px;
+}
+
+.guide-content-container.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.guide-content {
+  background-color: #fff;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.content-close-btn {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.3);
+  transition: background-color 0.3s;
+}
+
+.content-close-btn:hover {
+  background-color: rgba(0,0,0,0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* עיצוב תוכן המדריך */
+/* כאן יכנסו עיצובים ספציפיים לכל מודול תוכן */
+
+.guide-content h2 {
+  color: #198AD7;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #198AD7;
+  padding-bottom: 10px;
+}
+
+.guide-content h3 {
+  color: #0088cc;
+  font-size: 1.4rem;
+  margin: 20px 0 15px;
+}
+
+.guide-content p {
+  color: #333;
+  line-height: 1.6;
+}
+
+.guide-content ul {
+  padding-right: 20px;
+}
+
+.guide-content li {
+  margin-bottom: 8px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.info-card {
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.info-card i {
+  font-size: 2rem;
+  color: #198AD7;
+  margin-bottom: 10px;
+}
+
+.info-card h4 {
+  margin: 0 0 10px;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* עיצוב ספציפי לצ'ק ליסט */
+.checklist-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.checklist-item:hover {
+  background-color: #e6f7ff;
+}
+
+.checklist-item input[type="checkbox"] {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+/* תמיכה במסכים קטנים */
+@media (max-width: 768px) {
+  .guide-content {
+    padding: 20px;
+  }
+  
+  .guide-cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* עיצוב מחדש של מיכל התוכן כדרופדאון רחב יותר */
+.guide-content-container {
+  position: absolute;
+  top: auto; /* לא יופיע בראש המסך */
+  left: 0;
+  width: 100%;
+  height: auto; /* גובה יהיה לפי התוכן */
+  min-height: 400px; /* גובה מינימלי */
+  max-height: 80vh; /* מקסימום גובה 80% מגובה המסך */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000;
+  overflow-y: auto; /* אפשרות לגלילה */
+  margin-top: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.guide-content-container.active {
+  display: block;
+}
+
+.guide-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  color: black;
+  font-size: 16px; /* גודל טקסט קריא */
+  line-height: 1.5; /* מרווח בין שורות */
+}
+
+/* הגדלת גובה התוכן עבור הכרטיסיות */
+.kosher-content, .general-info-content, .travel-tips-content, 
+.shopping-content, .events-content, .transportation-content, 
+.accommodation-content, .photo-spots-content, .checklist-content {
+  min-height: 350px;
+}
+
+/* שיפורים נוספים למראה הדרופדאון */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* כפתור סגירה גדול יותר וברור יותר */
+.content-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background-color: #f8f8f8;
+  border-radius: 50%;
+  color: #dc3545;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.content-close-btn:hover {
+  background-color: #f1f1f1;
+}
+
+/* גלילה חלקה */
+html {
+  scroll-behavior: smooth;
+}
+
+/* מסתיר את כל אזורי התוכן כברירת מחדל */
+.guide-section-content {
+  display: none; /* מוסתר כברירת מחדל */
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0 30px 0; /* מרווח מעל ומתחת */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 100%;
+  transition: all 0.3s ease;
+  overflow: hidden; /* מונע גלישה של תוכן */
+}
+
+/* מציג רק את אזור התוכן הפעיל */
+.guide-section-content.active {
+  display: block; /* מוצג כשהוא פעיל */
+}
+
+/* עיצוב הכרטיסיות */
+.guide-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.guide-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  height: auto; /* במקום גובה קבוע, נשתמש בגובה אוטומטי */
+  min-height: 180px; /* גובה מינימלי */
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px; /* מרווח בתחתית הכרטיסייה */
+}
+
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.guide-card.active {
+  border-color: #007bff;
+  background-color: #f0f7ff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+/* עיצוב כפתור חזרה למעלה */
+.back-to-top {
+  display: inline-block;
+  background-color: #198AD7; /* שימוש בצבע המותג שלך */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-to-top:hover {
+  background-color: #0056b3;
+}
+
+/* שיפור מראה כללי של התוכן */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* הגדרת צבעים וסגנונות לכותרות */
+.guide-section-content h2 {
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.guide-section-content h3 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  color: #0056b3;
+}
+
+/* עיצוב בסיסי לאזור המדריך */
+.dubai-guide-section {
+  font-family: 'Varela Round', sans-serif;
+  max-width: 1200px;
+  margin: 40px auto;
+  direction: rtl;
+  padding: 0 15px;
+  position: relative; /* חשוב לפוזישינינג של מיכל התוכן */
+}
+
+/* עיצוב לכרטיסיות */
+.guide-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.guide-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  border: 2px solid transparent; /* גבול שקוף כדי למנוע קפיצות בעת מעבר למצב פעיל */
+}
+
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.guide-card.active {
+  border: 2px solid #198AD7;
+  background-color: #f0f7ff;
+}
+
+.card-header {
+  background-color: #f8f8f8;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header i {
+  font-size: 1.8rem;
+  color: #198AD7;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #333;
+  text-align: right;
+}
+
+.card-preview {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.card-preview p {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+/* עיצוב מיכל התוכן */
+.guide-content-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.guide-content-container.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.guide-content {
+  background-color: #fff;
+  max-width: 900px;
+  margin: 50px auto;
+  border-radius: 10px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.content-close-btn {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.3);
+  transition: background-color 0.3s;
+}
+
+.content-close-btn:hover {
+  background-color: rgba(0,0,0,0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* עיצוב תוכן המדריך */
+.guide-content h2 {
+  color: #198AD7;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #198AD7;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guide-content h2 i {
+  font-size: 1.8rem;
+}
+
+.guide-content h3 {
+  color: #0088cc;
+  font-size: 1.4rem;
+  margin: 20px 0 15px;
+  text-align: right;
+}
+
+.guide-content p {
+  color: #333;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.guide-content ul {
+  padding-right: 20px;
+  text-align: right;
+}
+
+.guide-content li {
+  margin-bottom: 8px;
+  text-align: right;
+}
+
+/* עיצוב רשת המידע */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.info-card {
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: right;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.info-card i {
+  font-size: 1.5rem;
+  color: #198AD7;
+  margin-bottom: 10px;
+}
+
+.info-card h4 {
+  margin: 10px 0;
+  color: #333;
+}
+
+.info-card p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* עיצוב שני טורים */
+.two-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* עיצוב צ'ק ליסט */
+.checklist-container {
+  margin: 20px 0;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.checklist-item:hover {
+  background-color: #e6f7ff;
+}
+
+.checklist-item input[type="checkbox"] {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+/* תמיכה במסכים קטנים */
+@media (max-width: 768px) {
+  .guide-content {
+    padding: 20px;
+    margin: 30px auto;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .content-close-btn {
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+.guide-section-content {
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.guide-card.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+/* עיצוב למדריך הטיולים לדובאי */
+.dubai-guide-section {
+  font-family: 'Varela Round', sans-serif;
+  max-width: 1200px;
+  margin: 40px auto;
+  direction: rtl;
+  padding: 0 15px;
+}
+
+/* עיצוב מיכל הכרטיסיות */
+.guide-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+/* עיצוב כרטיסייה בודדת */
+.guide-card {
+  background-color: #fff;
+  border-radius: 10px 10px 0 0; /* פינות מעוגלות רק למעלה כשפעיל */
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  position: relative; /* חשוב לפוזישינינג של התוכן */
+}
+
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.guide-card.active {
+  border-color: #198AD7;
+  border-bottom-color: transparent;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  background-color: #f0f7ff;
+  transform: translateY(0);
+}
+
+/* עיצוב כותרת הכרטיסייה */
+.card-header {
+  background-color: transparent;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header i {
+  font-size: 1.8rem;
+  color: #198AD7;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #333;
+  text-align: right;
+}
+
+/* עיצוב תקציר הכרטיסייה */
+.card-preview {
+  padding: 0 15px 15px;
+  flex-grow: 1;
+}
+
+.card-preview p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* עיצוב אזור התוכן שמופיע מתחת לכרטיסייה */
+.guide-content-section {
+  width: 100%;
+  background-color: #f0f7ff;
+  border: 2px solid #198AD7;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.guide-content-inner {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+/* עיצוב טקסט בתוך אזור התוכן */
+.guide-content-section h2 {
+  color: #198AD7;
+  font-size: 1.7rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e6f0ff;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guide-content-section h2 i {
+  font-size: 1.5rem;
+}
+
+.guide-content-section h3 {
+  color: #0088cc;
+  font-size: 1.3rem;
+  margin: 20px 0 15px;
+  text-align: right;
+}
+
+.guide-content-section p {
+  color: #333;
+  line-height: 1.6;
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.guide-content-section ul {
+  padding-right: 20px;
+  padding-left: 0;
+  text-align: right;
+}
+
+.guide-content-section li {
+  margin-bottom: 8px;
+  text-align: right;
+}
+
+/* עיצוב רשת המידע */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.info-card {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: right;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.info-card i {
+  font-size: 1.5rem;
+  color: #198AD7;
+  margin-bottom: 10px;
+}
+
+.info-card h4 {
+  margin: 10px 0;
+  color: #333;
+}
+
+.info-card p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* עיצוב שני טורים */
+.two-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* עיצוב צ'ק ליסט */
+.checklist-container {
+  margin: 20px 0;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 12px 15px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.checklist-item:hover {
+  background-color: #e6f7ff;
+}
+
+.checklist-item input[type="checkbox"] {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+/* כפתור חזרה למעלה */
+.back-to-top {
+  background-color: #198AD7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin: 20px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 20px auto;
+}
+
+.back-to-top:hover {
+  background-color: #0056b3;
+}
+
+/* פתרון לבעיית התצוגה של גריד */
+.guide-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* גורם לתוכן להופיע בשורה חדשה ולא לצד הקוביה */
+.guide-content-section {
+  grid-column: 1 / -1; /* תופס את כל הרוחב של הגריד */
+  width: 100%;
+  margin-top: -10px; /* מתקרב לקוביה שמעליו */
+}
+
+/* תיקון לחלק התחתון של הקוביה כשהיא פעילה */
+.guide-card.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+  z-index: 2;
+}
+
+/* תמיכה במסכים קטנים */
+@media (max-width: 768px) {
+  .guide-cards-container {
+    grid-template-columns: 1fr; /* עמודה אחת במסכים קטנים */
+  }
+  
+  .info-grid, .two-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .guide-content-section {
+    padding: 15px;
+  }
+  
+  .guide-content-inner {
+    padding: 15px;
+  }
+}
+
