@@ -44,7 +44,8 @@ window.addEventListener('load', async function() {
             // לולאה שעוברת על עגלת הקניות ומוסיפה שורות לטבלה
             for (let i = 0; i < cart.length; i++) {
                 sum += cart[i].price * cart[i].amount;
-                htmlStrig += '<tr id="tr'+cart[i].productId+'">';
+                htmlStrig += '<tr id="tr'+cart[i].productId+'-'+cart[i].type+'">';
+               // htmlStrig += '<tr id="tr'+cart[i].productId+'">';
                 htmlStrig += '<td>'+cart[i].productId+'</td>'; // מספר מוצר
                 htmlStrig += '<td>'+cart[i].contry+'</td>'; // עיר
                 htmlStrig += '<td>'+cart[i].category+'</td>'; // קטגוריה
@@ -150,12 +151,32 @@ async function deleteRow(id, type) {
         var row = document.getElementById("tr" + id + "-" + type);
         if (row) {
             row.remove(); // מוחק את השורה מהטבלה
-            await recalculateTotalPrice(); // עדכון הסכום
+            recalculateTotalPriceFromTable(); // עדכון הסכום מתוך הטבלה
+            // await recalculateTotalPrice(); // עדכון הסכום
             updateCartCount(); // עדכון כמות הפריטים
         } else {
             console.error(`לא נמצאה שורה עם מזהה tr${id}-${type}`);
         }
     }
+}
+
+function recalculateTotalPriceFromTable() {
+    let total = 0;
+    const table = document.getElementById("table_cart");
+    const rows = table.getElementsByTagName("tr");
+
+    // התחל מהשורה השנייה (שורת הכותרת היא הראשונה)
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        if (cells.length >= 8) {
+            const subtotal = parseFloat(cells[7].innerText); // תא "סה"כ"
+            if (!isNaN(subtotal)) {
+                total += subtotal;
+            }
+        }
+    }
+
+    document.getElementById("total_price").innerText = total;
 }
 
 async function removeFromDatabase(id, type) {
