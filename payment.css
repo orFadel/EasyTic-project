@@ -28,13 +28,25 @@ margin: 0 50px;
 }
 
 .container {
-    max-width: 600px;
-    margin: 20px auto;
+    max-width: 500px;
+    width: 90%;
+   /* margin: 20px auto;*/
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     position: relative;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* חשוב שיהיה מינימום גובה מסך */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding-bottom: 70px; /* כדי להשאיר מקום לאייקונים של התשלום */
 }
 
 h2 {
