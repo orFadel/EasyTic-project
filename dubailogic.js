@@ -66,14 +66,26 @@ async function testCartAdd() {
 
 async function addCart(id) {
   // בדיקה אם המשתמש מחובר
-  const username = localStorage.getItem('UserName');
+  const username = localStorage.getItem('UserName') || 
+                   (localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).username : null) ||
+                   (localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).email : null) ||
+                   sessionStorage.getItem('username');
+  
   if (!username) {
     alert("יש להתחבר למערכת לפני הוספת פריטים לעגלה");
     window.location.href = "loginPage.html";
     return;
   }
 
-  var container = document.querySelector('[data-id="'+id+'"]');
+  var container = null;
+  const allContainers = document.querySelectorAll('[data-id]');
+  for (var i = 0; i < allContainers.length; i++) {
+    if (allContainers[i].getAttribute('data-id') === id.toString()) {
+      container = allContainers[i];
+      break;
+    }
+  }
+  
   if (!container) {
     console.error("לא נמצא מיכל עם מזהה " + id);
     return;
@@ -214,8 +226,11 @@ function updateTotalPrice(container) {
   }
 }
 
-function updateCartCount() {
-  const username = localStorage.getItem('UserName');
+async function updateCartCount() {
+  const username = localStorage.getItem('UserName') || 
+                   (localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).username : null) ||
+                   sessionStorage.getItem('username');
+  
   if (!username) {
     // אם אין משתמש מחובר, מאפס את מספר הפריטים
     const cartCountElement = document.getElementById('cart-count');
@@ -226,38 +241,40 @@ function updateCartCount() {
   }
   
   // ניסיון לקבל את העגלה מהשרת
-  fetch(`/api/cart?username=${username}`)
-    .then(response => {
-      if (!response.ok) throw new Error('שגיאה בטעינת העגלה');
-      return response.json();
-    })
-    .then(data => {
-      if (data.cart && Array.isArray(data.cart)) {
-        let totalItems = 0;
-        // חישוב סך כל הפריטים בעגלה
-        data.cart.forEach(item => {
-          totalItems += item.amount;
-        });
-        
-        // עדכון המספר באייקון העגלה
-        const cartCountElement = document.getElementById('cart-count');
-        if (cartCountElement) {
-          cartCountElement.textContent = totalItems;
-        }
-      } else {
-        const cartCountElement = document.getElementById('cart-count');
-        if (cartCountElement) {
-          cartCountElement.textContent = '0';
-        }
+  try {
+    const response = await fetch(`/api/cart?username=${username}`);
+    
+    if (!response.ok) {
+      throw new Error('שגיאה בטעינת העגלה');
+    }
+    
+    const data = await response.json();
+    
+    if (data.cart && Array.isArray(data.cart)) {
+      let totalItems = 0;
+      // חישוב סך כל הפריטים בעגלה
+      data.cart.forEach(item => {
+        totalItems += item.amount;
+      });
+      
+      // עדכון המספר באייקון העגלה
+      const cartCountElement = document.getElementById('cart-count');
+      if (cartCountElement) {
+        cartCountElement.textContent = totalItems;
       }
-    })
-    .catch(error => {
-      console.error('שגיאה בעדכון מספר הפריטים:', error);
+    } else {
       const cartCountElement = document.getElementById('cart-count');
       if (cartCountElement) {
         cartCountElement.textContent = '0';
       }
-    });
+    }
+  } catch (error) {
+    console.error('שגיאה בעדכון מספר הפריטים:', error);
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+      cartCountElement.textContent = '0';
+    }
+  }
 }
 
 async function addSearch(productId, userId) {

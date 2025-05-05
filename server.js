@@ -321,7 +321,15 @@ app.post('/api/cart/update', async (req, res) => {
     }
 
     try {
-        let user = await User.findOne({ username: username });
+        // חיפוש משתמש לפי שם משתמש או מזהה
+        let user = await User.findOne({
+            $or: [
+                { username: username },
+                { email: username },
+                { _id: mongoose.Types.ObjectId.isValid(username) ? username : null }
+            ]
+        });
+
         if (!user) {
             console.log('User not found:', username);
             return res.status(404).json({ message: 'User not found' });
@@ -419,7 +427,13 @@ app.post('/api/cart/delete', async (req, res) => {
     }
 
     try {
-        const user = await User.findOne({ username: username });
+        const user = await User.findOne({ 
+            $or: [
+                { username: username },
+                { email: username },
+                { _id: mongoose.Types.ObjectId.isValid(username) ? username : null }
+            ]
+        });
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });

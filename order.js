@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema({
             productId: { type: Number, required: true },
             productName: { type: String, required: true },
             category: { type: String, required: true },
-            contry: { type: String, required: true }, // שינוי ל-country
+            contry: { type: String, required: true }, 
             type: { type: String, required: true }, // לדוגמה: "מבוגר", "ילד"
             price: { type: Number, required: true, min: 0 },
             amount: { type: Number, default: 1, min: 1 }

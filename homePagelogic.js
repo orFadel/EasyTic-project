@@ -3,6 +3,9 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('דף נטען, בודק סטטוס התחברות...');
   
+  // קריאה לפונקציה החדשה שמתקנת אי התאמות בנתוני משתמש
+  checkUserInfo();
+
   // קריאה לפונקציה שבודקת את מצב ההתחברות של המשתמש
   checkUserLogin();
   
@@ -402,6 +405,64 @@ function checkIfLoggedIn(userInfo, fallbackDisplayName) {
 }
 
 /**
+ * פונקציה לבדיקת תקינות אובייקט userInfo ותיקון אי התאמות
+ * יש להפעיל אותה בטעינת הדף
+ */
+function checkUserInfo() {
+  console.log('בודק ומתקן אובייקט userInfo...');
+  
+  // בדיקת userInfo
+  const userInfoStr = localStorage.getItem('userInfo');
+  if (userInfoStr) {
+    try {
+      const userInfo = JSON.parse(userInfoStr);
+      console.log('אובייקט userInfo נמצא:', userInfo);
+      
+      // בדיקה שכל הנתונים הנדרשים נמצאים גם במפתחות הישנים
+      if (userInfo.userId && !localStorage.getItem('usrId')) {
+        console.log('מוסיף usrId למפתחות הישנים');
+        localStorage.setItem('usrId', userInfo.userId);
+      }
+      
+      if (userInfo.username && !localStorage.getItem('UserName')) {
+        console.log('מוסיף UserName למפתחות הישנים');
+        localStorage.setItem('UserName', userInfo.username);
+      }
+      
+      if (userInfo.email && !localStorage.getItem('UserName')) {
+        console.log('משתמש באימייל כ-UserName');
+        localStorage.setItem('UserName', userInfo.email);
+      }
+      
+      return true;
+    } catch (e) {
+      console.error('שגיאה בפענוח userInfo:', e);
+      return false;
+    }
+  }
+  
+  // בדיקה אם יש נתונים בפורמט הישן
+  const usrId = localStorage.getItem('usrId');
+  const userName = localStorage.getItem('UserName');
+  
+  if (usrId && userName) {
+    console.log('נמצאו נתונים בפורמט ישן, יוצר אובייקט userInfo');
+    
+    // יצירת אובייקט userInfo מהנתונים הישנים
+    const newUserInfo = {
+      userId: usrId,
+      username: userName,
+      email: userName
+    };
+    
+    localStorage.setItem('userInfo', JSON.stringify(newUserInfo));
+    return true;
+  }
+  
+  return false;
+}
+
+/**
  * עדכון תצוגת האלמנטים לפי מצב התחברות
  */
 function updateDisplayElements(isLoggedIn) {
@@ -573,34 +634,25 @@ function getDisplayNameFromSessionStorage() {
   return sessionStorage.getItem('displayName') || localStorage.getItem('displayName');
 }
 
-// פונקציית עזר לנוחות בבחירת אלמנטים על ידי טקסט (ל-jQuery יש :contains אבל אנחנו משתמשים בג'אווהסקריפט טהור)
-if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+// אם יש גיבוי לפונקציות המקוריות, שחזר אותן
+if (Element.prototype._originalQuerySelector) {
+  Element.prototype.querySelector = Element.prototype._originalQuerySelector;
 }
 
-if (!Document.prototype.querySelector) {
-  Document.prototype.querySelector = Element.prototype.querySelector;
+if (Document.prototype._originalQuerySelector) {
+  Document.prototype.querySelector = Document.prototype._originalQuerySelector;
 }
 
-// מוסיף בחירת אלמנטים על פי טקסט שהם מכילים
-Document.prototype.querySelector = function(selector) {
-  if (selector.includes(':contains(')) {
-    const match = selector.match(/:contains\(["']?([^)"']+)["']?\)/);
-    if (match) {
-      const searchText = match[1];
-      const baseSelector = selector.replace(/:contains\(["']?([^)"']+)["']?\)/, '');
-      
-      const allElements = this.querySelectorAll(baseSelector || '*');
-      for (let i = 0; i < allElements.length; i++) {
-        if (allElements[i].textContent.includes(searchText)) {
-          return allElements[i];
-        }
-      }
-      return null;
+// הרחבה בטוחה יותר - רק לפונקציה עזר מחוץ לפרוטוטייפים
+function findElementContainingText(rootElement, selector, text) {
+  const elements = rootElement.querySelectorAll(selector || '*');
+  for (let i = 0; i < elements.length; i++) {
+    if (elements[i].textContent.includes(text)) {
+      return elements[i];
     }
   }
-  return Element.prototype.querySelector.call(this, selector);
-};
+  return null;
+}
 
 // פונקציה לתמיכה ב-showCanvas במקרה שהפונקציה המקורית לא מוגדרת
 if (typeof showCanvas !== 'function') {

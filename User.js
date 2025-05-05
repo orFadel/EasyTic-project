@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
       productId: { type: String, required: true },
       productName: { type: String },
       category: { type: String },
-      country: { type: String }, // תיקון שגיאת כתיב - 'country' במקום 'contry'
+      contry: { type: String }, 
       type: { type: String },
       price: { type: Number },
       amount: { type: Number, default: 1 }

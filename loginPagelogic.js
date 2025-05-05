@@ -282,6 +282,17 @@ async function ensureGoogleApiLoaded() {
   });
 }
 
+// הוספה לקוד הקיים שמטפל בתגובה מהשרת לאחר התחברות דרך גוגל
+function handleGoogleAuthResponse(responseData) {
+  // שומר את נתוני המשתמש בצורה אחידה
+  localStorage.setItem('UserName', responseData.username || responseData.email);
+  localStorage.setItem('usrId', responseData.userId);
+  localStorage.setItem('userInfo', JSON.stringify(responseData));
+  
+  // רענון הדף או ניתוב לדף הבית
+  window.location.href = 'homePage.html';
+}
+
   function showLoading(buttonElement, isLoading) {
     if (isLoading) {
       const originalText = buttonElement.innerHTML;

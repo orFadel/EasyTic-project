@@ -1,5 +1,8 @@
 function updateCartCount() {
-  const username = localStorage.getItem('UserName');
+  const username = localStorage.getItem('UserName') || 
+                   (localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).username : null) ||
+                   sessionStorage.getItem('username');
+  
   if (!username) {
     // אם אין משתמש מחובר, מאפס את מספר הפריטים
     const cartCountElement = document.getElementById('cart-count');
