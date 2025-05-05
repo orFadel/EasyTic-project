@@ -442,7 +442,8 @@ app.post('/api/cart/delete', async (req, res) => {
         console.log('Current cart before removal:', user.cart);
 
         // Filter out the item to be removed
-        user.cart = user.cart.filter(item => !(item.productId === productId && item.type === type));
+       // user.cart = user.cart.filter(item => !(item.productId === productId && item.type === type));
+       user.cart = user.cart.filter(item => !(item.productId.toString() === productId.toString() && item.type === type));
 
         // Save the updated user document
         await user.save(); 
