@@ -407,9 +407,20 @@ function checkIfLoggedIn(userInfo, fallbackDisplayName) {
 function updateDisplayElements(isLoggedIn) {
   console.log('מעדכן תצוגת אלמנטים לפי מצב התחברות:', isLoggedIn);
   
+  // בדיקה אם המשתמש מנהל
+  const isAdmin = sessionStorage.getItem('isAdmin') === 'true' || 
+  (JSON.parse(localStorage.getItem('userInfo'))?.isAdmin === true);
+
+  console.log('סטטוס מנהל:', isAdmin);
+
   // עדכון אלמנטים למשתמש מחובר
   document.querySelectorAll('.logged-in-only').forEach(el => {
     el.style.display = isLoggedIn ? 'block' : 'none';
+  });
+
+  // עדכון אלמנטים למנהל בלבד
+  document.querySelectorAll('.admin-only').forEach(el => {
+    el.style.display = isAdmin ? 'block' : 'none';
   });
   
   // עדכון אלמנטים למשתמש לא מחובר
@@ -420,6 +431,10 @@ function updateDisplayElements(isLoggedIn) {
   // טיפול מיוחד בפריטי תפריט נפתח
   document.querySelectorAll('.dropdown-item.logged-in-only').forEach(el => {
     el.style.display = isLoggedIn ? 'flex' : 'none';
+  });
+
+  document.querySelectorAll('.dropdown-item.admin-only').forEach(el => {
+    el.style.display = isAdmin ? 'flex' : 'none';
   });
   
   document.querySelectorAll('.dropdown-item.logged-out-only').forEach(el => {

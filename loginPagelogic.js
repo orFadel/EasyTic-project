@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // בדיקה אם יש משתמש מחובר - אם כן, הפנייה לדף הבית
     checkUserLogin();
+
+    // אתחול ולידציה של טופס
+  initFormValidation();
     
     // הצגת המודל בעת טעינת העמוד
     const welcomeModal = document.getElementById('welcome-modal');
@@ -10,11 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
       welcomeModal.style.display = 'block';
     }
     
-    // אתחול ולידציה של טופס
-    initFormValidation();
-    
-    // מאזינים לאירועי לחיצה
-    setupEventListeners();
+    // הוספת מאזין אירוע קליק לכפתור התחברות גוגל
+  const googleBtn = document.getElementById('google-login-btn') || 
+  document.querySelector('.google-btn');
+
+if (googleBtn) {
+// מסיר את ה-onclick מהHTML
+googleBtn.removeAttribute('onclick');
+
+// הוספת מאזין אירוע
+googleBtn.addEventListener('click', function(e) {
+e.preventDefault();
+handleGoogleLogin();
+});
+
+console.log('מאזין אירוע התווסף לכפתור התחברות Google');
+}
+
+// שאר הקוד של ה-setupEventListeners נשאר כרגיל...
+setupEventListeners();
   });
   
   // אתחול מאזיני אירועים נוספים
@@ -125,11 +142,26 @@ document.addEventListener('DOMContentLoaded', function() {
   // פונקציה לטיפול בהתחברות עם גוגל
   async function handleGoogleLogin() {
     console.log('מתחיל תהליך התחברות עם גוגל');
-    const button = document.querySelector('.google-btn');
+    
+    // קבלת הכפתור - הימנעות משימוש ב-querySelector
+    const button = document.getElementById('google-login-btn') || 
+                  document.getElementsByClassName('google-btn')[0];
+    
+    if (!button) {
+      console.error('לא נמצא כפתור התחברות גוגל');
+      return;
+    }
+    
+    // שמירת הטקסט המקורי
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> מתחבר...';
+    button.disabled = true;
     
     try {
-      // הצגת אינדיקטור טעינה
-      showLoading(button, true);
+      // המתנה שהאובייקט google יהיה זמין
+      await ensureGoogleApiLoaded();
+      
+      console.log('API של גוגל זמין, מתחיל תהליך התחברות');
       
       // יצירת אובייקט Google OAuth
       const googleAuth = google.accounts.oauth2.initCodeClient({
@@ -139,7 +171,9 @@ document.addEventListener('DOMContentLoaded', function() {
         callback: async (response) => {
           if (response.code) {
             try {
-              // שליחת קוד האימות לשרת שלך
+              console.log('קוד התקבל מגוגל:', response.code.substring(0, 10) + '...');
+              
+              // שליחת קוד האימות לשרת
               const serverResponse = await fetch('/auth/google', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -148,23 +182,31 @@ document.addEventListener('DOMContentLoaded', function() {
               
               if (serverResponse.ok) {
                 const userData = await serverResponse.json();
+                console.log('משתמש התחבר בהצלחה:', userData);
+                console.log('סטטוס מנהל:', userData.isAdmin); // Add this debugging line
+
                 // טיפול במשתמש שהתחבר
                 handleSuccessfulLogin(userData);
               } else {
                 const errorText = await serverResponse.text();
-                throw new Error(`Google authentication failed on server: ${errorText}`);
+                throw new Error(`אימות גוגל נכשל בשרת: ${errorText}`);
               }
             } catch (error) {
               console.error('שגיאה בשליחת קוד האימות לשרת:', error);
               showError('אירעה שגיאה בהתחברות עם גוגל. אנא נסה שנית.');
+              
+              // החזרת כפתור למצב רגיל
+              button.innerHTML = originalText;
+              button.disabled = false;
             }
           } else {
             console.error('לא התקבל קוד אימות מגוגל');
             showError('אירעה שגיאה בהתחברות עם גוגל. אנא נסה שנית.');
+            
+            // החזרת כפתור למצב רגיל
+            button.innerHTML = originalText;
+            button.disabled = false;
           }
-          
-          // ביטול אינדיקטור טעינה
-          showLoading(button, false);
         }
       });
       
@@ -174,9 +216,71 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (error) {
       console.error('שגיאה בהתחברות עם גוגל:', error);
       showError('אירעה שגיאה בהתחברות עם גוגל. אנא נסה שנית.');
-      showLoading(button, false);
+      
+      // החזרת כפתור למצב רגיל
+      button.innerHTML = originalText;
+      button.disabled = false;
     }
   }
+
+  // פונקציה חדשה להבטחת טעינת API של גוגל
+async function ensureGoogleApiLoaded() {
+  return new Promise((resolve, reject) => {
+    // אם האובייקט כבר זמין, החזר מיד
+    if (window.google && window.google.accounts && window.google.accounts.oauth2) {
+      console.log('Google API כבר זמין');
+      return resolve();
+    }
+    
+    console.log('מחכה לטעינת Google API...');
+    
+    // פונקציה שבודקת כל 200 מילישניות אם האובייקט זמין
+    let apiCheckInterval;
+    let timeoutTimer;
+    
+    // פונקציה שבודקת אם האובייקט זמין
+    const checkGoogleApiLoaded = () => {
+      if (window.google && window.google.accounts && window.google.accounts.oauth2) {
+        clearInterval(apiCheckInterval);
+        clearTimeout(timeoutTimer);
+        console.log('Google API נטען בהצלחה');
+        resolve();
+      }
+    };
+    
+    // התחלת בדיקה תקופתית
+    apiCheckInterval = setInterval(checkGoogleApiLoaded, 200);
+    
+    // יצירת timeout אחרי 5 שניות
+    timeoutTimer = setTimeout(() => {
+      clearInterval(apiCheckInterval);
+      
+      // ניסיון לטעון מחדש את הסקריפט
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.onload = () => {
+        console.log('Google API נטען מחדש');
+        
+        // ניסיון נוסף של 2 שניות
+        let secondTry = setTimeout(() => {
+          if (window.google && window.google.accounts && window.google.accounts.oauth2) {
+            clearTimeout(secondTry);
+            resolve();
+          } else {
+            reject(new Error('נכשל בטעינת Google API לאחר ניסיון נוסף'));
+          }
+        }, 2000);
+      };
+      
+      script.onerror = () => {
+        reject(new Error('שגיאה בטעינת הסקריפט של Google API'));
+      };
+      
+      document.body.appendChild(script);
+    }, 5000);
+  });
+}
 
   function showLoading(buttonElement, isLoading) {
     if (isLoading) {
@@ -422,17 +526,21 @@ async function handleRegistration() {
   // פונקציה לטיפול בהתחברות מוצלחת (משותפת לכל סוגי ההתחברות)
   function handleSuccessfulLogin(userData) {
     console.log('***DEBUG*** מטפל בהתחברות מוצלחת עם נתונים:', userData);
-    
+    console.log('***DEBUG*** סטטוס מנהל:', userData.isAdmin); // Add this debugging line
+
     // שמירת מידע המשתמש ב-localStorage בפורמט אחיד
     const userInfo = {
         userId: userData.userId,
         username: userData.username || document.getElementById('uname')?.value.trim(),
         displayName: userData.displayName,
-        isAdmin: userData.isAdmin,
+        isAdmin: userData.isAdmin || false,
         token: userData.token || '' // אם קיים
     };
     
     console.log('***DEBUG*** שומר נתוני משתמש ב-localStorage ו-sessionStorage:', userInfo);
+    
+    // Explicit logging of admin status to debug
+    console.log('***DEBUG*** סטטוס מנהל שנשמר:', userInfo.isAdmin);
     
     // שמירה ב-localStorage לשימוש עקבי
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
@@ -478,7 +586,7 @@ async function handleRegistration() {
         
         // הפניה לדף המבוקש
         window.location.href = redirectPage;
-    } else if (userData.isAdmin) {
+      } else if (userData.isAdmin) {
         // אם המשתמש מנהל, הפנייה לדף ניהול או בקשת אישור
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('redirect') === 'admin') {

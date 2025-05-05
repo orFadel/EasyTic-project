@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
         usernameDisplay.textContent = `שלום ${userInfo.displayName},`;
     }
 
+        // טעינת פרטי המשתמש מהשרת (כולל האימייל האמיתי)
+        loadUserProfile();
+
     // מילוי ערכים קיימים בטופס
     const displayNameInput = document.getElementById('display-name');
     const emailInput = document.getElementById('email');
@@ -43,6 +46,38 @@ document.addEventListener('DOMContentLoaded', function() {
             updateUserProfile();
         });
     }
+
+    // הוספת מאזינים ללשוניות
+    document.querySelectorAll('.nav-link').forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // הסרת קלאס פעיל מכל הלשוניות
+            document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
+            
+            // הסרת קלאס פעיל מכל תוכן הלשוניות
+            document.querySelectorAll('.tab-pane').forEach(p => {
+                p.classList.remove('show', 'active');
+            });
+            
+            // הוספת קלאס פעיל ללשונית הנוכחית
+            this.classList.add('active');
+            
+            // הצגת התוכן המתאים
+            const targetId = this.getAttribute('href').substring(1);
+            const targetPane = document.getElementById(targetId);
+            if (targetPane) {
+                targetPane.classList.add('show', 'active');
+                
+                // טעינת נתונים ספציפיים ללשונית
+                if (targetId === 'questions') {
+                    loadUserQuestions();
+                } else if (targetId === 'orders') {
+                    loadPurchaseHistory();
+                }
+            }
+        });
+    });
 });
 
 async function loadUserQuestions() {
@@ -52,40 +87,136 @@ async function loadUserQuestions() {
     if (!questionsContainer) return;
     
     try {
-        // Get user token from localStorage
-        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        questionsContainer.innerHTML = '<div class="text-center"><i class="fas fa-spinner fa-spin"></i> טוען שאלות...</div>';
         
-        // Fetch user questions
+        // קבלת הטוקן מהמקומות האפשריים
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        const token = userInfo.token || sessionStorage.getItem('token');
+        
+        if (!token) {
+            throw new Error('לא נמצא טוקן אימות. יש להתחבר מחדש');
+        }
+        
+        // פנייה לשרת עם הטוקן
         const response = await fetch('/api/user/questions', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${userInfo.token}`
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             }
         });
         
         if (!response.ok) {
-            throw new Error('Failed to load questions');
+            if (response.status === 401) {
+                throw new Error('פג תוקף החיבור, יש להתחבר מחדש');
+            }
+            throw new Error(`שגיאת שרת: ${response.status}`);
         }
         
         const data = await response.json();
         
-        // Clear loading indicator
-        questionsContainer.innerHTML = '';
-        
+        // בדיקה אם יש שאלות
         if (!data.questions || data.questions.length === 0) {
-            // Show "no questions" message
+            questionsContainer.innerHTML = '';
             noQuestionsMessage.style.display = 'block';
             return;
         }
         
-        // Display each question
+        noQuestionsMessage.style.display = 'none';
+        questionsContainer.innerHTML = '';
+        
+        // הצגת השאלות
         data.questions.forEach(question => {
             const questionElement = createQuestionElement(question);
             questionsContainer.appendChild(questionElement);
         });
     } catch (error) {
-        console.error('Error loading questions:', error);
-        questionsContainer.innerHTML = '<p class="error-message">אירעה שגיאה בטעינת השאלות. אנא נסה שוב מאוחר יותר.</p>';
+        console.error('שגיאה בטעינת השאלות:', error);
+        questionsContainer.innerHTML = `
+            <div class="alert alert-danger text-right">
+                <i class="fas fa-exclamation-circle"></i> אירעה שגיאה בטעינת השאלות: ${error.message}
+            </div>
+        `;
+        
+        // אם השגיאה היא בגלל פג תוקף הטוקן
+        if (error.message.includes('פג תוקף') || error.message.includes('להתחבר מחדש')) {
+            setTimeout(() => {
+                window.location.href = 'loginPage.html';
+            }, 3000);
+        }
+    }
+}
+
+/**
+ * פונקציה לטעינת פרטי המשתמש מהשרת
+ * הפונקציה מבצעת קריאת API כדי לקבל את פרטי המשתמש המלאים ומעדכנת את הטופס
+ */
+async function loadUserProfile() {
+    try {
+        // קבלת מידע המשתמש המחובר
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        
+        if (!userInfo) {
+            throw new Error('מידע משתמש לא נמצא');
+        }
+        
+        // מילוי ערכים קיימים בטופס - ללא קריאה לשרת
+        const displayNameInput = document.getElementById('display-name');
+        const emailInput = document.getElementById('email');
+        
+        // בדיקה אם הפקדים קיימים
+        if (!displayNameInput || !emailInput) {
+            console.error('לא נמצאו פקדי הטופס הנדרשים');
+            return; // יציאה מהפונקציה
+        }
+        
+        // מילוי הטופס עם המידע שכבר קיים ב-localStorage
+        if (userInfo.displayName) {
+            displayNameInput.value = userInfo.displayName;
+        }
+        
+        // להשתמש ב-username אם אין email (או ריק), מהנתונים שכבר יש בזיכרון
+        if (userInfo.email && userInfo.email !== userInfo.username) {
+            emailInput.value = userInfo.email;
+            console.log('אימייל נטען מהזיכרון המקומי:', userInfo.email);
+        } else if (userInfo.username) {
+            emailInput.value = userInfo.username;
+            console.log('שם משתמש נטען במקום אימייל:', userInfo.username);
+        }
+        
+        // שמירת הטופס - אנחנו כבר מילאנו את הפרטים
+        const userSettingsForm = document.getElementById('user-settings-form');
+        if (userSettingsForm) {
+            // החלף את התנהגות ברירת המחדל של שליחת הטופס
+            userSettingsForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // מניעת התנהגות ברירת המחדל של הטופס
+                updateUserProfile();
+            });
+        }
+        
+        console.log('פרטי המשתמש נטענו בהצלחה');
+        
+    } catch (error) {
+        console.error('שגיאה בטעינת פרטי המשתמש:', error);
+        
+        // הצגת הודעת שגיאה בדף (ללא קריאה לפונקציה חיצונית)
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'alert alert-danger';
+        errorDiv.textContent = 'שגיאה בטעינת פרטי המשתמש: ' + error.message;
+        
+        // הוספת ההודעה לדף
+        const settingsTab = document.getElementById('settings');
+        if (settingsTab) {
+            const firstChild = settingsTab.firstChild;
+            settingsTab.insertBefore(errorDiv, firstChild);
+            
+            // הסרת ההודעה אחרי 5 שניות
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 5000);
+        }
     }
 }
 
@@ -167,6 +298,14 @@ async function loadPurchaseHistory() {
         
         // קבלת מידע המשתמש המחובר
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        const token = userInfo.token || sessionStorage.getItem('token');
+
+        if (!token) {
+            throw new Error('לא נמצא טוקן אימות. יש להתחבר מחדש');
+        }
+        
+        // הדפסת הטוקן לצורכי בדיקה
+        console.log('שולח טוקן לשרת:', token.substring(0, 10) + '...');
         
         // פנייה לשרת לקבלת היסטוריית הרכישות
         const response = await fetch('/api/user/orders', {
@@ -318,7 +457,47 @@ async function loadPurchaseHistory() {
                 <i class="fas fa-exclamation-circle"></i> אירעה שגיאה בטעינת ההזמנות, אנא נסה שוב מאוחר יותר.
             </div>
         `;
+
+         // אם השגיאה היא בגלל פג תוקף הטוקן
+         if (error.message.includes('פג תוקף') || error.message.includes('להתחבר מחדש')) {
+            setTimeout(() => {
+                window.location.href = 'loginPage.html';
+            }, 3000);
+        }
     }
+}
+
+//פונקציה להתחברות מחדש
+function checkAndRefreshToken() {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    const token = userInfo.token || sessionStorage.getItem('token');
+    
+    if (!token) {
+        // אם אין טוקן בכלל, הפנה להתחברות
+        window.location.href = 'loginPage.html';
+        return false;
+    }
+    
+    // בדיקה אם הטוקן תקין ע"י שליחת בקשה לשרת
+    fetch('/api/validate-token', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok && response.status === 401) {
+            // הטוקן לא תקין - הפנה להתחברות
+            alert('פג תוקף החיבור, יש להתחבר מחדש');
+            window.location.href = 'loginPage.html';
+            return false;
+        }
+    })
+    .catch(error => {
+        console.error('שגיאה בבדיקת תוקף הטוקן:', error);
+    });
+    
+    return true;
 }
 
 // פונקציה להצגת פרטי הזמנה בודדת
@@ -491,107 +670,89 @@ function getStatusClass(statusCode) {
     }
 }
 
-function updateUserProfile() {
+async function updateUserProfile() {
     console.log("פונקציית updateUserProfile הופעלה");
     
-    // השג את הערכים מהטופס
-    const displayNameInput = document.getElementById('display-name');
-    const emailInput = document.getElementById('email');
-    const currentPasswordInput = document.getElementById('current-password');
-    const newPasswordInput = document.getElementById('new-password');
-    const confirmPasswordInput = document.getElementById('confirm-password');
-    
-    // וידוא שכל השדות אותרו
-    if (!displayNameInput || !emailInput || !currentPasswordInput || !newPasswordInput || !confirmPasswordInput) {
-        console.error("לא כל שדות הטופס אותרו:", {
-            displayNameInput: !!displayNameInput,
-            emailInput: !!emailInput,
-            currentPasswordInput: !!currentPasswordInput,
-            newPasswordInput: !!newPasswordInput,
-            confirmPasswordInput: !!confirmPasswordInput
+    try {
+        // השג את הערכים מהטופס
+        const displayNameInput = document.getElementById('display-name');
+        const emailInput = document.getElementById('email');
+        const currentPasswordInput = document.getElementById('current-password');
+        const newPasswordInput = document.getElementById('new-password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        
+        // וידוא שכל השדות אותרו
+        if (!displayNameInput || !emailInput || !currentPasswordInput || !newPasswordInput || !confirmPasswordInput) {
+            throw new Error("לא כל שדות הטופס אותרו");
+        }
+        
+        // בדיקות תקינות בסיסיות
+        if (!displayNameInput.value.trim()) {
+            throw new Error("שם תצוגה הוא שדה חובה");
+        }
+        
+        // בדיקת תקינות המייל
+        if (emailInput.value.trim() && !isValidEmail(emailInput.value.trim())) {
+            throw new Error("כתובת המייל אינה תקינה");
+        }
+        
+        // בדיקת סיסמה חדשה (אם הוזנה)
+        if (newPasswordInput.value) {
+            if (!currentPasswordInput.value) {
+                throw new Error("יש להזין את הסיסמה הנוכחית כדי לשנות לסיסמה חדשה");
+            }
+            
+            if (newPasswordInput.value !== confirmPasswordInput.value) {
+                throw new Error("הסיסמאות החדשות אינן תואמות");
+            }
+            
+            if (newPasswordInput.value.length < 6) {
+                throw new Error("הסיסמה החדשה חייבת להכיל לפחות 6 תווים");
+            }
+        }
+        
+        // קבלת פרטי המשתמש המחובר
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if (!userInfo || !userInfo.token) {
+            throw new Error("נדרשת התחברות מחדש");
+        }
+        
+        // הצגת אינדיקטור טעינה
+        const submitButton = document.querySelector('#user-settings-form button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> מעדכן...';
+        
+        // הכנת הנתונים לשליחה
+        const updateData = {
+            displayName: displayNameInput.value.trim(),
+            email: emailInput.value.trim()
+        };
+        
+        // הוסף סיסמאות אם הוזנו
+        if (newPasswordInput.value) {
+            updateData.currentPassword = currentPasswordInput.value;
+            updateData.newPassword = newPasswordInput.value;
+        }
+        
+        console.log("שולח נתונים לעדכון:", JSON.stringify(updateData));
+        
+        // שליחת הנתונים לשרת
+        const response = await fetch('/api/user/profile', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userInfo.token}`
+            },
+            body: JSON.stringify(updateData)
         });
-        showMessage("שגיאה בטעינת שדות הטופס", "error");
-        return;
-    }
-    
-    // בדיקות תקינות בסיסיות
-    if (!displayNameInput.value.trim()) {
-        showMessage("שם תצוגה הוא שדה חובה", "error");
-        return;
-    }
-    
-    // בדיקת תקינות המייל
-    if (emailInput.value.trim() && !isValidEmail(emailInput.value.trim())) {
-        showMessage("כתובת המייל אינה תקינה", "error");
-        return;
-    }
-    
-    // בדיקת סיסמה חדשה (אם הוזנה)
-    if (newPasswordInput.value) {
-        if (!currentPasswordInput.value) {
-            showMessage("יש להזין את הסיסמה הנוכחית כדי לשנות לסיסמה חדשה", "error");
-            return;
-        }
         
-        if (newPasswordInput.value !== confirmPasswordInput.value) {
-            showMessage("הסיסמאות החדשות אינן תואמות", "error");
-            return;
-        }
-        
-        if (newPasswordInput.value.length < 6) {
-            showMessage("הסיסמה החדשה חייבת להכיל לפחות 6 תווים", "error");
-            return;
-        }
-    }
-    
-    // קבלת פרטי המשתמש המחובר
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    if (!userInfo || !userInfo.token) {
-        showMessage("נדרשת התחברות מחדש", "error");
-        setTimeout(() => {
-            window.location.href = 'loginPage.html';
-        }, 2000);
-        return;
-    }
-    
-    // הצגת אינדיקטור טעינה
-    const submitButton = document.querySelector('#user-settings-form button[type="submit"]');
-    const originalButtonText = submitButton.textContent;
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> מעדכן...';
-    
-    // הכנת הנתונים לשליחה
-    const updateData = {
-        displayName: displayNameInput.value.trim(),
-        email: emailInput.value.trim()
-    };
-    
-    // הוסף סיסמאות אם הוזנו
-    if (newPasswordInput.value) {
-        updateData.currentPassword = currentPasswordInput.value;
-        updateData.newPassword = newPasswordInput.value;
-    }
-    
-    console.log("שולח נתונים לעדכון:", JSON.stringify(updateData));
-    
-    // שליחת הנתונים לשרת
-    fetch('/api/user/profile', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${userInfo.token}`
-        },
-        body: JSON.stringify(updateData)
-    })
-    .then(response => {
         if (!response.ok) {
-            return response.json().then(data => {
-                throw new Error(data.message || "שגיאה בעדכון הפרטים");
-            });
+            const errorData = await response.json();
+            throw new Error(errorData.message || "שגיאה בעדכון הפרטים");
         }
-        return response.json();
-    })
-    .then(result => {
+        
+        const result = await response.json();
         console.log("תשובה מהשרת:", result);
         
         // עדכון מוצלח - עדכן את הנתונים בלוקל סטורג'
@@ -603,6 +764,8 @@ function updateUserProfile() {
         userInfo.displayName = updateData.displayName;
         userInfo.email = updateData.email;
         localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        sessionStorage.setItem('displayName', updateData.displayName);
+        localStorage.setItem('displayName', updateData.displayName);
         
         // עדכון שם התצוגה בראש העמוד
         const usernameDisplay = document.getElementById('username-display');
@@ -621,21 +784,19 @@ function updateUserProfile() {
         newPasswordInput.value = '';
         confirmPasswordInput.value = '';
         
-        // החזרת כפתור השליחה למצב רגיל
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-        
         // הצגת הודעת הצלחה
         showMessage("פרטי המשתמש עודכנו בהצלחה", "success");
-    })
-    .catch(error => {
+    } catch (error) {
         console.error("שגיאה בעדכון פרטי המשתמש:", error);
         showMessage(error.message || "שגיאה בעדכון הפרטים", "error");
-        
-        // החזרת כפתור השליחה למצב רגיל
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-    });
+    } finally {
+        // החזרת כפתור השליחה למצב רגיל בכל מקרה
+        const submitButton = document.querySelector('#user-settings-form button[type="submit"]');
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "שמור שינויים";
+        }
+    }
 }
 
 function showMessage(message, type) {
@@ -648,11 +809,31 @@ function showMessage(message, type) {
     messageDiv.className = type === 'error' ? 'alert alert-danger' : 'alert alert-success';
     messageDiv.style.marginTop = '15px';
     messageDiv.style.marginBottom = '15px';
-    messageDiv.textContent = message;
+    messageDiv.style.textAlign = 'right'; // וידוא יישור לימין
+    messageDiv.innerHTML = `<i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i> ${message}`;
     
-    // הוספת ההודעה מעל הטופס
-    const form = document.getElementById('user-settings-form');
-    form.parentNode.insertBefore(messageDiv, form);
+    // בדיקה איזו לשונית פעילה ומיקום ההודעה בהתאם
+    const activeTab = document.querySelector('.tab-pane.active');
+    if (activeTab) {
+        const tabId = activeTab.id;
+        
+        if (tabId === 'settings') {
+            // הוספת ההודעה מעל הטופס
+            const form = document.getElementById('user-settings-form');
+            if (form) {
+                form.parentNode.insertBefore(messageDiv, form);
+            }
+        } else if (tabId === 'questions') {
+            // הוספת ההודעה למיכל השאלות
+            const questionsContainer = document.getElementById('user-questions-container');
+            if (questionsContainer) {
+                questionsContainer.parentNode.insertBefore(messageDiv, questionsContainer);
+            }
+        } else {
+            // בלשוניות אחרות - הוספה לראש המיכל
+            activeTab.insertBefore(messageDiv, activeTab.firstChild);
+        }
+    }
     
     // הסרת ההודעה אחרי 5 שניות
     setTimeout(() => {

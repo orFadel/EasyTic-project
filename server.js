@@ -282,6 +282,31 @@ app.post('/auth/google', async (req, res) => {
     }
   });
 
+  // קבלת פרטי משתמש מלאים
+app.get('/api/user/profile', auth, async (req, res) => {
+    try {
+        // מציאת המשתמש על פי המזהה מהטוקן
+        const user = await User.findById(req.user.id);
+        
+        if (!user) {
+            return res.status(404).json({ message: 'משתמש לא נמצא' });
+        }
+        
+        // שליחת פרטי המשתמש המלאים
+        res.status(200).json({
+            userId: user._id,
+            username: user.username,
+            email: user.email || user.username, // האימייל האמיתי מהמונגו
+            displayName: user.displayName,
+            isAdmin: user.isAdmin
+        });
+        
+    } catch (error) {
+        console.error('שגיאה בשליפת פרטי משתמש:', error);
+        res.status(500).json({ message: 'שגיאת שרת בשליפת פרטי המשתמש' });
+    }
+});
+
 // עגלת קניות
 app.post('/api/cart/update', async (req, res) => {
     console.log('Received cart update:', req.body);
