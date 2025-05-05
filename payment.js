@@ -63,6 +63,43 @@ function closePopup() {
     spinner.style.display = 'none'; // החבאת הספינר
 }
   
+function formatExpiryDate(input) {
+    // הסרת כל תו שאינו ספרה
+    let value = input.value.replace(/\D/g, '');
+
+    // הגבלת האורך ל-6 ספרות (MMYYYY)
+    if (value.length > 6) {
+        value = value.slice(0, 6);
+    }
+
+    // הוספת '/' לאחר 2 ספרות
+    if (value.length > 2) {
+        value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+
+    input.value = value;
+
+    // ולידציה של החודש והשנה
+    const parts = value.split('/');
+    if (parts.length === 2) {
+        const month = parseInt(parts[0], 10);
+        const year = parseInt(parts[1], 10);
+
+        const now = new Date();
+        const currentMonth = now.getMonth() + 1; // getMonth() מחזיר ערכים בין 0 ל-11
+        const currentYear = now.getFullYear();
+
+        if (month < 1 || month > 12) {
+            input.setCustomValidity("יש להזין חודש בין 01 ל-12");
+        } else if (year < currentYear || (year === currentYear && month < currentMonth)) {
+            input.setCustomValidity("תאריך התוקף חייב להיות נוכחי או עתידי");
+        } else {
+            input.setCustomValidity("");
+        }
+    } else {
+        input.setCustomValidity("יש להזין תאריך בפורמט MM/YYYY");
+    }
+}
 function formatCardNumber(input) {
     // הסרת תווים לא מספריים
     let cardNumber = input.value.replace(/\D/g, '');
