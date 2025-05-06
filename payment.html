@@ -6,6 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>דף תשלום</title>
     <link href="payment.css" rel="stylesheet">
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          // בדיקה וסנכרון של מזהי המשתמש בין כל מקומות האחסון
+          const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+          const userId = localStorage.getItem('usrId');
+          const userName = localStorage.getItem('UserName');
+          
+          console.log('מזהי משתמש נוכחיים:', { userInfo, userId, userName });
+          
+          // שמירת מזהה המשתמש ב-sessionStorage לשימוש בעמוד התשלום
+          if (userId) {
+              sessionStorage.setItem('userId', userId);
+              console.log('מזהה משתמש נשמר ב-sessionStorage:', userId);
+          }
+      
+          // בדיקה אם יש עגלת קניות
+          const checkCart = async () => {
+              if (!userId) {
+                  console.error('לא נמצא מזהה משתמש');
+                  return;
+              }
+              
+              try {
+                  const response = await fetch(`/api/cart/${userId}`);
+                  const data = await response.json();
+                  
+                  console.log('נתוני עגלה:', data);
+                  
+                  if (!data.cart || data.cart.length === 0) {
+                      alert('העגלה שלך ריקה. אנא הוסף פריטים לפני ביצוע תשלום.');
+                      window.location.href = '/';
+                  }
+              } catch (error) {
+                  console.error('שגיאה בבדיקת העגלה:', error);
+              }
+          };
+          
+          // הפעלת הבדיקה
+          checkCart();
+      });
+      </script>
 </head>
 
 <body>

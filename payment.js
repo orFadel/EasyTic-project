@@ -1,51 +1,86 @@
 // payment.js
 async function showPopup(event) {
-    event.preventDefault(); // מניעת שליחת הטופס אוטומטית
+    event.preventDefault();
 
-    const userId = sessionStorage.getItem('userId'); 
+    // בדיקת ולידציה של טופס התשלום
+    const cardNumber = document.getElementById("card_number").value;
+    const expiryDate = document.getElementById("expiry_date").value;
+    const cvv = document.getElementById("cvv").value;
+
+    if (!cardNumber || !expiryDate || !cvv) {
+        alert("נא למלא את כל פרטי התשלום");
+        return;
+    }
+
+    // שימוש באותו מזהה כמו בדפים האחרים
+    const userId = localStorage.getItem('usrId') || sessionStorage.getItem('userId');
+    
     if (!userId) {
-        alert("User ID is missing!"); 
-        return; 
+        alert("נדרשת התחברות לפני ביצוע רכישה");
+        window.location.href = "/login";
+        return;
     }
 
     const popup = document.getElementById("popup");
     const spinner = document.getElementById("loading");
     
     if (!popup || !spinner) {
-        alert("Pop up or spinner element is missing");
+        alert("בעיה בהצגת חלונית העיבוד");
         return;
     }
     
     try {
         // הצגת ספינר
         spinner.style.display = "block";
-        popup.style.display = "block"; // הצגת הפופ-אפ
+        
+        console.log("שולח בקשת תשלום לשרת עם מזהה משתמש:", userId);
+        
+        // בדיקת העגלה לפני שליחת בקשת תשלום
+        const cartResponse = await fetch(`/api/cart/${userId}`);
+        const cartData = await cartResponse.json();
 
+        if (!cartResponse.ok || !cartData.cart || cartData.cart.length === 0) {
+            throw new Error('העגלה ריקה או שלא נמצאה');
+        }
+
+        console.log("נמצאה עגלה עם פריטים:", cartData.cart);
+        
+        // שליחת הבקשה לשרת
         const response = await fetch('/payment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userId }) 
+            body: JSON.stringify({ 
+                userId: userId
+            })
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(errorText);
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'שגיאה בעיבוד התשלום');
         }
 
         const data = await response.json();
+        console.log("תשובה מהשרת:", data);
+        
+        // הצגת מספר ההזמנה בפופאפ
         document.getElementById("order-number-value").textContent = data.orderNumber;
-
+        
+        // הצגת פופאפ ההצלחה
+        popup.style.display = "block";
+        
         // החבאת הספינר
         spinner.style.display = "none";
 
+        // אחרי 3 שניות ניווט לדף הבית
         setTimeout(() => {
+            console.log("מעבר לדף הבית...");
             window.location.href = "/";
         }, 3000);
     } catch (error) {
-        console.error("Error in payment process:", error);
-        alert("אירעה שגיאה בתהליך התשלום. אנא נסה שוב.");
+        console.error("שגיאה בתהליך התשלום:", error);
+        alert("אירעה שגיאה בתהליך התשלום: " + error.message);
         spinner.style.display = "none";
     }
 }
@@ -100,6 +135,7 @@ function formatExpiryDate(input) {
         input.setCustomValidity("יש להזין תאריך בפורמט MM/YYYY");
     }
 }
+
 function formatCardNumber(input) {
     // הסרת תווים לא מספריים
     let cardNumber = input.value.replace(/\D/g, '');
