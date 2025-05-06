@@ -129,7 +129,7 @@ background-color: #198AD7;
 
 /* עיצוב למדריך הכרטיסיות של דובאי */
 
-.dubai-guide-section {
+.dubai-guide-section .paris-guide-section .rome-guide-section .london-guide-section{
   font-family: 'Varela Round', sans-serif;
   max-width: 1200px;
   margin: 40px auto;
@@ -537,7 +537,7 @@ html {
 }
 
 /* עיצוב בסיסי לאזור המדריך */
-.dubai-guide-section {
+.dubai-guide-section .paris-guide-section .rome-guide-section .london-guide-section{
   font-family: 'Varela Round', sans-serif;
   max-width: 1200px;
   margin: 40px auto;
@@ -810,7 +810,7 @@ html {
 }
 
 /* עיצוב למדריך הטיולים לדובאי */
-.dubai-guide-section {
+.dubai-guide-section .paris-guide-section .rome-guide-section .london-guide-section{
   font-family: 'Varela Round', sans-serif;
   max-width: 1200px;
   margin: 40px auto;
@@ -1050,7 +1050,7 @@ html {
 /* פתרון לבעיית התצוגה של גריד */
 .guide-cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* זה יגרום ל-3 קוביות בשורה */
   gap: 20px;
 }
 

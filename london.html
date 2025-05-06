@@ -34,6 +34,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Link to the favorites JS file for managing favorites -->
     <script src="favorites.js"></script>
+    <script src="london-guide-content.js" defer></script>
 
 </head>
 
@@ -143,6 +144,118 @@
         <br />
         !?אחד, לכם רק נותר לבחור ולהזמין בקליק. אז מי צריך טיול מאורגן כשאפשר לארגן הכל בלחיצת כפתור <br />
     </p>
+
+    <!-- קוד HTML להוספה לעמוד לונדון -->
+<div class="london-guide-section">  
+    <div class="guide-cards-container">
+      <!-- קוביית מידע כללי -->
+      <div class="guide-card" data-card="general-info">
+        <div class="card-header">
+          <i class="fas fa-city"></i>
+          <h3>מידע כללי</h3>
+        </div>
+        <div class="card-preview">
+          <p>היסטוריה, מיקום גאוגרפי, אקלים ועונות מומלצות לביקור</p>
+        </div>
+      </div>
+      
+      <!-- קוביית טיפים למטיילים -->
+      <div class="guide-card" data-card="travel-tips">
+        <div class="card-header">
+          <i class="fas fa-plane"></i>
+          <h3>טיפים למטיילים</h3>
+        </div>
+        <div class="card-preview">
+          <p>ויזה, כסף, לבוש והתנהגות</p>
+        </div>
+      </div>
+      
+      <!-- קוביית קניות ובילויים -->
+      <div class="guide-card" data-card="shopping">
+        <div class="card-header">
+          <i class="fas fa-shopping-bag"></i>
+          <h3>קניות ובילויים</h3>
+        </div>
+        <div class="card-preview">
+          <p>רחובות קניות, קניונים, פאבים ואוכל מקומי</p>
+        </div>
+      </div>
+      
+      <!-- קוביית אירועים וחגים -->
+      <div class="guide-card" data-card="events">
+        <div class="card-header">
+          <i class="fas fa-calendar-day"></i>
+          <h3>אירועים וחגים</h3>
+        </div>
+        <div class="card-preview">
+          <p>פסטיבלים וחגים בריטיים</p>
+        </div>
+      </div>
+      
+      <!-- קוביית תחבורה -->
+      <div class="guide-card" data-card="transportation">
+        <div class="card-header">
+          <i class="fas fa-subway"></i>
+          <h3>תחבורה</h3>
+        </div>
+        <div class="card-preview">
+          <p>רכבת תחתית, אוטובוסים, מוניות ואופניים</p>
+        </div>
+      </div>
+      
+      <!-- קוביית מקומות לינה -->
+      <div class="guide-card" data-card="accommodation">
+        <div class="card-header">
+          <i class="fas fa-bed"></i>
+          <h3>מקומות לינה</h3>
+        </div>
+        <div class="card-preview">
+          <p>אזורים מומלצים ובתי מלון</p>
+        </div>
+      </div>
+  
+      <!-- קוביית מוזיאונים ואתרי תרבות -->
+      <div class="guide-card" data-card="museums">
+        <div class="card-header">
+          <i class="fas fa-landmark"></i>
+          <h3>מוזיאונים ואתרי תרבות</h3>
+        </div>
+        <div class="card-preview">
+          <p>מוזיאונים בחינם ואתרים היסטוריים</p>
+        </div>
+      </div>
+      
+      <!-- קוביית צ'ק ליסט -->
+      <div class="guide-card" data-card="checklist">
+        <div class="card-header">
+          <i class="fas fa-check-circle"></i>
+          <h3>צ'ק ליסט</h3>
+        </div>
+        <div class="card-preview">
+          <p>רשימת הכנות לטיול</p>
+        </div>
+      </div>
+      
+      <!-- קוביית מקומות לצילום -->
+      <div class="guide-card" data-card="photo-spots">
+        <div class="card-header">
+          <i class="fas fa-camera"></i>
+          <h3>מקומות לצילום</h3>
+        </div>
+        <div class="card-preview">
+          <p>הנקודות המושלמות לתמונות בלונדון</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- מיכל לתוכן הכרטיסיות -->
+    <div id="guide-content-container" class="guide-content-container">
+      <div class="content-close-btn">&times;</div>
+      <div id="guide-content" class="guide-content">
+        <!-- כאן יוטען התוכן הדינמי -->
+      </div>
+    </div>
+  </div>
 
     <h4> קטגוריות מובילות </h4>
 
