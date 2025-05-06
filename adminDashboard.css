@@ -600,3 +600,97 @@ p{
   .question-filters:nth-of-type(2) {
     display: none;
   }
+
+  /* עיצוב עבור כרטיסיות שאלות ותשובות באזור האישי */
+.question-card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    direction: rtl;
+  }
+  
+  .question-card .card-header {
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    text-align: right;
+  }
+  
+  .question-card .card-body {
+    padding: 1.25rem;
+    text-align: right;
+  }
+  
+  .question-card .card-title {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* עיצוב לתגיות סטטוס */
+  .status-pending {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  
+  .status-answered {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .status-added-to-faq {
+    background-color: #17a2b8;
+    color: #fff;
+  }
+  
+  /* עיצוב למיכל התשובה */
+  .answer-container {
+    background-color: #f8f9fa;
+    border-right: 3px solid #28a745;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0.25rem;
+  }
+  
+  .answer-container h6 {
+    color: #28a745;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  /* תיקון עיצוב מודל מענה לשאלה */
+  #replyModal .modal-dialog {
+    direction: rtl;
+  }
+  
+  #replyModal .modal-header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  
+  #replyModal .modal-title {
+    margin-right: 0;
+  }
+  
+  #replyModal .close {
+    margin: -1rem auto -1rem -1rem;
+  }
+  
+  #replyModal .modal-body {
+    text-align: right;
+  }
+  
+  #replyModal .form-check {
+    padding-right: 1.25rem;
+    padding-left: 0;
+  }
+  
+  #replyModal .form-check-input {
+    margin-right: -1.25rem;
+    margin-left: 0;
+  }
+  
+  #replyModal .modal-footer {
+    justify-content: flex-start;
+  }

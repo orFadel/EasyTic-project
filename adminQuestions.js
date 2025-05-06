@@ -14,9 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // הגדרת מאזינים לאירועים בחלק ניהול השאלות
 function setupQuestionsEventListeners() {
-    // מאזין לשליחת תשובה לשאלה
-    document.getElementById('send-reply').addEventListener('click', submitReply);
-    
     // מאזינים לסינון שאלות
     const statusFilter = document.getElementById('question-filter-status');
     if (statusFilter) {
@@ -69,7 +66,7 @@ function loadQuestions() {
         return;
     }
     
-    questionsContainer.innerHTML = '<tr><td colspan="5" class="text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">טוען...</span></div></td></tr>';
+    questionsContainer.innerHTML = '<div class="text-center p-3"><div class="spinner-border text-primary" role="status"><span class="sr-only">טוען...</span></div></div>';
     
     // קבלת טוקן מכל מקור אפשרי
     let token = sessionStorage.getItem('token');
@@ -165,6 +162,9 @@ function loadQuestions() {
         
         // ניקוי הטבלה
         questionsContainer.innerHTML = '';
+
+         // מיון השאלות לפי תאריך (חדש לישן)
+         questions.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
         
         // בדיקה אם אין שאלות
         if (questions.length === 0) {
@@ -193,9 +193,6 @@ function loadQuestions() {
         
         // יצירת גוף הטבלה
         const tbody = document.createElement('tbody');
-        
-        // מיון השאלות לפי תאריך (חדש לישן)
-        questions.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
         
         // הוספת כל השאלות לטבלה
         questions.forEach((question, index) => {
@@ -241,6 +238,11 @@ function loadQuestions() {
         
         // עדכון סינון אם יש פרמטרים פעילים
         filterQuestions();
+
+        // הוספת מודל מענה אם לא קיים
+        if (!document.getElementById('replyModal')) {
+            addReplyModal();
+        }
         
         console.log('***DEBUG*** טעינת השאלות הסתיימה בהצלחה');
     })
@@ -248,6 +250,47 @@ function loadQuestions() {
         console.error('***DEBUG*** שגיאה בטעינת שאלות מ-MongoDB:', error);
         questionsContainer.innerHTML = `<tr><td colspan="5" class="text-center text-danger">שגיאה בטעינת השאלות: ${error.message}</td></tr>`;
     });
+}
+
+function addReplyModal() {
+    const modalHtml = `
+    <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="replyModalLabel">מענה לשאלה</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="question-text">השאלה:</label>
+              <p id="question-text" class="bg-light p-2"></p>
+            </div>
+            <div class="form-group">
+              <label for="reply-text">תשובה:</label>
+              <textarea class="form-control" id="reply-text" rows="5"></textarea>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="add-to-faq">
+              <label class="form-check-label" for="add-to-faq">הוסף לשאלות נפוצות</label>
+            </div>
+            <input type="hidden" id="question-id">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="send-reply-btn">שלח תשובה</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    
+    // הוספת מאזין לכפתור השליחה
+    document.getElementById('send-reply-btn').addEventListener('click', submitReply);
 }
 
 function setupPagination(totalQuestions) {
@@ -394,49 +437,48 @@ function getStatusLabel(question) {
 
 // פתיחת מודל מענה לשאלה
 function openReplyModal(questionId, questionText) {
-    console.log('***DEBUG*** פותח חלון מענה לשאלה:', questionId);
+    console.log('פותח חלון מענה לשאלה:', questionId);
     
     // בדיקה אם המודל קיים, ואם לא - יצירה שלו
     if (!document.getElementById('replyModal')) {
         const modalHtml = `
-        <!-- מבנה מעודכן למודל מענה לשאלה -->
-<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="replyModalLabel">מענה לשאלה</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="question-text">השאלה:</label>
-          <p id="question-text" class="bg-light p-2"></p>
+        <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="replyModalLabel">מענה לשאלה</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="question-text">השאלה:</label>
+                  <p id="question-text" class="bg-light p-2"></p>
+                </div>
+                <div class="form-group">
+                  <label for="reply-text">תשובה:</label>
+                  <textarea class="form-control" id="reply-text" rows="5"></textarea>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="add-to-faq">
+                  <label class="form-check-label" for="add-to-faq">הוסף לשאלות נפוצות</label>
+                </div>
+                <input type="hidden" id="question-id">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="send-reply-btn">שלח תשובה</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="reply-text">תשובה:</label>
-          <textarea class="form-control" id="reply-text" rows="5"></textarea>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="add-to-faq">
-          <label class="form-check-label" for="add-to-faq">הוסף לשאלות נפוצות</label>
-        </div>
-        <input type="hidden" id="question-id">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="send-reply">שלח תשובה</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
-      </div>
-    </div>
-  </div>
-</div>
         `;
         
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         
         // הוספת מאזין לכפתור השליחה
-        document.getElementById('send-reply').addEventListener('click', submitReply);
+        document.getElementById('send-reply-btn').addEventListener('click', submitReply);
     }
     
     // עדכון תוכן המודל
@@ -446,7 +488,9 @@ function openReplyModal(questionId, questionText) {
     document.getElementById('add-to-faq').checked = false;
     
     // קבלת הטוקן
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('token') || 
+                 (localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).token : null);
+    
     if (!token) {
         alert('אנא התחבר מחדש למערכת');
         window.location.href = 'loginPage.html?redirect=admin';
@@ -461,18 +505,21 @@ function openReplyModal(questionId, questionText) {
     })
     .then(response => {
         if (response.ok) return response.json();
-        return null;
+        throw new Error('שגיאה בטעינת פרטי השאלה');
     })
     .then(question => {
-        if (question && question.answer) {
+        if (question && question.answer && question.answer.text) {
             document.getElementById('reply-text').value = question.answer.text;
             document.getElementById('add-to-faq').checked = question.status === 'added_to_faq';
         }
+        
+        // הצגת המודל
+        $('#replyModal').modal('show');
     })
-    .catch(error => console.error('שגיאה בטעינת פרטי השאלה:', error));
-    
-    // הצגת המודל
-    $('#replyModal').modal('show');
+    .catch(error => {
+        console.error('שגיאה בטעינת פרטי השאלה:', error);
+        alert('אירעה שגיאה בטעינת פרטי השאלה: ' + error.message);
+    });
 }
 
 // שליחת תשובה לשאלה
@@ -486,8 +533,16 @@ function submitReply() {
         return;
     }
     
-    // קבל את הטוקן מהסשן
-    const token = sessionStorage.getItem('token');
+    // שינוי מצב הכפתור לטעינה
+    const sendButton = document.getElementById('send-reply-btn');
+    const originalText = sendButton.textContent;
+    sendButton.disabled = true;
+    sendButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> שולח...';
+    
+    // קבל את הטוקן מהמקורות האפשריים
+    const token = sessionStorage.getItem('token') || 
+                 (localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).token : null);
+    
     if (!token) {
         alert('אנא התחבר מחדש למערכת');
         window.location.href = 'loginPage.html?redirect=admin';
@@ -496,7 +551,10 @@ function submitReply() {
     
     // הכנת האובייקט לשליחה
     const replyData = {
-        answer: replyText,
+        answer: {
+            text: replyText,
+            answeredAt: new Date().toISOString()
+        },
         status: addToFaq ? 'added_to_faq' : 'answered'
     };
     
@@ -517,8 +575,11 @@ function submitReply() {
     })
     .then(data => {
         if (data.success) {
-            alert(data.message || 'התשובה נשלחה בהצלחה');
+            // סגירת המודל
             $('#replyModal').modal('hide');
+            
+            // הצגת הודעת הצלחה
+            alert('התשובה נשלחה בהצלחה!');
             
             // טעינת השאלות מחדש
             loadQuestions();
@@ -529,7 +590,40 @@ function submitReply() {
     .catch(error => {
         console.error('שגיאה בשליחת התשובה:', error);
         alert('שגיאה בשליחת התשובה: ' + error.message);
+    })
+    .finally(() => {
+        // החזרת כפתור השליחה למצב הרגיל
+        sendButton.disabled = false;
+        sendButton.textContent = originalText;
     });
+}
+
+function showAlertMessage(message, type) {
+    // הסרת הודעות קודמות
+    const existingAlerts = document.querySelectorAll('.alert-message');
+    existingAlerts.forEach(alert => alert.remove());
+    
+    // יצירת אלמנט ההודעה
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show alert-message`;
+    alertDiv.role = 'alert';
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    `;
+    
+    // הוספת ההודעה לראש הדף
+    const container = document.querySelector('.container') || document.body;
+    const firstChild = container.firstChild;
+    container.insertBefore(alertDiv, firstChild);
+    
+    // הסרה אוטומטית אחרי 5 שניות
+    setTimeout(() => {
+        alertDiv.classList.remove('show');
+        setTimeout(() => alertDiv.remove(), 500);
+    }, 5000);
 }
 
 // מחיקת שאלה
@@ -539,7 +633,9 @@ function deleteQuestion(questionId) {
     }
     
     // קבל את הטוקן מהסשן
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('token') || 
+                 (localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).token : null);
+    
     if (!token) {
         alert('אנא התחבר מחדש למערכת');
         window.location.href = 'loginPage.html?redirect=admin';
@@ -560,7 +656,7 @@ function deleteQuestion(questionId) {
     })
     .then(data => {
         if (data.success) {
-            alert('השאלה נמחקה בהצלחה');
+            showAlertMessage('השאלה נמחקה בהצלחה', 'success');
             
             // טעינת השאלות מחדש
             loadQuestions();
@@ -570,7 +666,7 @@ function deleteQuestion(questionId) {
     })
     .catch(error => {
         console.error('שגיאה במחיקת השאלה:', error);
-        alert('שגיאה במחיקת השאלה: ' + error.message);
+        showAlertMessage('שגיאה במחיקת השאלה: ' + error.message, 'danger');
     });
 }
 
@@ -627,4 +723,5 @@ function filterQuestions() {
 }
 
 window.openReplyModal = openReplyModal;
+window.submitReply = submitReply;
 window.deleteQuestion = deleteQuestion;
