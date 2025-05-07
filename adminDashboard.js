@@ -1,10 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     // בדיקת הרשאות מנהל
     checkAdminAuth();
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;',
+        '`': '&#096;'
+      };
+      return text.replace(/[&<>"'`]/g, function(m) { return map[m]; });
+    }    
     
     // טעינת תכני הדפים הנוספים
     loadSectionContent('attractions-section-container', 'attractions-section.html');
-    loadSectionContent('questions-section-container', 'questions-section.html');
+    loadSectionContent('questions-section-container', 'questions-section.html', () => {
+      setupQuestionsEventListeners();
+      loadQuestions();
+    });
     loadSectionContent('sales-section-container', 'sales-section.html');
     loadSectionContent('orders-section-container', 'orders-section.html');
     loadSectionContent('settings-section-container', 'settings-section.html');
@@ -546,22 +561,28 @@ function updateRecentQuestionsContainer(questions) {
 }
 
 // טעינת תוכן ממקטע חיצוני
-function loadSectionContent(containerId, sectionFile) {
-    fetch(sectionFile)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`שגיאה בטעינת הקובץ (${response.status}): ${sectionFile}`);
-            }
-            return response.text();
-        })
-        .then(html => {
-            document.getElementById(containerId).innerHTML = html;
-        })
-        .catch(error => {
-            console.error(`שגיאה בטעינת ${sectionFile}:`, error);
-            document.getElementById(containerId).innerHTML = `<div class="alert alert-danger">שגיאה בטעינת תוכן המקטע: ${error.message}</div>`;
-        });
+function loadSectionContent(containerId, sectionFile, callback) {
+  fetch(sectionFile)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`שגיאה בטעינת הקובץ (${response.status}): ${sectionFile}`);
+          }
+          return response.text();
+      })
+      .then(html => {
+          document.getElementById(containerId).innerHTML = html;
+
+          // הפעלת הפונקציה שהועברה כקולבק (אם קיימת)
+          if (typeof callback === 'function') {
+              callback();
+          }
+      })
+      .catch(error => {
+          console.error(`שגיאה בטעינת ${sectionFile}:`, error);
+          document.getElementById(containerId).innerHTML = `<div class="alert alert-danger">שגיאה בטעינת תוכן המקטע: ${error.message}</div>`;
+      });
 }
+
 
 // החלפת מקטע מוצג
 function showSection(sectionName) {
@@ -670,4 +691,3 @@ function logoutUser() {
         window.location.href = 'homePage.html'; // הפניה לדף הבית במקרה של שגיאה
     }
 }
-
