@@ -251,7 +251,6 @@ function saveAttraction(event) {
     });
 }
 
-
 // מחיקת אטרקציה
 function deleteAttraction(attractionId) {
     if (!confirm('האם אתה בטוח שברצונך למחוק את האטרקציה?')) return;
