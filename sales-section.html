@@ -8,34 +8,48 @@
     <!-- בחירת טווח תאריכים -->
     <div class="row mb-4">
         <div class="col-md-12">
-            <div class="form-container">
-                <div class="form-row align-items-end">
-                    <div class="col-md-3">
-                        <label for="date-range">טווח זמן:</label>
-                        <select class="form-control" id="date-range">
-                            <option value="month">חודש נוכחי</option>
-                            <option value="quarter">רבעון נוכחי</option>
-                            <option value="year">שנה נוכחית</option>
-                            <option value="custom">טווח מותאם אישית</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3" id="custom-date-container" style="display: none;">
-                        <label for="date-from">מתאריך:</label>
-                        <input type="date" class="form-control" id="date-from">
-                    </div>
-                    <div class="col-md-3" id="custom-date-to-container" style="display: none;">
-                        <label for="date-to">עד תאריך:</label>
-                        <input type="date" class="form-control" id="date-to">
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary" id="update-stats">
-                            <i class="fas fa-sync-alt"></i> עדכן נתונים
-                        </button>
-                    </div>
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <div class="row">
+                <!-- טווח זמן מימין -->
+                <div class="col-md-3" id="date-range-container">
+                  <div class="form-group">
+                    <label for="date-range">טווח זמן:</label>
+                    <select id="date-range" class="form-control">
+                      <option value="day">היום</option>
+                      <option value="week">שבוע אחרון</option>
+                      <option value="month" selected>חודש אחרון</option>
+                      <option value="year">שנה אחרונה</option>
+                      <option value="custom">טווח מותאם אישית</option>
+                    </select>
+                  </div>
                 </div>
+                
+                <!-- תאריך מ- -->
+                <div class="col-md-3" id="custom-date-container" style="display: none;">
+                  <div class="form-group">
+                    <label for="date-from">מתאריך:</label>
+                    <input type="date" id="date-from" class="form-control">
+                  </div>
+                </div>
+                
+                <!-- תאריך עד -->
+                <div class="col-md-3" id="custom-date-to-container" style="display: none;">
+                  <div class="form-group">
+                    <label for="date-to">עד תאריך:</label>
+                    <input type="date" id="date-to" class="form-control">
+                  </div>
+                </div>
+                
+                <!-- כפתור עדכון -->
+                <div class="col-md-3 d-flex align-items-end">
+                  <button id="update-stats" class="btn btn-primary">עדכן נתונים</button>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
     
     <!-- סיכום מכירות -->
     <div class="row mb-4">
@@ -67,31 +81,56 @@
     
     <!-- גרפים -->
     <div class="row mb-4">
-        <div class="col-md-8">
-            <div class="chart-container">
-                <h5>נתוני מכירות לפי תקופה</h5>
-                <canvas id="sales-chart" height="300"></canvas>
+        <div class="col-md-6">
+            <div class="card dashboard-card">
+                <div class="card-header">
+                    <h5 class="text-right">נתוני מכירות לפי תקופה</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="sales-chart" height="300"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="chart-container">
-                <h5>התפלגות מכירות לפי מדינה</h5>
-                <canvas id="countries-chart" height="300"></canvas>
+        <div class="col-md-6">
+            <div class="card dashboard-card">
+                <div class="card-header">
+                    <h5 class="text-right">התפלגות מכירות לפי מדינה</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="countries-chart" height="300"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
+    <!-- שורת גרפים שנייה - שינוי המבנה להכלת הגרפים בתוך הקוביות -->
     <div class="row mb-4">
         <div class="col-md-6">
-            <div class="chart-container">
-                <h5>התפלגות מכירות לפי קטגוריה</h5>
-                <canvas id="categories-chart" height="250"></canvas>
+            <div class="card dashboard-card">
+                <div class="card-header">
+                    <h5 class="text-right">התפלגות מכירות לפי קטגוריה</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="categories-chart" height="300"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="chart-container">
-                <h5>10 האטרקציות המובילות</h5>
-                <canvas id="top-attractions-chart" height="250"></canvas>
+            <div class="card dashboard-card">
+                <div class="card-header">
+                    <h5 class="text-right">10 האטרקציות המובילות</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="top-attractions-chart" height="300"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -694,3 +694,105 @@ p{
   #replyModal .modal-footer {
     justify-content: flex-start;
   }
+
+  /* תוספת לקובץ CSS הקיים - adminDashboard.css */
+
+/* יישור טווח הזמן לימין */
+#date-range-container {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+#date-range-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* גודל אחיד לכל הגרפים */
+.chart-container {
+    height: 350px;
+    margin-bottom: 20px;
+}
+
+/* עיצוב לקלט של תאריך מותאם אישית */
+#custom-date-container,
+#custom-date-to-container {
+    text-align: right;
+    padding-right: 15px;
+}
+
+/* יצירת שורת גרפים עם גודל אחיד */
+.charts-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.chart-col {
+    flex: 0 0 48%;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .chart-col {
+        flex: 0 0 100%;
+    }
+}
+
+/* עיצוב לכותרות הגרפים */
+.chart-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* תיקונים ל-CSS כדי שהגרפים יהיו בתוך הקוביות וכותרות יהיו מיושרות לימין */
+
+/* מיישר כותרות לימין */
+.card-header h5 {
+    text-align: right;
+    margin-bottom: 0;
+}
+
+/* מבטל את ההגדרות הקודמות של הגרפים ומוודא שהם נמצאים בתוך הקוביות */
+.chart-container {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    height: 300px;
+    width: 100%;
+}
+
+/* מוודא שהקוביות של הגרפים יהיו בגודל אחיד */
+.dashboard-card {
+    height: 100%;
+}
+
+.dashboard-card .card-body {
+    padding: 15px;
+    height: calc(100% - 50px); /* מחשב את הגובה בהתאם לגובה הכותרת */
+}
+
+/* גורם לגרפים למלא את הקוביות */
+canvas {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* שינוי עיצוב המסגרות של הקוביות */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 15px;
+}
