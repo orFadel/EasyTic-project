@@ -34,12 +34,23 @@ function setupAttractionsEventListeners() {
 
 // טעינת רשימת האטרקציות
 function loadAttractions() {
-    console.log('טוען אטרקציות...');
+    console.log('🔄 טוען אטרקציות מהשרת...');
+
     const tableBody = document.getElementById('attractions-list');
     if (!tableBody) return;
-    
-    tableBody.innerHTML = '<tr><td colspan="5" class="text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">טוען...</span></div></td></tr>';
-    
+
+    // Spinner זמני
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="5" class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">טוען...</span>
+                </div>
+            </td>
+        </tr>
+    `;
+
+    // קריאה לשרת
     fetch('/get-attractions')
         .then(response => {
             if (!response.ok) {
@@ -48,36 +59,45 @@ function loadAttractions() {
             return response.json();
         })
         .then(attractions => {
-            console.log('אטרקציות נטענו:', attractions);
+            console.log('✅ DEBUG - attractions from server:', attractions);
             tableBody.innerHTML = '';
-            
+
             if (!attractions || attractions.length === 0) {
                 tableBody.innerHTML = '<tr><td colspan="5" class="text-center">אין אטרקציות להצגה</td></tr>';
                 return;
             }
-            
-            // מוסיף מפות תרגום לקטגוריות ומדינות
+
+            // מיפוי תרגומים
             const categoryMap = {
                 'park': 'פארקים וגנים',
                 'tour': 'סיורים',
                 'museum': 'מוזיאונים',
                 'tower': 'מגדלים ותצפיות'
             };
-            
+
             const countryMap = {
                 'dubai': 'דובאי',
                 'paris': 'פריז',
                 'rome': 'רומא',
                 'london': 'לונדון'
             };
-            
+
+            // יצירת שורות בטבלה
             attractions.forEach(attraction => {
+                const name = attraction.attractionName || attraction.name || '-';
+                const rawCountry = attraction.contry || attraction.country || attraction.city || '';
+                const country = countryMap[rawCountry.toLowerCase()] || rawCountry || '-';
+                const category = categoryMap[attraction.category] || attraction.category || '-';
+                const price = Array.isArray(attraction.ticketTypes) && attraction.ticketTypes.length > 0
+                    ? Number(attraction.ticketTypes[0].price).toFixed(2) + '₪'
+                    : (attraction.price ? Number(attraction.price).toFixed(2) + '₪' : '-');
+
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${attraction.name || '-'}</td>
-                    <td>${countryMap[attraction.contry] || attraction.contry || '-'}</td>
-                    <td>${categoryMap[attraction.category] || attraction.category || '-'}</td>
-                    <td>${attraction.price ? attraction.price.toFixed(2) + '₪' : '-'}</td>
+                    <td>${name}</td>
+                    <td>${country}</td>
+                    <td>${category}</td>
+                    <td>${price}</td>
                     <td>
                         <button class="btn btn-sm btn-info edit-btn" onclick="showEditAttractionForm('${attraction._id}')">
                             <i class="fas fa-edit"></i> ערוך
@@ -91,60 +111,8 @@ function loadAttractions() {
             });
         })
         .catch(error => {
-            console.error('שגיאה בטעינת אטרקציות:', error);
+            console.error('❌ שגיאה בטעינת אטרקציות:', error);
             tableBody.innerHTML = `<tr><td colspan="5" class="text-center text-danger">שגיאה בטעינת האטרקציות: ${error.message}</td></tr>`;
-            
-            // במקרה של כישלון בטעינה מהשרת, הצג נתונים לדוגמה
-            setTimeout(() => {
-                try {
-                    const dummyAttractions = [
-                        { _id: '1', name: 'מגדל אייפל', contry: 'paris', category: 'tower', price: 150 },
-                        { _id: '2', name: 'מוזיאון הלובר', contry: 'paris', category: 'museum', price: 120 },
-                        { _id: '3', name: 'עולם פרארי', contry: 'dubai', category: 'park', price: 250 },
-                        { _id: '4', name: 'סיור בקולוסאום', contry: 'rome', category: 'tour', price: 180 },
-                        { _id: '5', name: 'ביג בן', contry: 'london', category: 'tower', price: 100 }
-                    ];
-                    
-                    const categoryMap = {
-                        'park': 'פארקים וגנים',
-                        'tour': 'סיורים',
-                        'museum': 'מוזיאונים',
-                        'tower': 'מגדלים ותצפיות'
-                    };
-                    
-                    const countryMap = {
-                        'dubai': 'דובאי',
-                        'paris': 'פריז',
-                        'rome': 'רומא',
-                        'london': 'לונדון'
-                    };
-                    
-                    alert('מציג נתוני אטרקציות לדוגמה. התחבר לשרת לנתונים אמיתיים.');
-                    
-                    tableBody.innerHTML = '';
-                    
-                    dummyAttractions.forEach(attraction => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${attraction.name || '-'}</td>
-                            <td>${countryMap[attraction.contry] || attraction.contry || '-'}</td>
-                            <td>${categoryMap[attraction.category] || attraction.category || '-'}</td>
-                            <td>${attraction.price ? attraction.price.toFixed(2) + '₪' : '-'}</td>
-                            <td>
-                                <button class="btn btn-sm btn-info edit-btn" onclick="showEditAttractionForm('${attraction._id}')">
-                                    <i class="fas fa-edit"></i> ערוך
-                                </button>
-                                <button class="btn btn-sm btn-danger delete-btn" onclick="deleteAttraction('${attraction._id}')">
-                                    <i class="fas fa-trash"></i> מחק
-                                </button>
-                            </td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                } catch (fallbackError) {
-                    console.error('שגיאה בטעינת אטרקציות לדוגמה:', fallbackError);
-                }
-            }, 500);
         });
 }
 
@@ -237,10 +205,10 @@ function showEditAttractionForm(attractionId) {
 // שמירת אטרקציה חדשה או עדכון אטרקציה קיימת
 function saveAttraction(event) {
     event.preventDefault();
-    
+
     const form = document.getElementById('attraction-form');
     const mode = form.dataset.mode;
-    
+
     const attractionData = {
         name: document.getElementById('attraction-name').value,
         contry: document.getElementById('attraction-country').value,
@@ -252,15 +220,15 @@ function saveAttraction(event) {
         duration: document.getElementById('attraction-duration').value,
         accessibility: document.getElementById('attraction-accessibility').checked
     };
-    
-    let url = '/add-attraction';
+
+    let url = '/add-attraction';  
     let method = 'POST';
-    
+
     if (mode === 'edit') {
         url = `/api/attraction/${form.dataset.attractionId}`;
         method = 'PUT';
     }
-    
+
     fetch(url, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
@@ -273,7 +241,7 @@ function saveAttraction(event) {
         return response.json();
     })
     .then(data => {
-        alert(data.message || 'האטרקציה נשמרה בהצלחה');
+        alert(data.message || 'האטרקציה נשמרה בהצלחה ✅');
         hideAttractionForm();
         loadAttractions();
     })
@@ -282,6 +250,7 @@ function saveAttraction(event) {
         alert('שגיאה בשמירת האטרקציה: ' + error.message);
     });
 }
+
 
 // מחיקת אטרקציה
 function deleteAttraction(attractionId) {
