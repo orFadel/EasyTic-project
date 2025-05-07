@@ -9,6 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// פונקציה לבריחה של HTML כדי למנוע תקלות בתצוגת טקסט
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;',
+        '`': '&#096;'
+    };
+    return text.replace(/[&<>"'`]/g, function(m) { return map[m]; });
+}
+
 // הגדרת מאזינים לאירועים בחלק ניהול השאלות
 function setupQuestionsEventListeners() {
     document.getElementById('send-reply').addEventListener('click', submitReply);
@@ -73,7 +86,15 @@ function loadQuestions() {
         return;
     }
 
-    questionsContainer.innerHTML = '<tr><td colspan="5" class="text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">טוען...</span></div></td></tr>';
+    questionsContainer.innerHTML = `
+        <tr>
+            <td colspan="5" class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">טוען...</span>
+                </div>
+            </td>
+        </tr>
+    `;
 
     let token = sessionStorage.getItem('token');
     if (!token) {
