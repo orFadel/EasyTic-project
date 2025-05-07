@@ -13,6 +13,9 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'your_jwt_secret_key';
 const axios = require('axios');
 
+const favoritesRouter = require('./favoritesRouter');
+app.use('/api/favorites', favoritesRouter);
+
 const app = express();
 const PORT = 2001;
 
@@ -1386,125 +1389,135 @@ app.get('/api/tickets/:ticketId', auth, async (req, res) => {
 });
 
 // סטטיסטיקות מכירות
+// 🔧 גרסה מלאה ומעודכנת לנתיב: /api/admin/sales-stats
+// כולל גרפים: לפי מדינה, קטגוריה, אטרקציות מובילות
+
 app.get('/api/admin/sales-stats', isAdmin, async (req, res) => {
     try {
         const { range, startDate, endDate } = req.query;
-        
-        let dateFilter = {};
         const currentDate = new Date();
-        
+
+        let dateFilter = {};
         if (range === 'month') {
-            const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-            dateFilter = { purchaseDate: { $gte: firstDayOfMonth, $lte: currentDate } };
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            dateFilter = { purchaseDate: { $gte: firstDay, $lte: currentDate } };
         } else if (range === 'year') {
-            const firstDayOfYear = new Date(currentDate.getFullYear(), 0, 1);
-            dateFilter = { purchaseDate: { $gte: firstDayOfYear, $lte: currentDate } };
+            const firstDay = new Date(currentDate.getFullYear(), 0, 1);
+            dateFilter = { purchaseDate: { $gte: firstDay, $lte: currentDate } };
         } else if (range === 'custom' && startDate && endDate) {
-            dateFilter = { 
-                purchaseDate: { 
-                    $gte: new Date(startDate), 
-                    $lte: new Date(endDate) 
-                } 
+            dateFilter = {
+                purchaseDate: {
+                    $gte: new Date(startDate),
+                    $lte: new Date(endDate)
+                }
             };
         }
-        
-        // Get orders within the date range
+
         const orders = await Order.find(dateFilter).populate('userId', 'username');
-        
-        // Calculate total sales
+
         const totalSales = orders.reduce((sum, order) => sum + order.totalCost, 0);
-        
-        // Calculate average order value
         const averageOrder = orders.length > 0 ? totalSales / orders.length : 0;
-        
-        // Find the top-selling attraction
-        const itemCounts = {};
+
+        const itemCounts = {}, countryCounts = {}, categoryCounts = {};
+
         orders.forEach(order => {
             order.items.forEach(item => {
-                const itemId = item.productId;
-                itemCounts[itemId] = (itemCounts[itemId] || 0) + item.amount;
+                const id = item.productId;
+                itemCounts[id] = (itemCounts[id] || 0) + item.amount;
+
+                if (item.contry) {
+                    countryCounts[item.contry] = (countryCounts[item.contry] || 0) + item.amount;
+                }
+
+                if (item.category) {
+                    categoryCounts[item.category] = (categoryCounts[item.category] || 0) + item.amount;
+                }
             });
         });
-        
+
+        //  אטרקציה מובילה
         let topAttractionId = null;
         let topAttractionCount = 0;
-        
-        for (const [itemId, count] of Object.entries(itemCounts)) {
+        for (const [id, count] of Object.entries(itemCounts)) {
             if (count > topAttractionCount) {
-                topAttractionId = itemId;
+                topAttractionId = id;
                 topAttractionCount = count;
             }
         }
-        
-        // Get the name of the top attraction
+
         let topAttractionName = '-';
         if (topAttractionId) {
             const attraction = await Product.findOne({ productId: topAttractionId });
-            if (attraction) {
-                topAttractionName = attraction.name;
-            }
+            if (attraction) topAttractionName = attraction.name;
         }
-        
-        // Prepare data for chart (e.g., daily or monthly sales)
+
+        //  chartData לפי טווח
         let chartData = [];
-        
         if (range === 'month') {
-            // Group by day for current month
-            const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-            chartData = Array(daysInMonth).fill(0);
-            
+            const days = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+            chartData = Array(days).fill(0);
             orders.forEach(order => {
-                const day = order.purchaseDate.getDate();
+                const day = new Date(order.purchaseDate).getDate();
                 chartData[day - 1] += order.totalCost;
             });
-            
-            chartData = chartData.map((value, index) => ({
-                label: `${index + 1}/${currentDate.getMonth() + 1}`,
-                value
-            }));
+            chartData = chartData.map((val, i) => ({ label: `${i + 1}/${currentDate.getMonth() + 1}`, value: val }));
         } else {
-            // Group by month for year or custom range
-            const monthNames = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+            const months = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
             const monthlyData = Array(12).fill(0);
-            
             orders.forEach(order => {
-                const month = order.purchaseDate.getMonth();
-                monthlyData[month] += order.totalCost;
+                const m = new Date(order.purchaseDate).getMonth();
+                monthlyData[m] += order.totalCost;
             });
-            
-            chartData = monthlyData.map((value, index) => ({
-                label: monthNames[index],
-                value
-            }));
+            chartData = monthlyData.map((val, i) => ({ label: months[i], value: val }));
         }
-        
-        // Prepare recent orders data
-        const recentOrders = await Order.find()
-            .sort({ purchaseDate: -1 })
-            .limit(10)
-            .populate('userId', 'username');
-        
-        const formattedRecentOrders = recentOrders.map(order => ({
+
+        //  הזמנות אחרונות
+        const recentOrdersRaw = await Order.find().sort({ purchaseDate: -1 }).limit(10).populate('userId', 'username');
+        const recentOrders = recentOrdersRaw.map(order => ({
             orderNumber: order.orderNumber,
             date: order.purchaseDate,
             customer: order.userId ? order.userId.username : 'אורח',
             total: order.totalCost,
             id: order._id
         }));
-        
+
+        //  התפלגות לפי מדינה
+        const countriesData = Object.entries(countryCounts).map(([label, value]) => ({ label, value }));
+
+        //  לפי קטגוריה
+        const categoriesData = Object.entries(categoryCounts).map(([label, value]) => ({ label, value }));
+
+        //  10 אטרקציות מובילות
+        const topAttractionsData = Object.entries(itemCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 10);
+
+        const topAttractionsFull = await Promise.all(topAttractionsData.map(async ([id, value]) => {
+            const p = await Product.findOne({ productId: id });
+            return {
+                label: p ? p.name : 'לא ידוע',
+                value
+            };
+        }));
+
         res.status(200).json({
             totalSales,
             ordersCount: orders.length,
             averageOrder,
             topAttraction: topAttractionName,
             chartData,
-            recentOrders: formattedRecentOrders
+            recentOrders,
+            countriesData,
+            categoriesData,
+            topAttractionsData: topAttractionsFull
         });
+
     } catch (error) {
         console.error('Error fetching sales statistics:', error);
         res.status(500).json({ message: 'Error fetching sales statistics' });
     }
 });
+
 
 // Admin: Get order details
 app.get('/api/admin/order/:orderId', isAdmin, async (req, res) => {
