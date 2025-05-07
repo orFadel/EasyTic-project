@@ -1465,7 +1465,7 @@ app.get('/api/admin/sales-stats', isAdmin, async (req, res) => {
         //  הזמנות אחרונות
         const recentOrdersRaw = await Order.find().sort({ purchaseDate: -1 }).limit(10).populate('userId', 'username');
         const recentOrders = recentOrdersRaw.map(order => ({
-            orderNumber: order.orderNumber,
+            orderNumber: order.orderNumber.toString,
             date: order.purchaseDate,
             customer: order.userId ? order.userId.username : 'אורח',
             total: order.totalCost,
