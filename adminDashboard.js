@@ -670,3 +670,4 @@ function logoutUser() {
         window.location.href = 'homePage.html'; // הפניה לדף הבית במקרה של שגיאה
     }
 }
+
