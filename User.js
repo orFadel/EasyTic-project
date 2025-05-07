@@ -37,7 +37,10 @@ const userSchema = new mongoose.Schema({
       answer: { type: String }
     }
   ],
-  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }]
+  favorites: {
+    type: [String],
+    default: []
+  }
 });
 
 // Hashing הסיסמה לפני שמירתה במסד הנתונים
