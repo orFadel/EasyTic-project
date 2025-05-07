@@ -13,11 +13,11 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'your_jwt_secret_key';
 const axios = require('axios');
 
-const favoritesRouter = require('./favoritesRouter');
-app.use('/api/favorites', favoritesRouter);
-
 const app = express();
 const PORT = 2001;
+
+const favoritesRouter = require('./favoritesRouter');
+app.use('/api/favorites', favoritesRouter);
 
 app.use(express.static(__dirname)); 
 app.use(cors()); 
@@ -88,9 +88,6 @@ const adminAuth = (req, res, next) => {
         res.status(401).json({ message: 'טוקן לא תקין' });
     }
 };
-
-const favoritesRouter = require('./favoritesRouter');
-app.use('/api/favorites', favoritesRouter);
 
 // נתיבי דפים סטטיים
 app.get('/', (req, res) => {
@@ -490,6 +487,7 @@ app.get('/get-attractions', async (req, res) => {
         res.status(500).json({ message: 'Error retrieving attractions', error });
     }
 });
+
 app.get('/api/attraction-productId/:id', async (req, res) => {
     try {
         const attraction = await Product.findOne({ productId: req.params.id }); // כאן השינוי
@@ -502,7 +500,6 @@ app.get('/api/attraction-productId/:id', async (req, res) => {
         res.status(500).json({ message: 'Error fetching attraction data' });
     }
 });
-
 
 app.get('/get-user', async (req, res) => {
     try {
@@ -548,7 +545,6 @@ app.put('/add-searches', async (req, res) => {
         res.status(500).json({ message: 'Error adding search', error });
     }
 });
-
 
 app.delete('/delete-search/:id', async (req, res) => {
     try {
@@ -647,7 +643,6 @@ app.get('/user-searches/:userId', async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch user searches' });
     }
 });
-
 
 app.get('/user-recent-searches/:userId', async (req, res) => {
     try {
@@ -1387,10 +1382,6 @@ app.get('/api/tickets/:ticketId', auth, async (req, res) => {
         res.status(500).json({ message: 'שגיאה בטעינת פרטי הכרטיס: ' + error.message });
     }
 });
-
-// סטטיסטיקות מכירות
-// 🔧 גרסה מלאה ומעודכנת לנתיב: /api/admin/sales-stats
-// כולל גרפים: לפי מדינה, קטגוריה, אטרקציות מובילות
 
 app.get('/api/admin/sales-stats', isAdmin, async (req, res) => {
     try {
